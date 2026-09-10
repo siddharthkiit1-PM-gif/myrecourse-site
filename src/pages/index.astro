@@ -1,0 +1,244 @@
+---
+import Base from "../layouts/Base.astro";
+
+const APP_URL = "https://rental-recourse.vercel.app";
+
+const problems = [
+  {
+    title: "Deposit not returned",
+    body: "Your one-year lease ended weeks ago. The landlord keeps saying \u201Cnext week.\u201D You have receipts, but no leverage.",
+  },
+  {
+    title: "Landlord has gone silent",
+    body: "Calls unanswered, messages on read. You need something on the record before you can escalate.",
+  },
+  {
+    title: "Illegal eviction threats",
+    body: "Being asked to vacate without notice, or being locked out. Your tenancy rights don\u2019t disappear because the landlord says so.",
+  },
+];
+
+const steps = [
+  { n: "01", title: "Tell us what happened", body: "Six short screens. Situation, tenant, landlord, property, evidence, jurisdiction. Takes about five minutes." },
+  { n: "02", title: "We pick the right forum", body: "A deterministic rule engine \u2014 not a chatbot \u2014 decides between police, RERA, consumer commission, rent controller, civil suit, or a demand notice." },
+  { n: "03", title: "We draft, grounded in statute", body: "The notice quotes your state\u2019s Rent Act verbatim, alongside the Consumer Protection Act, Contract Act, and CPC \u00A780 where relevant." },
+  { n: "04", title: "Edit, download, send", body: "Inline edits, PDF export, ready to send by registered post or via your advocate." },
+];
+
+const states = [
+  "Karnataka", "Maharashtra", "Delhi", "Tamil Nadu", "Telangana",
+  "West Bengal", "Rajasthan", "Andhra Pradesh", "Uttar Pradesh", "Assam",
+];
+---
+
+<Base
+  title="Recourse \u2014 Free legal notices for Indian tenants"
+  description="Enter your rental dispute. Get a filing-ready legal notice grounded in your state's rent law. Free, in five minutes, no signup."
+>
+  <!-- HERO -->
+  <section class="border-b border-[color:var(--color-hairline)]">
+    <div class="max-w-6xl mx-auto px-5 md:px-8 pt-14 md:pt-24 pb-16 md:pb-24">
+      <div class="max-w-3xl">
+        <p class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.14em] text-[color:var(--color-ink-faint)]">
+          <span class="size-1.5 rounded-full bg-[color:var(--color-accent)]"></span>
+          For renters in India
+        </p>
+        <h1 class="mt-5 font-serif text-[2.4rem] leading-[1.05] md:text-6xl md:leading-[1.02] tracking-tight text-[color:var(--color-ink)]">
+          When your landlord won&rsquo;t listen, put it on the record.
+        </h1>
+        <p class="mt-6 text-lg md:text-xl text-[color:var(--color-ink-muted)] max-w-2xl leading-relaxed">
+          Recourse turns your rental dispute into a filing-ready legal notice &mdash;
+          grounded in your state&rsquo;s rent law and India&rsquo;s national
+          statutes. Free. Five minutes. No signup.
+        </p>
+
+        <div class="mt-10 flex flex-wrap items-center gap-3">
+          <a
+            href={`${APP_URL}/intake`}
+            class="inline-flex items-center gap-2 h-12 px-6 rounded-md bg-[color:var(--color-ink)] text-[color:var(--color-bg)] text-[15px] font-medium hover:opacity-90 transition-opacity"
+          >
+            Draft my notice
+            <span aria-hidden="true">→</span>
+          </a>
+          <a
+            href="/how-it-works/"
+            class="inline-flex items-center gap-2 h-12 px-5 rounded-md border border-[color:var(--color-hairline)] text-[15px] text-[color:var(--color-ink)] hover:bg-[color:var(--color-panel)] transition-colors"
+          >
+            See how it works
+          </a>
+        </div>
+
+        <p class="mt-5 text-sm text-[color:var(--color-ink-faint)]">
+          No signup. No payment. Session data expires in 24 hours.
+        </p>
+      </div>
+    </div>
+
+    <div class="border-t border-[color:var(--color-hairline)] bg-[color:var(--color-panel)]/60">
+      <div class="max-w-6xl mx-auto px-5 md:px-8 py-5 grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
+        <div>
+          <p class="text-[color:var(--color-ink)] font-medium">10 states</p>
+          <p class="text-[color:var(--color-ink-faint)] mt-0.5">Rent Act coverage</p>
+        </div>
+        <div>
+          <p class="text-[color:var(--color-ink)] font-medium">~5 minutes</p>
+          <p class="text-[color:var(--color-ink-faint)] mt-0.5">Intake to draft</p>
+        </div>
+        <div>
+          <p class="text-[color:var(--color-ink)] font-medium">Verbatim citations</p>
+          <p class="text-[color:var(--color-ink-faint)] mt-0.5">No hallucinated sections</p>
+        </div>
+        <div>
+          <p class="text-[color:var(--color-ink)] font-medium">&#8377;0</p>
+          <p class="text-[color:var(--color-ink-faint)] mt-0.5">To draft and download</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROBLEM -->
+  <section class="max-w-6xl mx-auto px-5 md:px-8 pt-20 md:pt-28">
+    <div class="max-w-2xl">
+      <p class="text-xs uppercase tracking-[0.14em] text-[color:var(--color-ink-faint)]">The problem</p>
+      <h2 class="mt-3 font-serif text-3xl md:text-4xl tracking-tight leading-tight">
+        A legal notice used to cost &#8377;1,500 and take a week.
+      </h2>
+      <p class="mt-5 text-[color:var(--color-ink-muted)] text-lg leading-relaxed">
+        Most Indian tenants never send one. Not because their case is weak
+        &mdash; because the friction is absurd for what should be a routine
+        demand. Recourse removes that friction.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-px bg-[color:var(--color-hairline)] rounded-lg overflow-hidden border border-[color:var(--color-hairline)] md:grid-cols-3">
+      {
+        problems.map((p) => (
+          <article class="bg-[color:var(--color-surface)] p-7 md:p-8">
+            <h3 class="font-serif text-xl">{p.title}</h3>
+            <p class="mt-3 text-[15px] text-[color:var(--color-ink-muted)] leading-relaxed">
+              {p.body}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="max-w-6xl mx-auto px-5 md:px-8 pt-24 md:pt-32">
+    <div class="grid md:grid-cols-[1fr_1.4fr] gap-10 md:gap-16 items-start">
+      <div class="md:sticky md:top-24">
+        <p class="text-xs uppercase tracking-[0.14em] text-[color:var(--color-ink-faint)]">How it works</p>
+        <h2 class="mt-3 font-serif text-3xl md:text-4xl tracking-tight leading-tight">
+          From complaint to filing-ready notice, in one sitting.
+        </h2>
+        <p class="mt-5 text-[color:var(--color-ink-muted)] leading-relaxed">
+          Four steps. No back-and-forth over WhatsApp with a lawyer. No forms
+          you don&rsquo;t understand.
+        </p>
+        <a
+          href="/how-it-works/"
+          class="mt-6 inline-flex items-center gap-1 text-sm text-[color:var(--color-ink)] underline underline-offset-4 decoration-[color:var(--color-hairline)] hover:decoration-[color:var(--color-ink)]"
+        >
+          Read the full walkthrough
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <ol class="space-y-6">
+        {
+          steps.map((s) => (
+            <li class="rounded-lg border border-[color:var(--color-hairline)] bg-[color:var(--color-surface)] p-6 md:p-7">
+              <div class="flex items-baseline gap-4">
+                <span class="font-serif text-[color:var(--color-accent)] text-lg font-medium">
+                  {s.n}
+                </span>
+                <h3 class="font-medium text-lg">{s.title}</h3>
+              </div>
+              <p class="mt-3 text-[15px] text-[color:var(--color-ink-muted)] leading-relaxed">
+                {s.body}
+              </p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- WHY FREE / TRUST -->
+  <section class="max-w-6xl mx-auto px-5 md:px-8 pt-24 md:pt-32">
+    <div class="rounded-2xl border border-[color:var(--color-hairline)] bg-[color:var(--color-panel)] p-8 md:p-14">
+      <div class="max-w-3xl">
+        <p class="text-xs uppercase tracking-[0.14em] text-[color:var(--color-ink-faint)]">Why free</p>
+        <h2 class="mt-3 font-serif text-3xl md:text-4xl tracking-tight leading-tight">
+          Because a demand letter shouldn&rsquo;t be a luxury good.
+        </h2>
+        <p class="mt-5 text-[color:var(--color-ink-muted)] leading-relaxed">
+          Millions of urban Indians rent. A meaningful share hit a deposit
+          dispute at some point. The tool that ends most of these
+          conversations &mdash; a properly-cited legal notice &mdash; has been
+          priced and gatekept as if it were exotic. It isn&rsquo;t. We built
+          Recourse so the notice takes minutes and costs nothing.
+        </p>
+        <p class="mt-5 text-[color:var(--color-ink-muted)] leading-relaxed">
+          We are not a law firm. We do not represent you. We do one thing
+          well: assemble a coherent, cite-able demand from your facts and your
+          state&rsquo;s statute.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COVERAGE -->
+  <section class="max-w-6xl mx-auto px-5 md:px-8 pt-24 md:pt-32">
+    <div class="flex items-end justify-between gap-6 flex-wrap">
+      <div class="max-w-2xl">
+        <p class="text-xs uppercase tracking-[0.14em] text-[color:var(--color-ink-faint)]">Coverage</p>
+        <h2 class="mt-3 font-serif text-3xl md:text-4xl tracking-tight leading-tight">
+          Ten states today. Every state, for the national statutes.
+        </h2>
+      </div>
+      <a
+        href="/coverage/"
+        class="text-sm text-[color:var(--color-ink)] underline underline-offset-4 decoration-[color:var(--color-hairline)] hover:decoration-[color:var(--color-ink)]"
+      >
+        Full coverage list &rarr;
+      </a>
+    </div>
+
+    <div class="mt-8 flex flex-wrap gap-2">
+      {
+        states.map((s) => (
+          <span class="inline-flex items-center px-3.5 py-2 rounded-md border border-[color:var(--color-hairline)] bg-[color:var(--color-surface)] text-sm text-[color:var(--color-ink)]">
+            {s}
+          </span>
+        ))
+      }
+      <span class="inline-flex items-center px-3.5 py-2 rounded-md border border-dashed border-[color:var(--color-ink-faint)] bg-transparent text-sm text-[color:var(--color-ink-muted)]">
+        Other state &mdash; national statutes only
+      </span>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="max-w-6xl mx-auto px-5 md:px-8 pt-24 md:pt-32">
+    <div class="rounded-2xl bg-[color:var(--color-ink)] text-[color:var(--color-bg)] p-10 md:p-16 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+      <div class="max-w-xl">
+        <h2 class="font-serif text-3xl md:text-4xl tracking-tight leading-tight">
+          Put your dispute in writing.
+        </h2>
+        <p class="mt-4 text-[color:var(--color-hairline)] leading-relaxed">
+          Free draft, in five minutes. The kind of letter a landlord actually
+          reads.
+        </p>
+      </div>
+      <a
+        href={`${APP_URL}/intake`}
+        class="inline-flex items-center justify-center gap-2 h-12 px-7 rounded-md bg-[color:var(--color-bg)] text-[color:var(--color-ink)] text-[15px] font-medium hover:opacity-95 transition-opacity self-start md:self-auto"
+      >
+        Draft my notice
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,104 @@
+---
+import Base from "../layouts/Base.astro";
+
+const APP_URL = "https://rental-recourse.vercel.app";
+---
+
+<Base
+  title="About \u2014 Recourse"
+  description="Why Recourse exists, who built it, and the principles behind a free, cite-able legal notice tool for Indian tenants."
+>
+  <section class="max-w-3xl mx-auto px-5 md:px-8 pt-14 md:pt-24 pb-8">
+    <p class="text-xs uppercase tracking-[0.14em] text-[color:var(--color-ink-faint)]">About</p>
+    <h1 class="mt-3 font-serif text-4xl md:text-5xl tracking-tight leading-[1.05]">
+      A working tool, not a marketing site pretending to be one.
+    </h1>
+  </section>
+
+  <section class="max-w-3xl mx-auto px-5 md:px-8 pt-2 pb-6">
+    <div class="prose-recourse space-y-6 text-[color:var(--color-ink)] text-[17px] leading-relaxed">
+      <p>
+        Recourse started with a simple observation: in India, the difference
+        between a landlord who returns your deposit and one who doesn&rsquo;t
+        is often a single piece of paper. A properly-worded, correctly-cited
+        legal notice, sent by registered post, ends most of these
+        conversations before they escalate.
+      </p>
+      <p>
+        And yet almost no tenant sends one. Not because their case is weak
+        &mdash; because the tool for producing that piece of paper has been
+        priced, gatekept, and made confusing. Free templates online are
+        generic and unpersuasive. A lawyer will draft one, at &#8377;500 to
+        &#8377;2,000, over the course of a week. Free legal aid exists, and
+        is slow.
+      </p>
+      <p>
+        Recourse takes the middle path away entirely. Five minutes on your
+        phone, a real notice with verbatim state-law citations, downloaded as
+        PDF, free.
+      </p>
+      <h2 class="font-serif text-2xl tracking-tight pt-6">Principles the product is built on</h2>
+      <ul class="list-none pl-0 space-y-4">
+        <li>
+          <span class="font-medium">Verbatim over generated.</span>
+          <span class="block text-[color:var(--color-ink-muted)] mt-1">
+            Statute text is retrieved from a curated corpus. The LLM assembles;
+            it doesn&rsquo;t invent citations.
+          </span>
+        </li>
+        <li>
+          <span class="font-medium">Deterministic where it matters.</span>
+          <span class="block text-[color:var(--color-ink-muted)] mt-1">
+            The forum recommendation is a hard-coded rule matrix. Same inputs,
+            same output, every time.
+          </span>
+        </li>
+        <li>
+          <span class="font-medium">Minimum data, maximum privacy.</span>
+          <span class="block text-[color:var(--color-ink-muted)] mt-1">
+            No accounts, no email required, session data expires in 24 hours.
+          </span>
+        </li>
+        <li>
+          <span class="font-medium">Free as the default.</span>
+          <span class="block text-[color:var(--color-ink-muted)] mt-1">
+            The draft is and will remain free. Any future paid features
+            (sending on your behalf, lawyer review) will be strictly optional.
+          </span>
+        </li>
+      </ul>
+
+      <h2 class="font-serif text-2xl tracking-tight pt-6">The team</h2>
+      <p>
+        Solo-built. Launched August 2026. Ongoing work is public on GitHub at
+        <a
+          href="https://github.com/siddharthkiit1-PM-gif/rental-recourse"
+          class="underline underline-offset-4"
+          rel="noopener"
+        >siddharthkiit1-PM-gif/rental-recourse</a>.
+      </p>
+
+      <h2 class="font-serif text-2xl tracking-tight pt-6">Say hello</h2>
+      <p>
+        Feedback, bug reports, citation corrections, press, or partnerships:
+        <a href="mailto:hello@myrecourse.in" class="underline underline-offset-4">hello@myrecourse.in</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-3xl mx-auto px-5 md:px-8 pt-8 pb-2">
+    <div class="rounded-2xl border border-[color:var(--color-hairline)] bg-[color:var(--color-panel)] p-8 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div>
+        <h3 class="font-serif text-2xl md:text-3xl tracking-tight">Try it yourself.</h3>
+        <p class="mt-2 text-[color:var(--color-ink-muted)]">Free draft, five minutes, no signup.</p>
+      </div>
+      <a
+        href={`${APP_URL}/intake`}
+        class="inline-flex items-center gap-2 h-11 px-6 rounded-md bg-[color:var(--color-ink)] text-[color:var(--color-bg)] font-medium hover:opacity-90 transition-opacity self-start md:self-auto"
+      >
+        Draft my notice
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+</Base>

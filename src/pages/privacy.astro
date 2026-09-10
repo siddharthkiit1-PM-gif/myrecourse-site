@@ -1,0 +1,128 @@
+---
+import Base from "../layouts/Base.astro";
+
+const lastUpdated = "September 2026";
+---
+
+<Base
+  title="Privacy and disclaimer \u2014 Recourse"
+  description="How Recourse handles your data, what it doesn't do, and the legal disclaimers that apply to any drafted notice."
+>
+  <section class="max-w-3xl mx-auto px-5 md:px-8 pt-14 md:pt-24 pb-8">
+    <p class="text-xs uppercase tracking-[0.14em] text-[color:var(--color-ink-faint)]">Legal</p>
+    <h1 class="mt-3 font-serif text-4xl md:text-5xl tracking-tight leading-[1.05]">
+      Privacy and disclaimer.
+    </h1>
+    <p class="mt-6 text-[color:var(--color-ink-faint)] text-sm">Last updated: {lastUpdated}</p>
+  </section>
+
+  <section class="max-w-3xl mx-auto px-5 md:px-8 pt-2 pb-6 space-y-10 text-[17px] leading-relaxed text-[color:var(--color-ink)]">
+    <div>
+      <h2 class="font-serif text-2xl tracking-tight">1. Not legal advice</h2>
+      <p class="mt-3 text-[color:var(--color-ink-muted)]">
+        Recourse is an informational drafting tool. It is not a law firm and
+        does not provide legal representation. Using Recourse does not create
+        an attorney&ndash;client relationship. Nothing on this site or in a
+        drafted notice constitutes legal advice for your specific situation.
+        For complex or high-stakes matters, consult a licensed advocate.
+      </p>
+    </div>
+
+    <div>
+      <h2 class="font-serif text-2xl tracking-tight">2. Your responsibility</h2>
+      <p class="mt-3 text-[color:var(--color-ink-muted)]">
+        You are solely responsible for the factual accuracy of any information
+        you enter and any notice you send. Recourse assembles a draft from
+        your inputs and applicable statutes; it does not verify claims about
+        your landlord, property, or dispute. Sending a notice with materially
+        false statements about another party may expose you to civil or
+        criminal liability.
+      </p>
+    </div>
+
+    <div>
+      <h2 class="font-serif text-2xl tracking-tight">3. Data we collect</h2>
+      <ul class="mt-3 space-y-2 text-[color:var(--color-ink-muted)] list-disc pl-5">
+        <li>
+          <span class="text-[color:var(--color-ink)]">Intake form fields</span>
+          &mdash; the situation, tenant, landlord, property, evidence, and
+          jurisdiction details you enter into the app.
+        </li>
+        <li>
+          <span class="text-[color:var(--color-ink)]">Session identifier</span>
+          &mdash; an anonymous ID used to link your intake to the resulting
+          draft.
+        </li>
+        <li>
+          <span class="text-[color:var(--color-ink)]">IP address</span> &mdash;
+          used for rate-limiting, abuse prevention, and aggregated analytics.
+          Not stored alongside your intake content.
+        </li>
+        <li>
+          <span class="text-[color:var(--color-ink)]">Rating</span> &mdash; if
+          you rate the draft on the results page.
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="font-serif text-2xl tracking-tight">4. Data we do not collect</h2>
+      <ul class="mt-3 space-y-2 text-[color:var(--color-ink-muted)] list-disc pl-5">
+        <li>No email address, phone number, or account.</li>
+        <li>No third-party trackers or advertising cookies.</li>
+        <li>No cross-site behavioural profiling.</li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="font-serif text-2xl tracking-tight">5. Retention</h2>
+      <p class="mt-3 text-[color:var(--color-ink-muted)]">
+        Session data (intake fields and the drafted notice) is stored in an
+        ephemeral key-value store with a 24-hour time-to-live. After that
+        window, it is permanently deleted. Aggregated, non-identifying counters
+        (for example, total drafts per day) are retained for up to 90 days for
+        product analytics.
+      </p>
+    </div>
+
+    <div>
+      <h2 class="font-serif text-2xl tracking-tight">6. Sharing</h2>
+      <p class="mt-3 text-[color:var(--color-ink-muted)]">
+        We do not sell, rent, or share your personal information. Your intake
+        data is processed by our infrastructure providers (hosting, key-value
+        store, and the LLM that assembles the draft) strictly to render the
+        service to you, and only for the 24-hour retention window described
+        above.
+      </p>
+    </div>
+
+    <div>
+      <h2 class="font-serif text-2xl tracking-tight">7. Your rights</h2>
+      <p class="mt-3 text-[color:var(--color-ink-muted)]">
+        Because sessions are anonymous and expire within 24 hours, we typically
+        have no data to correct or delete beyond that window. If you have
+        specific concerns, email
+        <a href="mailto:hello@myrecourse.in" class="underline underline-offset-4">hello@myrecourse.in</a>
+        and we&rsquo;ll respond within a reasonable time.
+      </p>
+    </div>
+
+    <div>
+      <h2 class="font-serif text-2xl tracking-tight">8. Changes to this policy</h2>
+      <p class="mt-3 text-[color:var(--color-ink-muted)]">
+        We may update this page as the product evolves. Material changes will
+        be reflected in the &ldquo;Last updated&rdquo; date at the top of this
+        page. Continued use of Recourse after an update indicates your
+        acceptance of the revised terms.
+      </p>
+    </div>
+
+    <div>
+      <h2 class="font-serif text-2xl tracking-tight">9. Contact</h2>
+      <p class="mt-3 text-[color:var(--color-ink-muted)]">
+        Questions, corrections, or takedown requests:
+        <a href="mailto:hello@myrecourse.in" class="underline underline-offset-4">hello@myrecourse.in</a>.
+      </p>
+    </div>
+  </section>
+</Base>

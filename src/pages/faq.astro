@@ -1,0 +1,99 @@
+---
+import Base from "../layouts/Base.astro";
+
+const APP_URL = "https://rental-recourse.vercel.app";
+
+const faqs = [
+  {
+    q: "Is Recourse actually free?",
+    a: "Yes. Drafting and downloading the notice as a PDF costs nothing. There is no paywall, no signup, no card on file. We may introduce paid add-ons in future (for example, sending your notice by registered post on your behalf) but the core draft will remain free.",
+  },
+  {
+    q: "Is this legal advice?",
+    a: "No. Recourse is an informational drafting tool. We are not a law firm, we do not represent you, and using Recourse does not create an attorney\u2013client relationship. For complex or high-stakes matters, please consult an advocate.",
+  },
+  {
+    q: "Is a Recourse-drafted notice \u201Creal\u201D?",
+    a: "The notice quotes verbatim statute text from your state's Rent Act (or the applicable national statutes) and follows the standard structure of a demand notice. Legally, a notice is whatever a competent person sends in writing that identifies the dispute and demands a remedy \u2014 you don't need a lawyer's letterhead to send one.",
+  },
+  {
+    q: "What happens after I download the notice?",
+    a: "You send it. The two most common paths are: (a) print, sign, and post via India Post registered A/D, keeping the receipt; or (b) email a signed PDF to the landlord and their agent. If you engage a lawyer later, they'll typically resend on their letterhead \u2014 our draft still saves you their drafting fee.",
+  },
+  {
+    q: "What does Recourse do with my data?",
+    a: "Your session data is stored in an ephemeral key-value store with a 24-hour expiry, then deleted. We do not require an email address or account. IP addresses are logged for rate-limit and abuse purposes only. Read the full details on our Privacy & disclaimer page.",
+  },
+  {
+    q: "My state isn\u2019t in the list. Can I still use it?",
+    a: "Yes. Pick \u201COther state\u201D on intake and we'll draft using the Consumer Protection Act, Indian Contract Act, and CPC \u00A780 \u2014 statutes that apply anywhere in India for deposit disputes and contract breaches.",
+  },
+  {
+    q: "Can I edit the notice before downloading?",
+    a: "Yes. Every field in the draft is inline-editable. You can rewrite paragraphs, change dates, add facts, or remove sections. The PDF export reflects your edits.",
+  },
+  {
+    q: "Is generating a legal notice with AI allowed under Indian law?",
+    a: "Drafting a document for your own use is not the practice of law. The Advocates Act \u00A729 regulates who can appear before courts and hold themselves out as an advocate \u2014 not who can put words on paper about their own dispute. Recourse does neither. We help you write your own demand letter.",
+  },
+  {
+    q: "Who built Recourse?",
+    a: "One person, built as a public-interest project. Launched in August 2026. See the About page for the fuller story.",
+  },
+  {
+    q: "I found a bug or the citation looks wrong. What do I do?",
+    a: "Email hello@myrecourse.in with the section, the state, and what you expected \u2014 or reply to the confirmation on the results page. Citation issues get triaged first because they matter most.",
+  },
+];
+---
+
+<Base
+  title="FAQ \u2014 Recourse"
+  description="Answers to the most common questions about Recourse: cost, legality, data handling, coverage, and how the drafted notice actually works."
+>
+  <section class="max-w-3xl mx-auto px-5 md:px-8 pt-14 md:pt-24 pb-6">
+    <p class="text-xs uppercase tracking-[0.14em] text-[color:var(--color-ink-faint)]">FAQ</p>
+    <h1 class="mt-3 font-serif text-4xl md:text-5xl tracking-tight leading-[1.05]">
+      Fair questions, direct answers.
+    </h1>
+    <p class="mt-6 text-lg text-[color:var(--color-ink-muted)] leading-relaxed">
+      If yours isn&rsquo;t here, email
+      <a href="mailto:hello@myrecourse.in" class="underline underline-offset-4">hello@myrecourse.in</a>.
+    </p>
+  </section>
+
+  <section class="max-w-3xl mx-auto px-5 md:px-8 pt-6 md:pt-10">
+    <div class="divide-y divide-[color:var(--color-hairline)] border-y border-[color:var(--color-hairline)]">
+      {
+        faqs.map((f) => (
+          <details class="group py-5 md:py-6">
+            <summary class="list-none cursor-pointer flex items-start justify-between gap-6">
+              <h2 class="font-medium text-lg text-[color:var(--color-ink)] leading-snug">{f.q}</h2>
+              <span
+                class="mt-1 shrink-0 text-[color:var(--color-ink-faint)] group-open:rotate-45 transition-transform text-xl leading-none"
+                aria-hidden="true"
+              >+</span>
+            </summary>
+            <p class="mt-4 text-[15px] text-[color:var(--color-ink-muted)] leading-relaxed">{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="max-w-3xl mx-auto px-5 md:px-8 pt-14 md:pt-20">
+    <div class="rounded-2xl border border-[color:var(--color-hairline)] bg-[color:var(--color-panel)] p-8 md:p-10 text-center">
+      <h3 class="font-serif text-2xl md:text-3xl tracking-tight">Still weighing it up?</h3>
+      <p class="mt-3 text-[color:var(--color-ink-muted)]">
+        The draft is free. If it&rsquo;s not useful, nothing lost.
+      </p>
+      <a
+        href={`${APP_URL}/intake`}
+        class="mt-6 inline-flex items-center gap-2 h-11 px-6 rounded-md bg-[color:var(--color-ink)] text-[color:var(--color-bg)] font-medium hover:opacity-90 transition-opacity"
+      >
+        Draft my notice
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+</Base>

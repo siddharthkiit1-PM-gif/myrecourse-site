@@ -1,0 +1,62 @@
+---
+interface Props {
+  currentPath?: string;
+}
+const { currentPath = "" } = Astro.props;
+
+const nav = [
+  { href: "/how-it-works/", label: "How it works" },
+  { href: "/coverage/", label: "Coverage" },
+  { href: "/faq/", label: "FAQ" },
+  { href: "/about/", label: "About" },
+];
+
+const APP_URL = "https://rental-recourse.vercel.app";
+---
+
+<header class="border-b border-[color:var(--color-hairline)] bg-[color:var(--color-bg)]/85 backdrop-blur sticky top-0 z-30">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 h-14 md:h-16 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 font-medium tracking-tight text-[color:var(--color-ink)]">
+      <span
+        class="inline-grid place-items-center size-7 rounded-md bg-[color:var(--color-ink)] text-[color:var(--color-bg)] text-[13px] font-semibold"
+        aria-hidden="true"
+      >R</span>
+      <span class="text-lg">Recourse</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-7 text-sm text-[color:var(--color-ink-muted)]">
+      {
+        nav.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              "hover:text-[color:var(--color-ink)] transition-colors",
+              currentPath.startsWith(item.href) && "text-[color:var(--color-ink)]",
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a
+        href={`${APP_URL}/intake`}
+        class="inline-flex items-center gap-1 px-3.5 md:px-4 h-9 md:h-10 rounded-md bg-[color:var(--color-ink)] text-[color:var(--color-bg)] text-sm font-medium hover:opacity-90 transition-opacity"
+      >
+        Start free
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+
+  <details class="md:hidden border-t border-[color:var(--color-hairline)]">
+    <summary class="list-none px-5 py-3 text-sm text-[color:var(--color-ink-muted)] cursor-pointer select-none">
+      Menu
+    </summary>
+    <nav class="px-5 pb-4 flex flex-col gap-3 text-sm">
+      {nav.map((item) => <a href={item.href} class="py-1">{item.label}</a>)}
+    </nav>
+  </details>
+</header>

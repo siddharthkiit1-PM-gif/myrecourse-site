@@ -1,0 +1,141 @@
+---
+import Base from "../layouts/Base.astro";
+
+const APP_URL = "https://rental-recourse.vercel.app";
+
+const dedicated = [
+  { state: "Karnataka", act: "Karnataka Rent Act, 1999" },
+  { state: "Maharashtra", act: "Maharashtra Rent Control Act, 1999" },
+  { state: "Delhi", act: "Delhi Rent Control Act, 1958" },
+  { state: "Tamil Nadu", act: "Tamil Nadu Regulation of Rights and Responsibilities of Landlords and Tenants Act, 2017" },
+  { state: "Telangana", act: "Telangana Buildings (Lease, Rent and Eviction) Control Act, 1960" },
+  { state: "West Bengal", act: "West Bengal Premises Tenancy Act, 1997" },
+  { state: "Rajasthan", act: "Rajasthan Rent Control Act, 2001" },
+];
+
+const mta = [
+  { state: "Andhra Pradesh", note: "Adopted the Model Tenancy Act, 2021" },
+  { state: "Uttar Pradesh", note: "Adopted the Model Tenancy Act, 2021" },
+  { state: "Assam", note: "Adopted the Model Tenancy Act, 2021" },
+];
+
+const national = [
+  { name: "Model Tenancy Act, 2021", desc: "Central framework adopted by an increasing number of states. Covers deposit caps, notice periods, and tenancy-tribunal procedure." },
+  { name: "Consumer Protection Act, 2019", desc: "Applies when a builder, PG operator, or rental service is treated as a service-provider. Widely used in deposit-refund cases." },
+  { name: "Indian Contract Act, 1872", desc: "The default backbone for enforcing any tenancy agreement, whether registered or not." },
+  { name: "Code of Civil Procedure, \u00A780", desc: "The statutory demand-notice provision preceding civil suits against government or in specified proceedings." },
+];
+
+const situations = [
+  { name: "Deposit not returned", body: "Landlord withholds all or part of the security deposit past the lease-end period, with no itemised deduction." },
+  { name: "Landlord unreachable", body: "Calls, messages, and emails go unanswered. You need a formal record of your demand before escalating." },
+  { name: "Illegal eviction threat", body: "Being asked to vacate without the notice period your lease or state law requires." },
+  { name: "Harassment", body: "Repeated pressure, threats, or entry without notice. Often relevant alongside a police or rent-controller complaint." },
+  { name: "Forced lockout", body: "Locks changed, belongings held, utilities cut. This is criminal in most cases and routes to the police as well as civil forums." },
+  { name: "Other", body: "A free-form situation type that lets the intake accept edge cases the categories above don't cover." },
+];
+---
+
+<Base
+  title="Coverage \u2014 Recourse"
+  description="States, statutes, and situation types covered by Recourse. Seven state Rent Acts, three Model Tenancy Act states, and four national statutes applicable anywhere in India."
+>
+  <section class="max-w-4xl mx-auto px-5 md:px-8 pt-14 md:pt-24 pb-6">
+    <p class="text-xs uppercase tracking-[0.14em] text-[color:var(--color-ink-faint)]">Coverage</p>
+    <h1 class="mt-3 font-serif text-4xl md:text-5xl tracking-tight leading-[1.05]">
+      Where Recourse works, and how.
+    </h1>
+    <p class="mt-6 text-lg text-[color:var(--color-ink-muted)] leading-relaxed max-w-2xl">
+      Ten states have first-class Rent Act support today. If you&rsquo;re
+      outside those ten, four national statutes still let us produce a valid
+      demand notice for most deposit and contract disputes.
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-5 md:px-8 pt-10">
+    <h2 class="font-serif text-2xl md:text-3xl tracking-tight">Dedicated state Rent Acts (7)</h2>
+    <p class="mt-3 text-[color:var(--color-ink-muted)]">
+      Verbatim bare-act text is in our corpus. Citations reference the exact
+      section of the state statute.
+    </p>
+    <div class="mt-8 rounded-lg border border-[color:var(--color-hairline)] overflow-hidden divide-y divide-[color:var(--color-hairline)] bg-[color:var(--color-surface)]">
+      {
+        dedicated.map((row) => (
+          <div class="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-6 px-5 md:px-6 py-4">
+            <span class="font-medium text-[color:var(--color-ink)] md:w-40">{row.state}</span>
+            <span class="text-[15px] text-[color:var(--color-ink-muted)]">{row.act}</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-5 md:px-8 pt-16">
+    <h2 class="font-serif text-2xl md:text-3xl tracking-tight">Model Tenancy Act adopters (3)</h2>
+    <p class="mt-3 text-[color:var(--color-ink-muted)]">
+      States that have formally adopted the Model Tenancy Act, 2021 as their
+      operational framework.
+    </p>
+    <div class="mt-8 rounded-lg border border-[color:var(--color-hairline)] overflow-hidden divide-y divide-[color:var(--color-hairline)] bg-[color:var(--color-surface)]">
+      {
+        mta.map((row) => (
+          <div class="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-6 px-5 md:px-6 py-4">
+            <span class="font-medium text-[color:var(--color-ink)] md:w-40">{row.state}</span>
+            <span class="text-[15px] text-[color:var(--color-ink-muted)]">{row.note}</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-5 md:px-8 pt-16">
+    <h2 class="font-serif text-2xl md:text-3xl tracking-tight">National statutes (apply everywhere)</h2>
+    <p class="mt-3 text-[color:var(--color-ink-muted)]">
+      Used alongside state law, or on their own when your state isn&rsquo;t on
+      the list above.
+    </p>
+    <div class="mt-8 grid md:grid-cols-2 gap-4">
+      {
+        national.map((s) => (
+          <article class="rounded-lg border border-[color:var(--color-hairline)] bg-[color:var(--color-panel)]/60 p-6">
+            <h3 class="font-medium text-lg">{s.name}</h3>
+            <p class="mt-2 text-[15px] text-[color:var(--color-ink-muted)] leading-relaxed">{s.desc}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-5 md:px-8 pt-16">
+    <h2 class="font-serif text-2xl md:text-3xl tracking-tight">Situation types we handle</h2>
+    <div class="mt-8 grid md:grid-cols-2 gap-4">
+      {
+        situations.map((s) => (
+          <article class="rounded-lg border border-[color:var(--color-hairline)] bg-[color:var(--color-surface)] p-6">
+            <h3 class="font-medium">{s.name}</h3>
+            <p class="mt-2 text-[15px] text-[color:var(--color-ink-muted)] leading-relaxed">{s.body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-5 md:px-8 pt-16 md:pt-20">
+    <div class="rounded-2xl border border-[color:var(--color-hairline)] bg-[color:var(--color-panel)] p-8 md:p-12">
+      <h3 class="font-serif text-2xl md:text-3xl tracking-tight">Not on the list?</h3>
+      <p class="mt-3 text-[color:var(--color-ink-muted)] leading-relaxed max-w-2xl">
+        Pick &ldquo;Other state&rdquo; on intake. We&rsquo;ll draft using the
+        Consumer Protection Act, Indian Contract Act, and CPC &sect;80 &mdash;
+        which apply anywhere in India for deposit disputes and most tenancy
+        contract breaches.
+      </p>
+      <a
+        href={`${APP_URL}/intake?state=Other`}
+        class="mt-6 inline-flex items-center gap-2 h-11 px-5 rounded-md bg-[color:var(--color-ink)] text-[color:var(--color-bg)] font-medium hover:opacity-90 transition-opacity"
+      >
+        Start with national statutes
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+</Base>

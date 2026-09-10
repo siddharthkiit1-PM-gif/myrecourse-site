@@ -1,0 +1,55 @@
+---
+const year = new Date().getFullYear();
+const APP_URL = "https://rental-recourse.vercel.app";
+---
+
+<footer class="border-t border-[color:var(--color-hairline)] bg-[color:var(--color-panel)] mt-24">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 py-12 md:py-16 grid gap-10 md:grid-cols-4">
+    <div class="md:col-span-2">
+      <div class="flex items-center gap-2 font-medium">
+        <span
+          class="inline-grid place-items-center size-6 rounded bg-[color:var(--color-ink)] text-[color:var(--color-bg)] text-xs font-semibold"
+          aria-hidden="true"
+        >R</span>
+        <span>Recourse</span>
+      </div>
+      <p class="mt-3 text-sm text-[color:var(--color-ink-muted)] max-w-sm">
+        Free legal notices for Indian tenants. Grounded in your state&rsquo;s rent
+        law. Built by one person, launched 2026.
+      </p>
+      <p class="mt-4 text-xs text-[color:var(--color-ink-faint)]">
+        Recourse is an informational drafting tool. It is <em>not</em> a law
+        firm, does not create an attorney&ndash;client relationship, and does
+        not constitute legal advice.
+      </p>
+    </div>
+
+    <div>
+      <p class="text-xs uppercase tracking-wide text-[color:var(--color-ink-faint)] font-medium">Product</p>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li><a href={`${APP_URL}/intake`} class="hover:underline">Start a notice</a></li>
+        <li><a href="/how-it-works/" class="hover:underline">How it works</a></li>
+        <li><a href="/coverage/" class="hover:underline">Coverage</a></li>
+        <li><a href="/faq/" class="hover:underline">FAQ</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="text-xs uppercase tracking-wide text-[color:var(--color-ink-faint)] font-medium">Company</p>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li><a href="/about/" class="hover:underline">About</a></li>
+        <li><a href="/privacy/" class="hover:underline">Privacy &amp; disclaimer</a></li>
+        <li>
+          <a href="mailto:hello@myrecourse.in" class="hover:underline">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-[color:var(--color-hairline)]">
+    <div class="max-w-6xl mx-auto px-5 md:px-8 py-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-2 text-xs text-[color:var(--color-ink-faint)]">
+      <span>&copy; {year} Recourse. All rights reserved.</span>
+      <span>Made in India.</span>
+    </div>
+  </div>
+</footer>
