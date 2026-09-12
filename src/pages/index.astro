@@ -1,161 +1,248 @@
 ---
 import Base from "../layouts/Base.astro";
+import Seal from "../components/Seal.astro";
 
 const APP_URL = "https://rental-recourse.vercel.app";
 
-const problems = [
+const liveNow = [
   {
-    title: "Deposit not returned",
-    body: "Your one-year lease ended weeks ago. The landlord keeps saying \u201Cnext week.\u201D You have receipts, but no leverage.",
+    n: "01",
+    tag: "Available",
+    title: "Draft the notice",
+    price: "Free",
+    body: "Six-screen intake, statute-grounded draft in about thirty seconds. Verbatim citations from your state's Rent Act. PDF ready to send.",
+    href: `${APP_URL}/intake`,
+    cta: "Draft mine",
   },
   {
-    title: "Landlord has gone silent",
-    body: "Calls unanswered, messages on read. You need something on the record before you can escalate.",
-  },
-  {
-    title: "Illegal eviction threats",
-    body: "Being asked to vacate without notice, or being locked out. Your tenancy rights don\u2019t disappear because the landlord says so.",
+    n: "02",
+    tag: "Available \u2014 rolling batches",
+    title: "Advocate-stamped notice",
+    price: "\u20B9499",
+    body: "A Bar Council\u2013enrolled advocate reviews your draft, signs it, affixes their seal, and sends the stamped PDF to your inbox within 48 hours.",
+    href: "/notice/#stamp",
+    cta: "Read the stamp brief",
   },
 ];
 
-const steps = [
-  { n: "01", title: "Tell us what happened", body: "Six short screens. Situation, tenant, landlord, property, evidence, jurisdiction. Takes about five minutes." },
-  { n: "02", title: "We pick the right forum", body: "A deterministic rule engine \u2014 not a chatbot \u2014 decides between police, RERA, consumer commission, rent controller, civil suit, or a demand notice." },
-  { n: "03", title: "We draft, grounded in statute", body: "The notice quotes your state\u2019s Rent Act verbatim, alongside the Consumer Protection Act, Contract Act, and CPC \u00A780 where relevant." },
-  { n: "04", title: "Edit, download, send", body: "Inline edits, PDF export, ready to send by registered post or via your advocate." },
+const coming = [
+  { title: "General legal consulting", body: "45-minute paid consult with an enrolled advocate. Rentals, employment, family, consumer." },
+  { title: "Advisory retainers", body: "Monthly retainer for repeat matters, especially for small landlords and PG operators." },
+  { title: "Notice filing service", body: "We post your stamped notice by India Post registered A/D, with tracking receipts couriered back." },
+  { title: "Advocate directory", body: "Browse enrolled advocates by state, specialisation, language, and turnaround." },
 ];
 
-const states = [
-  "Karnataka", "Maharashtra", "Delhi", "Tamil Nadu", "Telangana",
-  "West Bengal", "Rajasthan", "Andhra Pradesh", "Uttar Pradesh", "Assam",
+const advisorSpecs = [
+  { title: "Karnataka \u00B7 Rentals & Consumer", locale: "Bengaluru" },
+  { title: "Maharashtra \u00B7 Property", locale: "Mumbai" },
+  { title: "Delhi \u00B7 Civil & Contract", locale: "New Delhi" },
+  { title: "Tamil Nadu \u00B7 Rentals", locale: "Chennai" },
+  { title: "Telangana \u00B7 Commercial", locale: "Hyderabad" },
+  { title: "West Bengal \u00B7 Consumer", locale: "Kolkata" },
+];
+
+const stampSteps = [
+  { n: "\u00A701", title: "You draft it", body: "Free intake produces a filing-ready draft in about thirty seconds." },
+  { n: "\u00A702", title: "You upload it for stamping", body: "Add landlord contact, choose delivery preference, pay \u20B9499." },
+  { n: "\u00A703", title: "An advocate reviews & seals", body: "A Bar Council\u2013enrolled advocate reviews, redlines, signs, and affixes their seal within 48 hours." },
+  { n: "\u00A704", title: "You receive the stamped PDF", body: "Delivered to your inbox and to WhatsApp. Ready to send by registered post or email." },
 ];
 ---
 
 <Base
-  title="Recourse \u2014 Free legal notices for Indian tenants"
-  description="Enter your rental dispute. Get a filing-ready legal notice grounded in your state's rent law. Free, in five minutes, no signup."
+  title="Recourse \u2014 A legal advisors marketplace for Indian tenants"
+  description="Draft a filing-ready legal notice, then have it verified and stamped by a Bar Council-enrolled advocate. Rentals, deposits, evictions."
+  headerVariant="ink"
 >
   <!-- HERO -->
-  <section class="border-b border-[color:var(--color-hairline)]">
-    <div class="max-w-6xl mx-auto px-5 md:px-8 pt-14 md:pt-24 pb-16 md:pb-24">
-      <div class="max-w-3xl">
-        <p class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.14em] text-[color:var(--color-ink-faint)]">
-          <span class="size-1.5 rounded-full bg-[color:var(--color-accent)]"></span>
-          For renters in India
-        </p>
-        <h1 class="mt-5 font-serif text-[2.4rem] leading-[1.05] md:text-6xl md:leading-[1.02] tracking-tight text-[color:var(--color-ink)]">
-          When your landlord won&rsquo;t listen, put it on the record.
-        </h1>
-        <p class="mt-6 text-lg md:text-xl text-[color:var(--color-ink-muted)] max-w-2xl leading-relaxed">
-          Recourse turns your rental dispute into a filing-ready legal notice &mdash;
-          grounded in your state&rsquo;s rent law and India&rsquo;s national
-          statutes. Free. Five minutes. No signup.
-        </p>
-
-        <div class="mt-10 flex flex-wrap items-center gap-3">
-          <a
-            href={`${APP_URL}/intake`}
-            class="inline-flex items-center gap-2 h-12 px-6 rounded-md bg-[color:var(--color-ink)] text-[color:var(--color-bg)] text-[15px] font-medium hover:opacity-90 transition-opacity"
-          >
-            Draft my notice
-            <span aria-hidden="true">→</span>
-          </a>
-          <a
-            href="/how-it-works/"
-            class="inline-flex items-center gap-2 h-12 px-5 rounded-md border border-[color:var(--color-hairline)] text-[15px] text-[color:var(--color-ink)] hover:bg-[color:var(--color-panel)] transition-colors"
-          >
-            See how it works
-          </a>
-        </div>
-
-        <p class="mt-5 text-sm text-[color:var(--color-ink-faint)]">
-          No signup. No payment. Session data expires in 24 hours.
-        </p>
-      </div>
-    </div>
-
-    <div class="border-t border-[color:var(--color-hairline)] bg-[color:var(--color-panel)]/60">
-      <div class="max-w-6xl mx-auto px-5 md:px-8 py-5 grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
-        <div>
-          <p class="text-[color:var(--color-ink)] font-medium">10 states</p>
-          <p class="text-[color:var(--color-ink-faint)] mt-0.5">Rent Act coverage</p>
-        </div>
-        <div>
-          <p class="text-[color:var(--color-ink)] font-medium">~5 minutes</p>
-          <p class="text-[color:var(--color-ink-faint)] mt-0.5">Intake to draft</p>
-        </div>
-        <div>
-          <p class="text-[color:var(--color-ink)] font-medium">Verbatim citations</p>
-          <p class="text-[color:var(--color-ink-faint)] mt-0.5">No hallucinated sections</p>
-        </div>
-        <div>
-          <p class="text-[color:var(--color-ink)] font-medium">&#8377;0</p>
-          <p class="text-[color:var(--color-ink-faint)] mt-0.5">To draft and download</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- THE PROBLEM -->
-  <section class="max-w-6xl mx-auto px-5 md:px-8 pt-20 md:pt-28">
-    <div class="max-w-2xl">
-      <p class="text-xs uppercase tracking-[0.14em] text-[color:var(--color-ink-faint)]">The problem</p>
-      <h2 class="mt-3 font-serif text-3xl md:text-4xl tracking-tight leading-tight">
-        A legal notice used to cost &#8377;1,500 and take a week.
-      </h2>
-      <p class="mt-5 text-[color:var(--color-ink-muted)] text-lg leading-relaxed">
-        Most Indian tenants never send one. Not because their case is weak
-        &mdash; because the friction is absurd for what should be a routine
-        demand. Recourse removes that friction.
-      </p>
-    </div>
-
-    <div class="mt-14 grid gap-px bg-[color:var(--color-hairline)] rounded-lg overflow-hidden border border-[color:var(--color-hairline)] md:grid-cols-3">
-      {
-        problems.map((p) => (
-          <article class="bg-[color:var(--color-surface)] p-7 md:p-8">
-            <h3 class="font-serif text-xl">{p.title}</h3>
-            <p class="mt-3 text-[15px] text-[color:var(--color-ink-muted)] leading-relaxed">
-              {p.body}
+  <section class="relative overflow-hidden bg-[color:var(--color-ink)] text-[color:var(--color-paper)] grain">
+    <div class="relative max-w-[1240px] mx-auto px-5 md:px-10 pt-16 md:pt-28 pb-20 md:pb-32">
+      <div class="grid gap-16 lg:grid-cols-12 items-start">
+        <div class="lg:col-span-8 max-w-3xl">
+          <div class="rise" style="animation-delay:60ms">
+            <p class="eyebrow eyebrow-paper">
+              <span class="text-[color:var(--color-ochre)]">&sect;</span>
+              &nbsp;A marketplace of legal advisors &middot; Est. MMXXVI
             </p>
-          </article>
-        ))
-      }
+          </div>
+
+          <h1 class="mt-8 font-display font-normal text-[46px] leading-[0.98] md:text-[92px] md:leading-[0.94] tracking-[-0.02em] rise" style="animation-delay:160ms">
+            When your landlord
+            <br />
+            <span class="italic text-[color:var(--color-ochre)]">stops replying,</span>
+            <br />
+            a signed letter arrives.
+          </h1>
+
+          <p class="mt-10 text-[17px] md:text-[19px] leading-[1.55] text-[color:var(--color-paper-muted)] max-w-2xl rise" style="animation-delay:280ms">
+            Recourse is the legal advisors marketplace for Indian tenants.
+            Today you can draft a filing-ready legal notice in five minutes
+            &mdash; then have it verified, signed, and stamped by a
+            Bar Council&ndash;enrolled advocate.
+            <span class="text-[color:var(--color-paper)]">The marketplace itself is opening in rolling batches.</span>
+          </p>
+
+          <div class="mt-12 flex flex-wrap items-center gap-3 rise" style="animation-delay:400ms">
+            <a
+              href={`${APP_URL}/intake`}
+              class="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-[color:var(--color-ochre)] text-[color:var(--color-ink)] text-[15px] font-medium hover:opacity-95 transition-opacity"
+            >
+              Draft my notice &mdash; free
+              <span aria-hidden="true">→</span>
+            </a>
+            <a
+              href="/notice/#stamp"
+              class="inline-flex items-center gap-2 h-12 px-5 rounded-full border border-[color:var(--color-hairline-dark-2)] text-[15px] text-[color:var(--color-paper)] hover:bg-[color:var(--color-ink-3)] transition-colors"
+            >
+              Have it advocate-stamped &middot; &#8377;499
+            </a>
+          </div>
+
+          <div class="mt-14 grid grid-cols-3 gap-6 max-w-lg rise" style="animation-delay:520ms">
+            <div>
+              <p class="font-display text-3xl text-[color:var(--color-paper)]">10</p>
+              <p class="mt-1 text-[12px] text-[color:var(--color-paper-muted)]">state Rent Acts covered</p>
+            </div>
+            <div>
+              <p class="font-display text-3xl text-[color:var(--color-paper)]">48<span class="text-[color:var(--color-ochre)]">h</span></p>
+              <p class="mt-1 text-[12px] text-[color:var(--color-paper-muted)]">to a stamped notice</p>
+            </div>
+            <div>
+              <p class="font-display text-3xl text-[color:var(--color-paper)]">&#8377;<span class="text-[color:var(--color-ochre)]">0</span></p>
+              <p class="mt-1 text-[12px] text-[color:var(--color-paper-muted)]">for the draft, forever</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-4 hidden lg:block relative rise" style="animation-delay:680ms">
+          <div class="relative aspect-[4/5] rounded-[3px] border border-[color:var(--color-hairline-dark-2)] bg-[color:var(--color-ink-2)] p-8 overflow-hidden">
+            <div class="absolute inset-0 opacity-[0.06]" style="background-image:linear-gradient(var(--color-paper) 1px, transparent 1px);background-size:100% 28px;"></div>
+            <div class="relative">
+              <p class="font-mono text-[10px] text-[color:var(--color-paper-muted)] tracking-[0.28em]">LEGAL NOTICE &middot; DRAFT vI</p>
+              <p class="mt-6 font-display italic text-[color:var(--color-ochre)] text-lg">To,</p>
+              <p class="font-display text-[color:var(--color-paper)] text-lg mt-1">Mr [Landlord]</p>
+              <p class="font-display text-[color:var(--color-paper)] text-lg">Bengaluru &mdash; 560001</p>
+              <p class="mt-6 font-display italic text-[color:var(--color-paper-muted)]">Sub: Non-refund of security</p>
+              <p class="font-display italic text-[color:var(--color-paper-muted)]">deposit under KRA \u00A76.</p>
+              <div class="mt-8 space-y-2">
+                <div class="h-1.5 bg-[color:var(--color-hairline-dark-2)] rounded w-full"></div>
+                <div class="h-1.5 bg-[color:var(--color-hairline-dark-2)] rounded w-[92%]"></div>
+                <div class="h-1.5 bg-[color:var(--color-hairline-dark-2)] rounded w-[86%]"></div>
+                <div class="h-1.5 bg-[color:var(--color-hairline-dark-2)] rounded w-[95%]"></div>
+                <div class="h-1.5 bg-[color:var(--color-hairline-dark-2)] rounded w-[70%]"></div>
+                <div class="h-1.5 bg-[color:var(--color-hairline-dark-2)] rounded w-[88%]"></div>
+              </div>
+            </div>
+            <div class="absolute -bottom-8 -right-8 opacity-95">
+              <Seal size={170} tone="ochre" />
+            </div>
+          </div>
+          <p class="mt-4 text-[11px] font-mono tracking-[0.22em] text-[color:var(--color-paper-muted)] uppercase">
+            Fig. 1 &middot; A stamped notice, redacted
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section class="max-w-6xl mx-auto px-5 md:px-8 pt-24 md:pt-32">
-    <div class="grid md:grid-cols-[1fr_1.4fr] gap-10 md:gap-16 items-start">
-      <div class="md:sticky md:top-24">
-        <p class="text-xs uppercase tracking-[0.14em] text-[color:var(--color-ink-faint)]">How it works</p>
-        <h2 class="mt-3 font-serif text-3xl md:text-4xl tracking-tight leading-tight">
-          From complaint to filing-ready notice, in one sitting.
+  <!-- LIVE NOW STRIP -->
+  <section class="border-b border-[color:var(--color-hairline)] bg-[color:var(--color-paper-2)]">
+    <div class="max-w-[1240px] mx-auto px-5 md:px-10 py-14 md:py-20">
+      <div class="flex items-end justify-between gap-8 flex-wrap" data-reveal>
+        <div>
+          <p class="eyebrow">Live now</p>
+          <h2 class="mt-4 font-display text-4xl md:text-5xl leading-[1.02] tracking-tight max-w-xl">
+            Two products, one <em class="italic text-[color:var(--color-ochre-2)]">workflow</em>.
+          </h2>
+        </div>
+        <p class="text-[15px] text-[color:var(--color-ink-muted)] max-w-md leading-relaxed">
+          The free draft is the front door. The advocate stamp is the door
+          slamming shut on any argument about legitimacy.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-4 md:grid-cols-2">
+        {
+          liveNow.map((p, i) => (
+            <a
+              href={p.href}
+              class="group relative flex flex-col gap-6 p-8 md:p-10 bg-[color:var(--color-cream)] border border-[color:var(--color-hairline)] rounded-sm hover:bg-[color:var(--color-paper)] transition-colors"
+              data-reveal
+              style={`transition-delay:${i * 90}ms`}
+            >
+              <div class="flex items-start justify-between gap-6">
+                <div class="flex flex-col gap-2">
+                  <span class="font-mono text-[11px] tracking-[0.24em] text-[color:var(--color-ochre-2)] uppercase">
+                    {p.tag}
+                  </span>
+                  <span class="font-mono text-[11px] tracking-[0.24em] text-[color:var(--color-ink-faint)]">
+                    &sect; {p.n}
+                  </span>
+                </div>
+                {i === 1 && <Seal size={64} tone="ochre" spin={false} />}
+              </div>
+
+              <div>
+                <h3 class="font-display text-3xl md:text-4xl leading-[1.05] tracking-tight">
+                  {p.title}
+                </h3>
+                <p class="mt-3 font-display text-2xl text-[color:var(--color-ochre-2)] italic">
+                  {p.price}
+                </p>
+              </div>
+
+              <p class="text-[15px] text-[color:var(--color-ink-muted)] leading-relaxed">
+                {p.body}
+              </p>
+
+              <span class="mt-auto inline-flex items-center gap-1.5 text-[13.5px] font-medium">
+                {p.cta}
+                <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW THE STAMP WORKS -->
+  <section class="max-w-[1240px] mx-auto px-5 md:px-10 pt-24 md:pt-36 pb-12">
+    <div class="grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-4" data-reveal>
+        <p class="eyebrow">The stamp workflow</p>
+        <h2 class="mt-4 font-display text-4xl md:text-5xl leading-[1.02] tracking-tight">
+          From draft to
+          <em class="italic text-[color:var(--color-ochre-2)]">sealed instrument</em>
+          in forty-eight hours.
         </h2>
-        <p class="mt-5 text-[color:var(--color-ink-muted)] leading-relaxed">
-          Four steps. No back-and-forth over WhatsApp with a lawyer. No forms
-          you don&rsquo;t understand.
+        <p class="mt-6 text-[color:var(--color-ink-muted)] leading-relaxed">
+          The stamped notice is what a landlord opens, reads, and pays out on.
+          A signature from an advocate they can look up on the Bar Council roll
+          changes the conversation.
         </p>
         <a
           href="/how-it-works/"
-          class="mt-6 inline-flex items-center gap-1 text-sm text-[color:var(--color-ink)] underline underline-offset-4 decoration-[color:var(--color-hairline)] hover:decoration-[color:var(--color-ink)]"
+          class="mt-8 inline-flex items-center gap-1.5 text-[14px] font-medium underline decoration-[color:var(--color-hairline-2)] hover:decoration-[color:var(--color-ink)] underline-offset-4"
         >
-          Read the full walkthrough
+          Read the full method
           <span aria-hidden="true">→</span>
         </a>
       </div>
 
-      <ol class="space-y-6">
+      <ol class="lg:col-span-8 grid sm:grid-cols-2 gap-3">
         {
-          steps.map((s) => (
-            <li class="rounded-lg border border-[color:var(--color-hairline)] bg-[color:var(--color-surface)] p-6 md:p-7">
-              <div class="flex items-baseline gap-4">
-                <span class="font-serif text-[color:var(--color-accent)] text-lg font-medium">
-                  {s.n}
-                </span>
-                <h3 class="font-medium text-lg">{s.title}</h3>
-              </div>
-              <p class="mt-3 text-[15px] text-[color:var(--color-ink-muted)] leading-relaxed">
+          stampSteps.map((s, i) => (
+            <li
+              class="relative border-t border-[color:var(--color-hairline-2)] pt-6 pb-8 pr-6"
+              data-reveal
+              style={`transition-delay:${i * 80}ms`}
+            >
+              <p class="font-mono text-[11px] tracking-[0.22em] text-[color:var(--color-ochre-2)] uppercase">
+                {s.n}
+              </p>
+              <h3 class="mt-3 font-display text-2xl leading-tight">{s.title}</h3>
+              <p class="mt-3 text-[14.5px] text-[color:var(--color-ink-muted)] leading-relaxed">
                 {s.body}
               </p>
             </li>
@@ -165,80 +252,142 @@ const states = [
     </div>
   </section>
 
-  <!-- WHY FREE / TRUST -->
-  <section class="max-w-6xl mx-auto px-5 md:px-8 pt-24 md:pt-32">
-    <div class="rounded-2xl border border-[color:var(--color-hairline)] bg-[color:var(--color-panel)] p-8 md:p-14">
-      <div class="max-w-3xl">
-        <p class="text-xs uppercase tracking-[0.14em] text-[color:var(--color-ink-faint)]">Why free</p>
-        <h2 class="mt-3 font-serif text-3xl md:text-4xl tracking-tight leading-tight">
-          Because a demand letter shouldn&rsquo;t be a luxury good.
-        </h2>
-        <p class="mt-5 text-[color:var(--color-ink-muted)] leading-relaxed">
-          Millions of urban Indians rent. A meaningful share hit a deposit
-          dispute at some point. The tool that ends most of these
-          conversations &mdash; a properly-cited legal notice &mdash; has been
-          priced and gatekept as if it were exotic. It isn&rsquo;t. We built
-          Recourse so the notice takes minutes and costs nothing.
+  <!-- MARKETPLACE TEASER -->
+  <section class="relative overflow-hidden bg-[color:var(--color-ink)] text-[color:var(--color-paper)] grain mt-24">
+    <div class="relative max-w-[1240px] mx-auto px-5 md:px-10 py-20 md:py-32">
+      <div class="grid lg:grid-cols-12 gap-12 items-end" data-reveal>
+        <div class="lg:col-span-7">
+          <p class="eyebrow eyebrow-paper">The marketplace &middot; Coming online</p>
+          <h2 class="mt-4 font-display text-5xl md:text-6xl leading-[1.0] tracking-tight">
+            An advocate you can
+            <em class="italic text-[color:var(--color-ochre)]">look up on the roll</em>,
+            reachable in a tap.
+          </h2>
+        </div>
+        <p class="lg:col-span-5 text-[15px] text-[color:var(--color-paper-muted)] leading-relaxed">
+          Advocates are being onboarded in rolling batches, verified against
+          state Bar Council records. Each carries a Recourse seal that shows
+          the roll number, jurisdiction, and issue date, machine-readable and
+          human-readable both.
         </p>
-        <p class="mt-5 text-[color:var(--color-ink-muted)] leading-relaxed">
-          We are not a law firm. We do not represent you. We do one thing
-          well: assemble a coherent, cite-able demand from your facts and your
-          state&rsquo;s statute.
-        </p>
+      </div>
+
+      <div class="mt-16 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" data-reveal>
+        {
+          advisorSpecs.map((a, i) => (
+            <article
+              class="relative border border-[color:var(--color-hairline-dark-2)] bg-[color:var(--color-ink-2)] rounded-sm p-6"
+              style={`transition-delay:${i * 70}ms`}
+            >
+              <div class="flex items-start justify-between gap-4">
+                <div class="size-11 rounded-full border border-[color:var(--color-hairline-dark-2)] bg-[color:var(--color-ink-3)] grid place-items-center font-display italic text-[color:var(--color-paper-muted)]">
+                  &mdash;
+                </div>
+                <span class="font-mono text-[10px] tracking-[0.24em] uppercase text-[color:var(--color-ochre)]">
+                  Onboarding
+                </span>
+              </div>
+              <h3 class="mt-6 font-display text-xl leading-tight text-[color:var(--color-paper)]">
+                {a.title}
+              </h3>
+              <p class="mt-1.5 text-[13px] text-[color:var(--color-paper-muted)]">{a.locale}</p>
+              <p class="mt-6 text-[12.5px] font-mono uppercase tracking-[0.18em] text-[color:var(--color-paper-muted)]">
+                Name reserved
+              </p>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="mt-14 flex flex-wrap items-center gap-3">
+        <a
+          href="/advisors/"
+          class="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-[color:var(--color-ochre)] text-[color:var(--color-ink)] text-[15px] font-medium hover:opacity-95 transition-opacity"
+        >
+          Preview the marketplace
+          <span aria-hidden="true">→</span>
+        </a>
+        <a
+          href="/advisors/#for-advocates"
+          class="inline-flex items-center gap-2 h-12 px-5 rounded-full border border-[color:var(--color-hairline-dark-2)] text-[15px] hover:bg-[color:var(--color-ink-3)] transition-colors"
+        >
+          I am an advocate &mdash; apply to join
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- COVERAGE -->
-  <section class="max-w-6xl mx-auto px-5 md:px-8 pt-24 md:pt-32">
-    <div class="flex items-end justify-between gap-6 flex-wrap">
-      <div class="max-w-2xl">
-        <p class="text-xs uppercase tracking-[0.14em] text-[color:var(--color-ink-faint)]">Coverage</p>
-        <h2 class="mt-3 font-serif text-3xl md:text-4xl tracking-tight leading-tight">
-          Ten states today. Every state, for the national statutes.
-        </h2>
-      </div>
-      <a
-        href="/coverage/"
-        class="text-sm text-[color:var(--color-ink)] underline underline-offset-4 decoration-[color:var(--color-hairline)] hover:decoration-[color:var(--color-ink)]"
-      >
-        Full coverage list &rarr;
-      </a>
+  <!-- COMING SOON GRID -->
+  <section class="max-w-[1240px] mx-auto px-5 md:px-10 pt-24 md:pt-32">
+    <div class="max-w-3xl" data-reveal>
+      <p class="eyebrow">On the roadmap</p>
+      <h2 class="mt-4 font-display text-4xl md:text-5xl leading-[1.02] tracking-tight">
+        Services being fitted for the marketplace.
+      </h2>
+      <p class="mt-6 text-[color:var(--color-ink-muted)] leading-relaxed">
+        The Notice is the first product. It grew out of a specific tenant
+        problem. Everything below extends the same principle to adjacent legal
+        chores.
+      </p>
     </div>
 
-    <div class="mt-8 flex flex-wrap gap-2">
+    <div class="mt-12 grid gap-px bg-[color:var(--color-hairline)] border border-[color:var(--color-hairline)] rounded-sm overflow-hidden md:grid-cols-2">
       {
-        states.map((s) => (
-          <span class="inline-flex items-center px-3.5 py-2 rounded-md border border-[color:var(--color-hairline)] bg-[color:var(--color-surface)] text-sm text-[color:var(--color-ink)]">
-            {s}
-          </span>
+        coming.map((c, i) => (
+          <article
+            class="bg-[color:var(--color-cream)] p-8 md:p-10 flex flex-col gap-4"
+            data-reveal
+            style={`transition-delay:${i * 60}ms`}
+          >
+            <span class="font-mono text-[11px] tracking-[0.24em] uppercase text-[color:var(--color-ochre-2)]">
+              Coming soon
+            </span>
+            <h3 class="font-display text-2xl leading-tight">{c.title}</h3>
+            <p class="text-[14.5px] text-[color:var(--color-ink-muted)] leading-relaxed">
+              {c.body}
+            </p>
+          </article>
         ))
       }
-      <span class="inline-flex items-center px-3.5 py-2 rounded-md border border-dashed border-[color:var(--color-ink-faint)] bg-transparent text-sm text-[color:var(--color-ink-muted)]">
-        Other state &mdash; national statutes only
-      </span>
     </div>
   </section>
 
   <!-- FINAL CTA -->
-  <section class="max-w-6xl mx-auto px-5 md:px-8 pt-24 md:pt-32">
-    <div class="rounded-2xl bg-[color:var(--color-ink)] text-[color:var(--color-bg)] p-10 md:p-16 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
-      <div class="max-w-xl">
-        <h2 class="font-serif text-3xl md:text-4xl tracking-tight leading-tight">
-          Put your dispute in writing.
-        </h2>
-        <p class="mt-4 text-[color:var(--color-hairline)] leading-relaxed">
-          Free draft, in five minutes. The kind of letter a landlord actually
-          reads.
-        </p>
+  <section class="max-w-[1240px] mx-auto px-5 md:px-10 pt-24 md:pt-32">
+    <div class="relative overflow-hidden bg-[color:var(--color-ink)] text-[color:var(--color-paper)] rounded-sm p-10 md:p-16 grain" data-reveal>
+      <div class="relative grid lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-7">
+          <p class="eyebrow eyebrow-paper">Get in the queue</p>
+          <h2 class="mt-4 font-display text-4xl md:text-5xl leading-[1.02] tracking-tight">
+            A five-minute draft, or the whole stamped
+            <em class="italic text-[color:var(--color-ochre)]">instrument</em>.
+            You pick.
+          </h2>
+          <p class="mt-6 text-[color:var(--color-paper-muted)] max-w-lg leading-relaxed">
+            The free draft is the same one advocates start from. If you want
+            the seal, pay &#8377;499 and one will handle it end-to-end in
+            48 hours.
+          </p>
+          <div class="mt-10 flex flex-wrap items-center gap-3">
+            <a
+              href={`${APP_URL}/intake`}
+              class="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-[color:var(--color-ochre)] text-[color:var(--color-ink)] text-[15px] font-medium hover:opacity-95 transition-opacity"
+            >
+              Draft my notice
+              <span aria-hidden="true">→</span>
+            </a>
+            <a
+              href="/notice/#stamp"
+              class="inline-flex items-center gap-2 h-12 px-5 rounded-full border border-[color:var(--color-hairline-dark-2)] text-[15px] hover:bg-[color:var(--color-ink-3)] transition-colors"
+            >
+              Read the stamp brief
+            </a>
+          </div>
+        </div>
+        <div class="lg:col-span-5 flex justify-center lg:justify-end">
+          <Seal size={220} tone="ochre" />
+        </div>
       </div>
-      <a
-        href={`${APP_URL}/intake`}
-        class="inline-flex items-center justify-center gap-2 h-12 px-7 rounded-md bg-[color:var(--color-bg)] text-[color:var(--color-ink)] text-[15px] font-medium hover:opacity-95 transition-opacity self-start md:self-auto"
-      >
-        Draft my notice
-        <span aria-hidden="true">→</span>
-      </a>
     </div>
   </section>
 </Base>

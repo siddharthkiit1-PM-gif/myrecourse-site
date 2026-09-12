@@ -1,37 +1,56 @@
 ---
 interface Props {
   currentPath?: string;
+  variant?: "paper" | "ink";
 }
-const { currentPath = "" } = Astro.props;
+const { currentPath = "", variant = "paper" } = Astro.props;
 
 const nav = [
+  { href: "/notice/", label: "The Notice" },
+  { href: "/advisors/", label: "Advisors" },
   { href: "/how-it-works/", label: "How it works" },
-  { href: "/coverage/", label: "Coverage" },
   { href: "/faq/", label: "FAQ" },
-  { href: "/about/", label: "About" },
 ];
 
 const APP_URL = "https://rental-recourse.vercel.app";
+
+const isInk = variant === "ink";
 ---
 
-<header class="border-b border-[color:var(--color-hairline)] bg-[color:var(--color-bg)]/85 backdrop-blur sticky top-0 z-30">
-  <div class="max-w-6xl mx-auto px-5 md:px-8 h-14 md:h-16 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-2 font-medium tracking-tight text-[color:var(--color-ink)]">
+<header
+  class:list={[
+    "sticky top-0 z-40 border-b backdrop-blur",
+    isInk
+      ? "bg-[color:var(--color-ink)]/85 border-[color:var(--color-hairline-dark)] text-[color:var(--color-paper)]"
+      : "bg-[color:var(--color-paper)]/85 border-[color:var(--color-hairline)] text-[color:var(--color-ink)]",
+  ]}
+>
+  <div class="max-w-[1240px] mx-auto px-5 md:px-10 h-14 md:h-16 flex items-center justify-between gap-6">
+    <a href="/" class="flex items-center gap-2.5 font-medium tracking-tight">
       <span
-        class="inline-grid place-items-center size-7 rounded-md bg-[color:var(--color-ink)] text-[color:var(--color-bg)] text-[13px] font-semibold"
+        class:list={[
+          "inline-grid place-items-center size-7 rounded-full border font-display text-[15px] leading-none",
+          isInk
+            ? "border-[color:var(--color-ochre)] text-[color:var(--color-ochre)]"
+            : "border-[color:var(--color-ink)] text-[color:var(--color-ink)]",
+        ]}
         aria-hidden="true"
       >R</span>
-      <span class="text-lg">Recourse</span>
+      <span class="font-display text-[20px] leading-none tracking-tight">Recourse</span>
     </a>
 
-    <nav class="hidden md:flex items-center gap-7 text-sm text-[color:var(--color-ink-muted)]">
+    <nav class="hidden md:flex items-center gap-8 text-[13.5px]">
       {
         nav.map((item) => (
           <a
             href={item.href}
             class:list={[
-              "hover:text-[color:var(--color-ink)] transition-colors",
-              currentPath.startsWith(item.href) && "text-[color:var(--color-ink)]",
+              "transition-colors",
+              isInk
+                ? "text-[color:var(--color-paper-muted)] hover:text-[color:var(--color-paper)]"
+                : "text-[color:var(--color-ink-muted)] hover:text-[color:var(--color-ink)]",
+              currentPath.startsWith(item.href) &&
+                (isInk ? "text-[color:var(--color-paper)]" : "text-[color:var(--color-ink)]"),
             ]}
           >
             {item.label}
@@ -40,23 +59,45 @@ const APP_URL = "https://rental-recourse.vercel.app";
       }
     </nav>
 
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2">
+      <a
+        href="/advisors/#waitlist"
+        class:list={[
+          "hidden md:inline-flex items-center h-9 px-3.5 text-[13px] rounded-full border transition-colors",
+          isInk
+            ? "border-[color:var(--color-hairline-dark-2)] text-[color:var(--color-paper)] hover:bg-[color:var(--color-ink-3)]"
+            : "border-[color:var(--color-hairline-2)] text-[color:var(--color-ink)] hover:bg-[color:var(--color-paper-2)]",
+        ]}
+      >
+        Join the waitlist
+      </a>
       <a
         href={`${APP_URL}/intake`}
-        class="inline-flex items-center gap-1 px-3.5 md:px-4 h-9 md:h-10 rounded-md bg-[color:var(--color-ink)] text-[color:var(--color-bg)] text-sm font-medium hover:opacity-90 transition-opacity"
+        class:list={[
+          "inline-flex items-center gap-1.5 h-9 md:h-10 px-4 rounded-full text-[13.5px] font-medium transition-opacity hover:opacity-90",
+          isInk
+            ? "bg-[color:var(--color-ochre)] text-[color:var(--color-ink)]"
+            : "bg-[color:var(--color-ink)] text-[color:var(--color-paper)]",
+        ]}
       >
-        Start free
+        Draft a notice
         <span aria-hidden="true">→</span>
       </a>
     </div>
   </div>
 
-  <details class="md:hidden border-t border-[color:var(--color-hairline)]">
-    <summary class="list-none px-5 py-3 text-sm text-[color:var(--color-ink-muted)] cursor-pointer select-none">
+  <details
+    class:list={[
+      "md:hidden border-t",
+      isInk ? "border-[color:var(--color-hairline-dark)]" : "border-[color:var(--color-hairline)]",
+    ]}
+  >
+    <summary class="list-none px-5 py-3 text-sm cursor-pointer select-none opacity-80">
       Menu
     </summary>
-    <nav class="px-5 pb-4 flex flex-col gap-3 text-sm">
+    <nav class="px-5 pb-4 flex flex-col gap-2.5 text-sm">
       {nav.map((item) => <a href={item.href} class="py-1">{item.label}</a>)}
+      <a href="/advisors/#waitlist" class="py-1">Join the waitlist</a>
     </nav>
   </details>
 </header>

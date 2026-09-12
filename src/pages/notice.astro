@@ -1,0 +1,270 @@
+---
+import Base from "../layouts/Base.astro";
+import Seal from "../components/Seal.astro";
+
+const APP_URL = "https://rental-recourse.vercel.app";
+
+const included = [
+  "Landlord's full contact block, verified against your evidence",
+  "Verbatim citations from your state's Rent Act (or national statutes)",
+  "Statement of facts, drafted from your six-step intake",
+  "Specific relief sought, with a demand deadline",
+  "A closing forum-warning: which court or authority you'll approach next",
+  "PDF export, formatted for registered post",
+];
+
+const notIncluded = [
+  "Filing the notice at a court or forum",
+  "Court representation",
+  "Tracking landlord response or acknowledgement",
+  "Providing an opinion on likelihood of success",
+];
+
+const stampAdds = [
+  "Bar Council&ndash;enrolled advocate reviews the whole draft",
+  "Redlines and factual clarifications, one round included",
+  "Advocate signature block with roll number and jurisdiction",
+  "Recourse seal affixed on final page: machine- and human-readable",
+  "Stamped PDF delivered to your email and WhatsApp within 48 hours",
+  "Advocate available for one follow-up question over email",
+];
+
+const states = [
+  { name: "Karnataka", tag: "Rent Act" },
+  { name: "Maharashtra", tag: "Rent Control Act" },
+  { name: "Delhi", tag: "Rent Control Act" },
+  { name: "Tamil Nadu", tag: "RRRLT Act" },
+  { name: "Telangana", tag: "BLRE Control Act" },
+  { name: "West Bengal", tag: "Premises Tenancy" },
+  { name: "Rajasthan", tag: "Rent Control Act" },
+  { name: "Andhra Pradesh", tag: "Model Tenancy Act" },
+  { name: "Uttar Pradesh", tag: "Model Tenancy Act" },
+  { name: "Assam", tag: "Model Tenancy Act" },
+];
+---
+
+<Base
+  title="The Notice \u2014 Recourse"
+  description="Draft your legal notice free, then have it verified, signed, and stamped by a Bar Council-enrolled advocate. \u20B9499 flat, 48-hour turnaround."
+>
+  <!-- HERO -->
+  <section class="border-b border-[color:var(--color-hairline)]">
+    <div class="max-w-[1240px] mx-auto px-5 md:px-10 pt-14 md:pt-24 pb-16 md:pb-24">
+      <div class="grid lg:grid-cols-12 gap-12 items-start">
+        <div class="lg:col-span-7">
+          <p class="eyebrow">The Product &middot; \u00A701 &middot; The Notice</p>
+          <h1 class="mt-6 font-display text-[52px] md:text-[86px] leading-[0.96] tracking-tight">
+            A demand letter your
+            <em class="italic text-[color:var(--color-ochre-2)]">landlord</em>
+            will actually read.
+          </h1>
+          <p class="mt-8 text-[17px] md:text-[19px] text-[color:var(--color-ink-muted)] max-w-2xl leading-[1.55]">
+            The Notice is two things wearing one workflow. A free, self-serve
+            draft that's already filing-ready &mdash; and, if you want it, an
+            advocate's signature and stamp on top.
+          </p>
+          <div class="mt-10 flex flex-wrap gap-3">
+            <a
+              href={`${APP_URL}/intake`}
+              class="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-[color:var(--color-ink)] text-[color:var(--color-paper)] text-[15px] font-medium hover:opacity-90 transition-opacity"
+            >
+              Draft my notice &mdash; free
+              <span aria-hidden="true">→</span>
+            </a>
+            <a
+              href="#stamp"
+              class="inline-flex items-center gap-2 h-12 px-5 rounded-full border border-[color:var(--color-hairline-2)] text-[15px] hover:bg-[color:var(--color-paper-2)] transition-colors"
+            >
+              Stamp it for &#8377;499
+            </a>
+          </div>
+        </div>
+
+        <aside class="lg:col-span-5 lg:pl-8 lg:border-l lg:border-[color:var(--color-hairline)]">
+          <p class="eyebrow">At a glance</p>
+          <dl class="mt-6 divide-y divide-[color:var(--color-hairline)] border-y border-[color:var(--color-hairline)]">
+            <div class="py-3.5 flex items-baseline justify-between gap-6">
+              <dt class="text-[13.5px] text-[color:var(--color-ink-faint)]">Draft price</dt>
+              <dd class="font-display text-2xl italic text-[color:var(--color-ochre-2)]">Free</dd>
+            </div>
+            <div class="py-3.5 flex items-baseline justify-between gap-6">
+              <dt class="text-[13.5px] text-[color:var(--color-ink-faint)]">Stamped price</dt>
+              <dd class="font-display text-2xl italic text-[color:var(--color-ochre-2)]">&#8377;499</dd>
+            </div>
+            <div class="py-3.5 flex items-baseline justify-between gap-6">
+              <dt class="text-[13.5px] text-[color:var(--color-ink-faint)]">Draft turnaround</dt>
+              <dd class="font-display text-2xl">~30s</dd>
+            </div>
+            <div class="py-3.5 flex items-baseline justify-between gap-6">
+              <dt class="text-[13.5px] text-[color:var(--color-ink-faint)]">Stamp turnaround</dt>
+              <dd class="font-display text-2xl">48h</dd>
+            </div>
+            <div class="py-3.5 flex items-baseline justify-between gap-6">
+              <dt class="text-[13.5px] text-[color:var(--color-ink-faint)]">Coverage</dt>
+              <dd class="font-display text-2xl">10 states + national</dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- DRAFT DETAIL -->
+  <section class="max-w-[1240px] mx-auto px-5 md:px-10 pt-24 md:pt-32">
+    <div class="grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-4" data-reveal>
+        <p class="eyebrow">Layer one</p>
+        <h2 class="mt-4 font-display text-4xl md:text-5xl leading-[1.02] tracking-tight">
+          The free draft.
+        </h2>
+        <p class="mt-6 text-[color:var(--color-ink-muted)] leading-relaxed">
+          Same draft, same statute grounding, same PDF export. The self-serve
+          version costs nothing because most tenants have already paid enough
+          already.
+        </p>
+      </div>
+      <div class="lg:col-span-8 grid sm:grid-cols-2 gap-x-8 gap-y-2" data-reveal>
+        <div>
+          <p class="eyebrow">What&rsquo;s included</p>
+          <ul class="mt-5 space-y-3">
+            {
+              included.map((i) => (
+                <li class="flex gap-3 text-[14.5px] text-[color:var(--color-ink)] leading-relaxed">
+                  <span aria-hidden="true" class="mt-1.5 size-1.5 rounded-full bg-[color:var(--color-ochre)] shrink-0"></span>
+                  <span>{i}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div>
+          <p class="eyebrow">What it doesn&rsquo;t do</p>
+          <ul class="mt-5 space-y-3">
+            {
+              notIncluded.map((i) => (
+                <li class="flex gap-3 text-[14.5px] text-[color:var(--color-ink-muted)] leading-relaxed">
+                  <span aria-hidden="true" class="mt-1.5 size-1.5 rounded-full bg-[color:var(--color-hairline-2)] shrink-0"></span>
+                  <span>{i}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAMP DETAIL -->
+  <section id="stamp" class="relative overflow-hidden bg-[color:var(--color-ink)] text-[color:var(--color-paper)] grain mt-24 md:mt-36 scroll-mt-24">
+    <div class="relative max-w-[1240px] mx-auto px-5 md:px-10 pt-20 md:pt-32 pb-20 md:pb-32">
+      <div class="grid lg:grid-cols-12 gap-16 items-start">
+        <div class="lg:col-span-7">
+          <p class="eyebrow eyebrow-paper">Layer two &middot; &#8377;499</p>
+          <h2 class="mt-4 font-display text-5xl md:text-7xl leading-[0.98] tracking-tight">
+            An advocate signs it.
+            <em class="italic text-[color:var(--color-ochre)]">A seal goes on.</em>
+            You send it.
+          </h2>
+          <p class="mt-8 text-[17px] text-[color:var(--color-paper-muted)] max-w-2xl leading-relaxed">
+            Same 48-hour promise every time. A Bar Council&ndash;enrolled
+            advocate reviews the whole draft, redlines what's missing, signs
+            the last page, and affixes their Recourse seal &mdash; a
+            QR-verifiable stamp keyed to their state Bar roll number.
+          </p>
+
+          <ul class="mt-10 space-y-4 max-w-2xl">
+            {
+              stampAdds.map((s) => (
+                <li class="flex items-start gap-4 border-b border-[color:var(--color-hairline-dark)] pb-4">
+                  <span aria-hidden="true" class="mt-1 font-mono text-[color:var(--color-ochre)] text-[11px] tracking-[0.24em]">
+                    &sect;
+                  </span>
+                  <span class="text-[15px] text-[color:var(--color-paper)] leading-relaxed" set:html={s} />
+                </li>
+              ))
+            }
+          </ul>
+
+          <div class="mt-12 flex flex-wrap gap-3">
+            <a
+              href={`${APP_URL}/intake?stamp=true`}
+              class="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-[color:var(--color-ochre)] text-[color:var(--color-ink)] text-[15px] font-medium hover:opacity-95 transition-opacity"
+            >
+              Start with a stamped notice
+              <span aria-hidden="true">→</span>
+            </a>
+            <a
+              href={`${APP_URL}/intake`}
+              class="inline-flex items-center gap-2 h-12 px-5 rounded-full border border-[color:var(--color-hairline-dark-2)] text-[15px] hover:bg-[color:var(--color-ink-3)] transition-colors"
+            >
+              Or draft first, decide later
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 lg:sticky lg:top-24">
+          <div class="relative aspect-square rounded-sm border border-[color:var(--color-hairline-dark-2)] bg-[color:var(--color-ink-2)] grid place-items-center overflow-hidden">
+            <div class="absolute inset-0 opacity-[0.05]" style="background-image:linear-gradient(var(--color-paper) 1px, transparent 1px);background-size:100% 32px;"></div>
+            <Seal size={280} tone="ochre" />
+          </div>
+          <p class="mt-4 text-[11px] font-mono uppercase tracking-[0.22em] text-[color:var(--color-paper-muted)]">
+            Fig. 2 &middot; The Recourse seal, actual size 42mm
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COVERAGE -->
+  <section class="max-w-[1240px] mx-auto px-5 md:px-10 pt-24 md:pt-32">
+    <div class="grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-4" data-reveal>
+        <p class="eyebrow">Coverage</p>
+        <h2 class="mt-4 font-display text-4xl md:text-5xl leading-[1.02] tracking-tight">
+          Ten state statutes, four national ones.
+        </h2>
+        <p class="mt-6 text-[color:var(--color-ink-muted)] leading-relaxed">
+          If your state isn't listed, the draft still works &mdash; it uses
+          the Consumer Protection Act, Indian Contract Act, and CPC &sect;80,
+          all of which apply anywhere in India.
+        </p>
+      </div>
+      <div class="lg:col-span-8">
+        <div class="grid gap-px bg-[color:var(--color-hairline)] border border-[color:var(--color-hairline)] rounded-sm overflow-hidden sm:grid-cols-2 lg:grid-cols-2" data-reveal>
+          {
+            states.map((s) => (
+              <div class="bg-[color:var(--color-cream)] p-5 flex items-baseline justify-between gap-4">
+                <span class="font-display text-xl">{s.name}</span>
+                <span class="font-mono text-[11px] tracking-[0.2em] uppercase text-[color:var(--color-ink-faint)]">{s.tag}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="max-w-[1240px] mx-auto px-5 md:px-10 pt-24 md:pt-32">
+    <div class="border-t border-[color:var(--color-hairline)] pt-12 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+      <h2 class="font-display text-4xl md:text-6xl max-w-2xl leading-[1.02] tracking-tight">
+        Ready. Draft, or draft-plus-stamp.
+      </h2>
+      <div class="flex flex-wrap gap-3">
+        <a
+          href={`${APP_URL}/intake`}
+          class="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-[color:var(--color-ink)] text-[color:var(--color-paper)] text-[15px] font-medium hover:opacity-90 transition-opacity"
+        >
+          Draft &mdash; free
+          <span aria-hidden="true">→</span>
+        </a>
+        <a
+          href={`${APP_URL}/intake?stamp=true`}
+          class="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-[color:var(--color-ochre)] text-[color:var(--color-ink)] text-[15px] font-medium hover:opacity-95 transition-opacity"
+        >
+          Draft + stamp &mdash; &#8377;499
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

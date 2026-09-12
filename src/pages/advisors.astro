@@ -1,0 +1,297 @@
+---
+import Base from "../layouts/Base.astro";
+import Seal from "../components/Seal.astro";
+
+const advisorPreviews = [
+  { locale: "Bengaluru", state: "Karnataka", specs: ["Rentals", "Consumer"], enrolled: "KAR / 2014" },
+  { locale: "Mumbai", state: "Maharashtra", specs: ["Property", "Civil"], enrolled: "MAH / 2011" },
+  { locale: "New Delhi", state: "Delhi", specs: ["Contract", "Employment"], enrolled: "DEL / 2016" },
+  { locale: "Chennai", state: "Tamil Nadu", specs: ["Rentals", "Consumer"], enrolled: "TN / 2013" },
+  { locale: "Hyderabad", state: "Telangana", specs: ["Commercial", "Civil"], enrolled: "TG / 2015" },
+  { locale: "Kolkata", state: "West Bengal", specs: ["Consumer", "Rentals"], enrolled: "WB / 2012" },
+  { locale: "Jaipur", state: "Rajasthan", specs: ["Rentals", "Property"], enrolled: "RJ / 2018" },
+  { locale: "Pune", state: "Maharashtra", specs: ["Rentals", "Contract"], enrolled: "MAH / 2019" },
+  { locale: "Ahmedabad", state: "Gujarat", specs: ["Civil"], enrolled: "GUJ / 2017" },
+];
+
+const forAdvocatesBenefits = [
+  { title: "Structured intake, no back-and-forth", body: "Every draft you see is already grounded in verbatim statute text. You review and refine, you don't build from a blank page." },
+  { title: "Fixed pricing, transparent split", body: "\u20B9499 per stamped notice, \u20B9299 to the advocate, \u20B9200 to Recourse for platform + verification. No haggling with clients." },
+  { title: "Volume when you want it, off when you don't", body: "Set your weekly capacity in the dashboard. Notices route to you only when you've opened a slot." },
+  { title: "Verified seal keyed to your roll", body: "Every stamped notice carries your Bar Council roll number in a QR that verifies against a public record." },
+];
+---
+
+<Base
+  title="Advisors \u2014 Recourse Marketplace"
+  description="A marketplace of Bar Council-enrolled advocates for Indian tenants. Onboarding in rolling batches. Join the waitlist, or apply as an advocate."
+  headerVariant="ink"
+>
+  <!-- HERO -->
+  <section class="relative overflow-hidden bg-[color:var(--color-ink)] text-[color:var(--color-paper)] grain">
+    <div class="relative max-w-[1240px] mx-auto px-5 md:px-10 pt-20 md:pt-32 pb-20 md:pb-28">
+      <div class="grid lg:grid-cols-12 gap-12 items-start">
+        <div class="lg:col-span-8">
+          <p class="eyebrow eyebrow-paper">
+            The marketplace &middot; Onboarding in rolling batches
+          </p>
+          <h1 class="mt-8 font-display text-[52px] md:text-[92px] leading-[0.96] tracking-tight rise" style="animation-delay:120ms">
+            A directory of
+            <em class="italic text-[color:var(--color-ochre)]">advocates</em>,
+            with the receipts.
+          </h1>
+          <p class="mt-10 text-[17px] md:text-[19px] text-[color:var(--color-paper-muted)] max-w-2xl leading-[1.55] rise" style="animation-delay:240ms">
+            Every advocate is verified against their state Bar Council roll,
+            listed with their year of enrolment, jurisdictions, languages, and
+            average turnaround. No fake reviews. No SEO listicles. The first
+            batch is live for the stamp product; the browseable directory
+            opens next.
+          </p>
+          <div class="mt-12 flex flex-wrap gap-3 rise" style="animation-delay:360ms">
+            <a
+              href="#waitlist"
+              class="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-[color:var(--color-ochre)] text-[color:var(--color-ink)] text-[15px] font-medium hover:opacity-95 transition-opacity"
+            >
+              Join the tenant waitlist
+              <span aria-hidden="true">→</span>
+            </a>
+            <a
+              href="#for-advocates"
+              class="inline-flex items-center gap-2 h-12 px-5 rounded-full border border-[color:var(--color-hairline-dark-2)] text-[15px] hover:bg-[color:var(--color-ink-3)] transition-colors"
+            >
+              I am an advocate &mdash; apply
+            </a>
+          </div>
+        </div>
+        <div class="lg:col-span-4 hidden lg:flex justify-end rise" style="animation-delay:480ms">
+          <Seal size={220} tone="ochre" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREVIEW GRID -->
+  <section class="max-w-[1240px] mx-auto px-5 md:px-10 pt-24 md:pt-32">
+    <div class="flex items-end justify-between gap-8 flex-wrap" data-reveal>
+      <div>
+        <p class="eyebrow">Preview &middot; First batch onboarding</p>
+        <h2 class="mt-4 font-display text-4xl md:text-5xl leading-[1.02] tracking-tight">
+          Names are being reserved.
+        </h2>
+      </div>
+      <p class="max-w-md text-[15px] text-[color:var(--color-ink-muted)] leading-relaxed">
+        Advocates opt in to be listed publicly. Until they do, only their
+        jurisdiction and specialisation are shown.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        advisorPreviews.map((a, i) => (
+          <article
+            class="group border border-[color:var(--color-hairline)] bg-[color:var(--color-cream)] rounded-sm p-6 hover:bg-[color:var(--color-paper-2)] transition-colors"
+            data-reveal
+            style={`transition-delay:${i * 55}ms`}
+          >
+            <div class="flex items-start justify-between gap-4">
+              <div class="size-11 rounded-full border border-[color:var(--color-hairline-2)] grid place-items-center font-display italic text-[color:var(--color-ink-faint)]">
+                &mdash;
+              </div>
+              <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-[color:var(--color-ochre-2)]">
+                Onboarding
+              </span>
+            </div>
+            <p class="mt-5 font-display italic text-[color:var(--color-ink-faint)] text-lg">
+              Name reserved
+            </p>
+            <p class="mt-1 font-display text-xl leading-tight">
+              {a.locale} &middot; <span class="italic text-[color:var(--color-ochre-2)]">{a.state}</span>
+            </p>
+            <div class="mt-5 flex flex-wrap gap-1.5">
+              {
+                a.specs.map((s) => (
+                  <span class="text-[11px] font-mono uppercase tracking-[0.18em] border border-[color:var(--color-hairline-2)] px-2 py-1 rounded-sm text-[color:var(--color-ink-muted)]">
+                    {s}
+                  </span>
+                ))
+              }
+            </div>
+            <p class="mt-5 text-[11px] font-mono tracking-[0.22em] uppercase text-[color:var(--color-ink-faint)]">
+              Bar roll &middot; {a.enrolled}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- USER WAITLIST -->
+  <section id="waitlist" class="max-w-[1240px] mx-auto px-5 md:px-10 pt-24 md:pt-32 scroll-mt-24">
+    <div class="border border-[color:var(--color-hairline)] rounded-sm bg-[color:var(--color-cream)] p-8 md:p-14" data-reveal>
+      <div class="grid lg:grid-cols-12 gap-10 items-start">
+        <div class="lg:col-span-6">
+          <p class="eyebrow">For tenants</p>
+          <h2 class="mt-4 font-display text-4xl md:text-5xl leading-[1.02] tracking-tight">
+            Tell us what you'd want
+            <em class="italic text-[color:var(--color-ochre-2)]">next</em>.
+          </h2>
+          <p class="mt-6 text-[color:var(--color-ink-muted)] leading-relaxed">
+            The stamp product is live. The full directory, consultations, and
+            filing service are being fitted next. Join the waitlist and
+            we'll invite you as each opens.
+          </p>
+        </div>
+        <form
+          class="lg:col-span-6 grid gap-3"
+          action="mailto:hello@myrecourse.in"
+          method="post"
+          enctype="text/plain"
+        >
+          <label class="block">
+            <span class="eyebrow">Email</span>
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="you@somewhere.in"
+              class="mt-2 w-full h-12 px-4 bg-[color:var(--color-paper)] border border-[color:var(--color-hairline-2)] rounded-sm font-sans text-[15px] focus:outline-none focus:border-[color:var(--color-ink)]"
+            />
+          </label>
+          <label class="block">
+            <span class="eyebrow">State</span>
+            <input
+              type="text"
+              name="state"
+              placeholder="Karnataka, Maharashtra, \u2026"
+              class="mt-2 w-full h-12 px-4 bg-[color:var(--color-paper)] border border-[color:var(--color-hairline-2)] rounded-sm font-sans text-[15px] focus:outline-none focus:border-[color:var(--color-ink)]"
+            />
+          </label>
+          <label class="block">
+            <span class="eyebrow">What you'd want most</span>
+            <select
+              name="want"
+              class="mt-2 w-full h-12 px-4 bg-[color:var(--color-paper)] border border-[color:var(--color-hairline-2)] rounded-sm font-sans text-[15px] focus:outline-none focus:border-[color:var(--color-ink)]"
+            >
+              <option>Browse advocate directory</option>
+              <option>Legal consultation on my case</option>
+              <option>Send my stamped notice by registered post</option>
+              <option>Monthly advisory retainer</option>
+              <option>Something else</option>
+            </select>
+          </label>
+          <button
+            type="submit"
+            class="mt-2 inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full bg-[color:var(--color-ink)] text-[color:var(--color-paper)] text-[15px] font-medium hover:opacity-90 transition-opacity"
+          >
+            Join the waitlist
+            <span aria-hidden="true">→</span>
+          </button>
+          <p class="text-[11.5px] font-mono uppercase tracking-[0.2em] text-[color:var(--color-ink-faint)]">
+            Sends via your email app to hello@myrecourse.in
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR ADVOCATES -->
+  <section id="for-advocates" class="relative overflow-hidden bg-[color:var(--color-ink)] text-[color:var(--color-paper)] grain mt-24 md:mt-32 scroll-mt-24">
+    <div class="relative max-w-[1240px] mx-auto px-5 md:px-10 pt-20 md:pt-32 pb-20 md:pb-32">
+      <div class="grid lg:grid-cols-12 gap-12 items-start">
+        <div class="lg:col-span-5">
+          <p class="eyebrow eyebrow-paper">For advocates</p>
+          <h2 class="mt-4 font-display text-4xl md:text-6xl leading-[0.98] tracking-tight">
+            Get paid to
+            <em class="italic text-[color:var(--color-ochre)]">redline</em>
+            &mdash; not to draft from scratch.
+          </h2>
+          <p class="mt-6 text-[color:var(--color-paper-muted)] leading-relaxed">
+            You bring the credentials. We bring the funnel, the intake, and a
+            grounded first draft. Every notice you touch has already been
+            structured, cited, and QA'd for the obvious mistakes.
+          </p>
+        </div>
+
+        <div class="lg:col-span-7 grid sm:grid-cols-2 gap-3">
+          {
+            forAdvocatesBenefits.map((b, i) => (
+              <article
+                class="border border-[color:var(--color-hairline-dark-2)] bg-[color:var(--color-ink-2)] p-6 rounded-sm"
+                data-reveal
+                style={`transition-delay:${i * 60}ms`}
+              >
+                <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-[color:var(--color-ochre)]">
+                  &sect;{String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 class="mt-3 font-display text-xl leading-tight text-[color:var(--color-paper)]">
+                  {b.title}
+                </h3>
+                <p class="mt-3 text-[14px] text-[color:var(--color-paper-muted)] leading-relaxed">
+                  {b.body}
+                </p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="mt-16 border border-[color:var(--color-hairline-dark-2)] rounded-sm p-8 md:p-12" data-reveal>
+        <div class="grid lg:grid-cols-12 gap-10 items-start">
+          <div class="lg:col-span-5">
+            <p class="eyebrow eyebrow-paper">Advocate application</p>
+            <h3 class="mt-4 font-display text-3xl md:text-4xl leading-tight">
+              Three fields, then a short call.
+            </h3>
+            <p class="mt-4 text-[color:var(--color-paper-muted)] leading-relaxed max-w-md">
+              We verify your Bar Council enrolment against the state roll.
+              You pick your weekly capacity. First stamped notice within a
+              week of onboarding.
+            </p>
+          </div>
+          <form
+            class="lg:col-span-7 grid gap-3"
+            action="mailto:hello@myrecourse.in?subject=Advocate application"
+            method="post"
+            enctype="text/plain"
+          >
+            <label class="block">
+              <span class="eyebrow eyebrow-paper">Full name</span>
+              <input
+                type="text"
+                name="advocate_name"
+                required
+                class="mt-2 w-full h-12 px-4 bg-[color:var(--color-ink-3)] border border-[color:var(--color-hairline-dark-2)] rounded-sm font-sans text-[15px] text-[color:var(--color-paper)] focus:outline-none focus:border-[color:var(--color-ochre)]"
+              />
+            </label>
+            <label class="block">
+              <span class="eyebrow eyebrow-paper">Bar Council roll (state / number / year)</span>
+              <input
+                type="text"
+                name="roll"
+                required
+                placeholder="KAR / 12345 / 2014"
+                class="mt-2 w-full h-12 px-4 bg-[color:var(--color-ink-3)] border border-[color:var(--color-hairline-dark-2)] rounded-sm font-sans text-[15px] text-[color:var(--color-paper)] focus:outline-none focus:border-[color:var(--color-ochre)]"
+              />
+            </label>
+            <label class="block">
+              <span class="eyebrow eyebrow-paper">Email</span>
+              <input
+                type="email"
+                name="email"
+                required
+                class="mt-2 w-full h-12 px-4 bg-[color:var(--color-ink-3)] border border-[color:var(--color-hairline-dark-2)] rounded-sm font-sans text-[15px] text-[color:var(--color-paper)] focus:outline-none focus:border-[color:var(--color-ochre)]"
+              />
+            </label>
+            <button
+              type="submit"
+              class="mt-2 inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full bg-[color:var(--color-ochre)] text-[color:var(--color-ink)] text-[15px] font-medium hover:opacity-95 transition-opacity"
+            >
+              Send application
+              <span aria-hidden="true">→</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -2,126 +2,134 @@
 import Base from "../layouts/Base.astro";
 
 const lastUpdated = "September 2026";
+
+const sections = [
+  {
+    n: "01",
+    title: "Not legal advice — until it is.",
+    body: `Recourse is a marketplace and a drafting tool. The <strong>free draft</strong> on its own is informational: Recourse is not a law firm, does not represent you, and using the draft alone does not create an attorney–client relationship. The <strong>₹499 stamp</strong> is different — the Bar Council–enrolled advocate who signs the sealed notice takes professional responsibility for that specific document under their state Bar rules. Nothing else on this site should be read as legal advice for your particular situation.`,
+  },
+  {
+    n: "02",
+    title: "Your responsibility for the facts.",
+    body: `You are solely responsible for the factual accuracy of any information you enter and any notice you send. Recourse assembles a draft from your inputs and applicable statutes; advocates on the marketplace review the draft against your inputs, not against the underlying reality of your dispute. Sending a notice with materially false statements about another party may expose you to civil or criminal liability.`,
+  },
+  {
+    n: "03",
+    title: "Data we collect.",
+    kind: "list",
+    items: [
+      { k: "Intake form fields", v: "The situation, tenant, landlord, property, evidence, and jurisdiction details you enter into the app." },
+      { k: "Session identifier", v: "An anonymous ID linking your intake to the resulting draft." },
+      { k: "IP address", v: "Used for rate-limiting, abuse prevention, and aggregated analytics. Not stored alongside your intake content." },
+      { k: "Email address (stamp only)", v: "Collected only when you request the ₹499 stamp, so the advocate can send the sealed PDF to you." },
+      { k: "Payment metadata (stamp only)", v: "Transaction ID and status from our payment processor. Card numbers never touch our servers." },
+      { k: "Rating", v: "If you rate the draft or the stamp after delivery." },
+    ],
+  },
+  {
+    n: "04",
+    title: "Data we do not collect.",
+    kind: "list",
+    items: [
+      { k: "No account for the draft", v: "The free draft never requires a login." },
+      { k: "No third-party trackers", v: "No advertising cookies, no cross-site behavioural profiling." },
+      { k: "No card data", v: "Card details are handled entirely by our PCI-DSS-compliant payment processor. We only see success/failure." },
+    ],
+  },
+  {
+    n: "05",
+    title: "Retention.",
+    body: `<strong>Unstamped session data</strong> (intake fields and the drafted notice) is stored in an ephemeral key-value store with a 24-hour time-to-live, then permanently deleted. <strong>Stamped notices</strong> are retained for one year on our side — required so we can honour advocate-facing disputes, refunds, and compliance requests — and, separately, by the assigned advocate under their own professional record-keeping obligations. Aggregated, non-identifying counters (for example, drafts per day) are retained for up to ninety days for product analytics.`,
+  },
+  {
+    n: "06",
+    title: "Advocate access — and its limits.",
+    body: `When you request the ₹499 stamp, the assigned Bar Council–enrolled advocate receives the draft, your redlines, and the email address you provided. They do not receive your IP address, session identifier, or any data from unrelated files. Advocates on the marketplace sign a confidentiality undertaking as a condition of joining and are bound by their state Bar's professional-conduct rules.`,
+  },
+  {
+    n: "07",
+    title: "Sharing.",
+    body: `We do not sell, rent, or share your personal information. Your intake data is processed by our infrastructure providers (hosting, key-value store, and the LLM that assembles the draft) strictly to render the service to you, and only for the retention windows described above. For stamped notices, your data is additionally shared with the assigned advocate as necessary to render the stamp.`,
+  },
+  {
+    n: "08",
+    title: "Your rights.",
+    body: `Because unstamped sessions are anonymous and expire in 24 hours, we typically have no data to correct or delete beyond that window. For stamped notices, you may request access to your file, correction of stored data, or deletion of retained copies (subject to the advocate's own professional retention obligations). Email <a class="underline decoration-[color:var(--color-ochre)] underline-offset-4" href="mailto:hello@myrecourse.in">hello@myrecourse.in</a> and a person responds within a working day.`,
+  },
+  {
+    n: "09",
+    title: "Advocate applications.",
+    body: `If you apply to join the marketplace as an advocate, we retain your name, state Bar roll number, and email for onboarding and verification. If your application does not progress within ninety days, this data is deleted unless you ask us to keep it on file.`,
+  },
+  {
+    n: "10",
+    title: "Changes to this policy.",
+    body: `We update this page as the product evolves. Material changes are reflected in the "Last updated" date. Continued use of Recourse after an update indicates your acceptance of the revised terms.`,
+  },
+  {
+    n: "11",
+    title: "Contact.",
+    body: `Questions, corrections, deletion requests, or takedown notices — write to <a class="underline decoration-[color:var(--color-ochre)] underline-offset-4" href="mailto:hello@myrecourse.in">hello@myrecourse.in</a>. A person replies within a working day.`,
+  },
+];
 ---
 
 <Base
-  title="Privacy and disclaimer \u2014 Recourse"
-  description="How Recourse handles your data, what it doesn't do, and the legal disclaimers that apply to any drafted notice."
+  title="Privacy and disclaimer — Recourse"
+  description="How Recourse handles your data across the free draft and the ₹499 advocate stamp, what advocates see, retention windows, and the legal disclaimers that apply."
+  headerVariant="paper"
 >
-  <section class="max-w-3xl mx-auto px-5 md:px-8 pt-14 md:pt-24 pb-8">
-    <p class="text-xs uppercase tracking-[0.14em] text-[color:var(--color-ink-faint)]">Legal</p>
-    <h1 class="mt-3 font-serif text-4xl md:text-5xl tracking-tight leading-[1.05]">
-      Privacy and disclaimer.
-    </h1>
-    <p class="mt-6 text-[color:var(--color-ink-faint)] text-sm">Last updated: {lastUpdated}</p>
+  <!-- HERO -->
+  <section class="max-w-[1240px] mx-auto px-5 md:px-10 pt-16 md:pt-28 pb-10">
+    <div class="grid gap-10 md:grid-cols-12 items-end">
+      <div class="md:col-span-9">
+        <p class="eyebrow rise" style="animation-delay:0ms">§ Legal</p>
+        <h1 class="mt-6 font-display text-[46px] md:text-[76px] leading-[0.98] tracking-tight rise" style="animation-delay:60ms">
+          Privacy &amp; <span class="italic text-[color:var(--color-ochre)]">disclaimer</span>.
+        </h1>
+      </div>
+      <div class="md:col-span-3 rise" style="animation-delay:140ms">
+        <p class="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-ink-faint)]">Last updated</p>
+        <p class="mt-2 font-display text-2xl">{lastUpdated}</p>
+      </div>
+    </div>
   </section>
 
-  <section class="max-w-3xl mx-auto px-5 md:px-8 pt-2 pb-6 space-y-10 text-[17px] leading-relaxed text-[color:var(--color-ink)]">
-    <div>
-      <h2 class="font-serif text-2xl tracking-tight">1. Not legal advice</h2>
-      <p class="mt-3 text-[color:var(--color-ink-muted)]">
-        Recourse is an informational drafting tool. It is not a law firm and
-        does not provide legal representation. Using Recourse does not create
-        an attorney&ndash;client relationship. Nothing on this site or in a
-        drafted notice constitutes legal advice for your specific situation.
-        For complex or high-stakes matters, consult a licensed advocate.
-      </p>
+  <!-- BODY -->
+  <section class="max-w-[1240px] mx-auto px-5 md:px-10 pb-16 border-t border-[color:var(--color-ink)]">
+    <div class="divide-y divide-[color:var(--color-hairline)]">
+      {sections.map((s) => (
+        <div class="grid grid-cols-12 gap-6 md:gap-10 py-10 md:py-14" data-reveal>
+          <div class="col-span-12 md:col-span-3">
+            <p class="font-mono text-[11px] tracking-[0.22em] text-[color:var(--color-ochre-2)]">§ {s.n}</p>
+            <h2 class="mt-3 font-display text-2xl md:text-3xl leading-[1.1] tracking-tight">{s.title}</h2>
+          </div>
+          <div class="col-span-12 md:col-span-9 md:col-start-4">
+            {s.kind === "list" ? (
+              <ul class="space-y-4">
+                {s.items?.map((it) => (
+                  <li class="grid grid-cols-12 gap-4 pb-4 border-b border-[color:var(--color-hairline)] last:border-0">
+                    <div class="col-span-12 md:col-span-4 font-display text-lg text-[color:var(--color-ink)]">{it.k}</div>
+                    <p class="col-span-12 md:col-span-8 text-[15px] text-[color:var(--color-ink-muted)] leading-relaxed">{it.v}</p>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p class="text-[16px] md:text-[17px] text-[color:var(--color-ink-muted)] leading-[1.7]" set:html={s.body} />
+            )}
+          </div>
+        </div>
+      ))}
     </div>
+  </section>
 
-    <div>
-      <h2 class="font-serif text-2xl tracking-tight">2. Your responsibility</h2>
-      <p class="mt-3 text-[color:var(--color-ink-muted)]">
-        You are solely responsible for the factual accuracy of any information
-        you enter and any notice you send. Recourse assembles a draft from
-        your inputs and applicable statutes; it does not verify claims about
-        your landlord, property, or dispute. Sending a notice with materially
-        false statements about another party may expose you to civil or
-        criminal liability.
-      </p>
-    </div>
-
-    <div>
-      <h2 class="font-serif text-2xl tracking-tight">3. Data we collect</h2>
-      <ul class="mt-3 space-y-2 text-[color:var(--color-ink-muted)] list-disc pl-5">
-        <li>
-          <span class="text-[color:var(--color-ink)]">Intake form fields</span>
-          &mdash; the situation, tenant, landlord, property, evidence, and
-          jurisdiction details you enter into the app.
-        </li>
-        <li>
-          <span class="text-[color:var(--color-ink)]">Session identifier</span>
-          &mdash; an anonymous ID used to link your intake to the resulting
-          draft.
-        </li>
-        <li>
-          <span class="text-[color:var(--color-ink)]">IP address</span> &mdash;
-          used for rate-limiting, abuse prevention, and aggregated analytics.
-          Not stored alongside your intake content.
-        </li>
-        <li>
-          <span class="text-[color:var(--color-ink)]">Rating</span> &mdash; if
-          you rate the draft on the results page.
-        </li>
-      </ul>
-    </div>
-
-    <div>
-      <h2 class="font-serif text-2xl tracking-tight">4. Data we do not collect</h2>
-      <ul class="mt-3 space-y-2 text-[color:var(--color-ink-muted)] list-disc pl-5">
-        <li>No email address, phone number, or account.</li>
-        <li>No third-party trackers or advertising cookies.</li>
-        <li>No cross-site behavioural profiling.</li>
-      </ul>
-    </div>
-
-    <div>
-      <h2 class="font-serif text-2xl tracking-tight">5. Retention</h2>
-      <p class="mt-3 text-[color:var(--color-ink-muted)]">
-        Session data (intake fields and the drafted notice) is stored in an
-        ephemeral key-value store with a 24-hour time-to-live. After that
-        window, it is permanently deleted. Aggregated, non-identifying counters
-        (for example, total drafts per day) are retained for up to 90 days for
-        product analytics.
-      </p>
-    </div>
-
-    <div>
-      <h2 class="font-serif text-2xl tracking-tight">6. Sharing</h2>
-      <p class="mt-3 text-[color:var(--color-ink-muted)]">
-        We do not sell, rent, or share your personal information. Your intake
-        data is processed by our infrastructure providers (hosting, key-value
-        store, and the LLM that assembles the draft) strictly to render the
-        service to you, and only for the 24-hour retention window described
-        above.
-      </p>
-    </div>
-
-    <div>
-      <h2 class="font-serif text-2xl tracking-tight">7. Your rights</h2>
-      <p class="mt-3 text-[color:var(--color-ink-muted)]">
-        Because sessions are anonymous and expire within 24 hours, we typically
-        have no data to correct or delete beyond that window. If you have
-        specific concerns, email
-        <a href="mailto:hello@myrecourse.in" class="underline underline-offset-4">hello@myrecourse.in</a>
-        and we&rsquo;ll respond within a reasonable time.
-      </p>
-    </div>
-
-    <div>
-      <h2 class="font-serif text-2xl tracking-tight">8. Changes to this policy</h2>
-      <p class="mt-3 text-[color:var(--color-ink-muted)]">
-        We may update this page as the product evolves. Material changes will
-        be reflected in the &ldquo;Last updated&rdquo; date at the top of this
-        page. Continued use of Recourse after an update indicates your
-        acceptance of the revised terms.
-      </p>
-    </div>
-
-    <div>
-      <h2 class="font-serif text-2xl tracking-tight">9. Contact</h2>
-      <p class="mt-3 text-[color:var(--color-ink-muted)]">
-        Questions, corrections, or takedown requests:
-        <a href="mailto:hello@myrecourse.in" class="underline underline-offset-4">hello@myrecourse.in</a>.
+  <!-- Foot note -->
+  <section class="max-w-[1240px] mx-auto px-5 md:px-10 pb-24">
+    <div class="paper-texture border border-[color:var(--color-hairline)] p-8 md:p-10">
+      <p class="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-ink-faint)]">Notice</p>
+      <p class="mt-4 font-display text-2xl md:text-3xl leading-[1.15] tracking-tight max-w-3xl">
+        Recourse is a service by an independent operator. It is not a law firm. Notices are drafted from your inputs and, at your option, stamped by Bar Council–enrolled advocates who take responsibility for the sealed document they sign.
       </p>
     </div>
   </section>
