@@ -1,55 +1,66 @@
 @import "tailwindcss";
 
 @theme {
-  /* Ink — prussian navy, not pure black. Fountain-pen on legal paper. */
-  --color-ink: #16192b;
-  --color-ink-2: #1f2338;
-  --color-ink-3: #2b3049;
-  --color-ink-muted: #4a4f6a;
-  --color-ink-faint: #7e829a;
+  /* Ink — warm near-black, not blue-black. Real ink on real paper. */
+  --color-ink: #16110d;
+  --color-ink-2: #241d17;
+  --color-ink-3: #3a3129;
+  --color-ink-muted: #6b5f54;
+  --color-ink-faint: #9c9084;
 
-  /* Paper — Indian stamp-paper amber. Warmer than cream. */
-  --color-paper: #f0e6cf;
-  --color-paper-2: #e6dbbf;
-  --color-paper-3: #dbcfa9;
-  --color-cream: #f6efd8;
-  --color-paper-muted: #a89f80;
+  /* Canvas — warm off-white. Less yellow than stamp-paper amber, but still warm. */
+  --color-canvas: #faf7f2;
+  --color-canvas-2: #f2ede4;
+  --color-canvas-3: #e8e0d1;
+  --color-cream: #fdfbf7;
+  --color-canvas-muted: #b4a999;
 
-  /* Vermilion — Indian court stamp red / legal ribbon. Sole accent. */
-  --color-vermilion: #b23a2b;
-  --color-vermilion-2: #8f2c21;
-  --color-vermilion-3: #6b2118;
-  --color-vermilion-soft: #e8c9c1;
-  --color-vermilion-tint: #f5dcd5;
+  /* Rust — warm terracotta accent. Sole highlight color. */
+  --color-rust: #c95d3f;
+  --color-rust-2: #a94a30;
+  --color-rust-3: #7f3721;
+  --color-rust-soft: #f0d5c8;
+  --color-rust-tint: #f8e6dd;
 
-  /* Aged verdigris — verified badges only. Not decorative. */
-  --color-jade: #3f5d47;
-  --color-jade-soft: #cad6c8;
+  /* Sage — verified only. Never decorative. */
+  --color-sage: #6d8a72;
+  --color-sage-soft: #d2ddd0;
 
-  --color-hairline: #cec1a1;
-  --color-hairline-2: #b8aa84;
-  --color-hairline-dark: #2a2e44;
-  --color-hairline-dark-2: #3a3f5a;
+  --color-hairline: #d9d0bf;
+  --color-hairline-2: #c1b6a1;
+  --color-hairline-dark: #2a231d;
+  --color-hairline-dark-2: #3d342a;
 
-  /* Backwards-compat aliases — old --color-ochre* references now point to vermilion */
-  --color-ochre: var(--color-vermilion);
-  --color-ochre-2: var(--color-vermilion-2);
-  --color-ochre-3: var(--color-vermilion-3);
-  --color-ochre-soft: var(--color-vermilion-soft);
-  --color-moss: var(--color-jade);
-  --color-moss-soft: var(--color-jade-soft);
+  /* Backwards-compat aliases so unchanged pages inherit new colors */
+  --color-paper: var(--color-canvas);
+  --color-paper-2: var(--color-canvas-2);
+  --color-paper-3: var(--color-canvas-3);
+  --color-paper-muted: var(--color-canvas-muted);
+  --color-ochre: var(--color-rust);
+  --color-ochre-2: var(--color-rust-2);
+  --color-ochre-3: var(--color-rust-3);
+  --color-ochre-soft: var(--color-rust-soft);
+  --color-vermilion: var(--color-rust);
+  --color-vermilion-2: var(--color-rust-2);
+  --color-vermilion-3: var(--color-rust-3);
+  --color-vermilion-soft: var(--color-rust-soft);
+  --color-vermilion-tint: var(--color-rust-tint);
+  --color-moss: var(--color-sage);
+  --color-moss-soft: var(--color-sage-soft);
+  --color-jade: var(--color-sage);
+  --color-jade-soft: var(--color-sage-soft);
 
   --font-display:
-    "Fraunces", "Newsreader", ui-serif, Georgia, Cambria, Times, serif;
+    "Fraunces", ui-serif, Georgia, Cambria, Times, serif;
   --font-serif:
-    "Fraunces", "Newsreader", ui-serif, Georgia, Cambria, Times, serif;
+    "Fraunces", ui-serif, Georgia, serif;
   --font-editorial:
     "Fraunces", ui-serif, Georgia, serif;
   --font-sans:
-    "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif;
+    "Geist", "Inter", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono:
-    "Space Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo,
+    "Geist Mono", ui-monospace, SFMono-Regular, Menlo,
     Consolas, monospace;
 }
 
@@ -59,156 +70,140 @@ html {
 }
 
 body {
-  background: var(--color-paper);
+  background: var(--color-canvas);
   color: var(--color-ink);
   font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  position: relative;
   min-height: 100dvh;
 }
 
-/* Binding thread — vermilion vertical rule that runs down the page,
-   like the red string tying an Indian court case-file. Fixed, atmospheric. */
-@media (min-width: 900px) {
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 34px;
-    width: 1px;
-    background: var(--color-vermilion);
-    opacity: 0.5;
-    pointer-events: none;
-    z-index: 1;
-  }
-  body::after {
-    content: "";
-    position: fixed;
-    top: 50%;
-    left: 30px;
-    width: 9px;
-    height: 9px;
-    border-radius: 999px;
-    background: var(--color-vermilion);
-    opacity: 0.85;
-    pointer-events: none;
-    z-index: 1;
-    box-shadow: 0 0 0 2px var(--color-paper);
-  }
-}
-
 ::selection {
-  background: var(--color-vermilion);
-  color: var(--color-paper);
+  background: var(--color-ink);
+  color: var(--color-canvas);
 }
 
-/* Type utilities — Fraunces display with proper variable-font settings */
+/* ============ TYPOGRAPHY ============ */
+
 .font-display {
   font-family: var(--font-display);
-  font-weight: 420;
+  font-weight: 380;
   font-variation-settings:
     "opsz" 144,
     "SOFT" 30,
     "WONK" 0;
-  letter-spacing: -0.018em;
+  letter-spacing: -0.022em;
 }
 .font-display-italic {
   font-family: var(--font-display);
   font-style: italic;
-  font-weight: 420;
+  font-weight: 380;
   font-variation-settings:
     "opsz" 144,
-    "SOFT" 60,
-    "WONK" 1;
-  letter-spacing: -0.01em;
+    "SOFT" 50,
+    "WONK" 0;
+  letter-spacing: -0.014em;
 }
 .font-editorial {
   font-family: var(--font-editorial);
-  font-weight: 460;
-  font-variation-settings: "opsz" 144, "SOFT" 40;
-  letter-spacing: -0.015em;
+  font-weight: 420;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+  letter-spacing: -0.018em;
 }
 .font-mono {
   font-family: var(--font-mono);
+  font-feature-settings: "ss01", "cv11", "zero";
 }
 
-/* Legacy eyebrow — kept for compat, but retire in new code in favor of .section-stamp */
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: 11px;
+/* Small caps label — replaces the older mono-typewriter labels */
+.label {
+  font-family: var(--font-sans);
+  font-size: 11.5px;
   line-height: 1;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-ink-faint);
+  font-weight: 500;
+  color: var(--color-ink-muted);
 }
-.eyebrow-paper { color: var(--color-paper-muted); }
-.eyebrow-ochre { color: var(--color-vermilion); }
+.label-rust { color: var(--color-rust-2); }
+.label-canvas { color: var(--color-canvas-muted); }
 
+/* Legacy aliases so untouched pages don't break */
+.eyebrow,
 .mono-label {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.06em;
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  line-height: 1;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-ink-faint);
+  font-weight: 500;
+  color: var(--color-ink-muted);
 }
+.eyebrow-paper { color: var(--color-canvas-muted); }
+.eyebrow-ochre { color: var(--color-rust-2); }
 
-/* SECTION STAMP — replaces eyebrow. Court-typewriter header with vermilion rules. */
 .stamp-hdr {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  padding: 8px 14px;
-  border-top: 1.5px solid var(--color-vermilion);
-  border-bottom: 1.5px solid var(--color-vermilion);
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.16em;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-vermilion-2);
-  background: transparent;
+  font-weight: 500;
+  color: var(--color-rust-2);
 }
-.stamp-hdr .stamp-hdr__sep {
-  color: var(--color-hairline-2);
-  font-weight: 400;
+.stamp-hdr::before {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: var(--color-rust);
 }
-.stamp-hdr-paper {
-  color: var(--color-vermilion-soft);
-  border-color: var(--color-vermilion);
-}
+.stamp-hdr__sep { color: var(--color-hairline-2); font-weight: 400; }
+.stamp-hdr-paper { color: var(--color-rust-soft); }
+.stamp-hdr-paper::before { background: var(--color-rust); }
 
 /* Fine hairlines */
 .hairline { height: 1px; background: var(--color-hairline); }
 .hairline-dark { height: 1px; background: var(--color-hairline-dark); }
 
-/* Marketplace primitives */
+/* ============ PRIMITIVES ============ */
+
 .chip {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  height: 26px;
-  padding: 0 11px;
-  border: 1px solid var(--color-hairline-2);
+  height: 28px;
+  padding: 0 12px;
+  border: 1px solid var(--color-hairline);
   background: var(--color-cream);
   color: var(--color-ink);
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.04em;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 450;
+  letter-spacing: 0;
   border-radius: 999px;
   white-space: nowrap;
+  transition: border-color 160ms ease, background 160ms ease;
 }
+.chip:hover { border-color: var(--color-ink); }
 .chip-ink {
   background: transparent;
   border-color: var(--color-hairline-dark-2);
-  color: var(--color-paper-muted);
+  color: var(--color-canvas-muted);
 }
-.chip-solid { background: var(--color-ink); color: var(--color-paper); border-color: var(--color-ink); }
+.chip-solid { background: var(--color-ink); color: var(--color-canvas); border-color: var(--color-ink); }
+.chip-rust {
+  background: var(--color-rust-tint);
+  border-color: var(--color-rust);
+  color: var(--color-rust-3);
+}
 .chip-vermilion {
-  background: var(--color-vermilion-tint);
-  border-color: var(--color-vermilion);
-  color: var(--color-vermilion-3);
+  background: var(--color-rust-tint);
+  border-color: var(--color-rust);
+  color: var(--color-rust-3);
 }
 
 .badge {
@@ -217,91 +212,77 @@ body {
   gap: 6px;
   height: 22px;
   padding: 0 9px;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.11em;
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  border-radius: 2px;
+  border-radius: 999px;
   border: 1px solid transparent;
 }
 .badge-verified {
-  background: var(--color-jade-soft);
-  color: var(--color-jade);
-  border-color: var(--color-jade);
+  background: var(--color-sage-soft);
+  color: var(--color-sage);
+  border-color: var(--color-sage);
 }
 .badge-onboarding {
-  background: var(--color-vermilion-tint);
-  color: var(--color-vermilion-2);
-  border-color: var(--color-vermilion);
+  background: var(--color-rust-tint);
+  color: var(--color-rust-2);
+  border-color: var(--color-rust);
 }
-.badge-ink { background: var(--color-ink); color: var(--color-paper); border-color: var(--color-ink); }
-.badge-vermilion {
-  background: var(--color-vermilion);
-  color: var(--color-paper);
-  border-color: var(--color-vermilion);
-}
+.badge-ink { background: var(--color-ink); color: var(--color-canvas); border-color: var(--color-ink); }
+.badge-rust { background: var(--color-rust); color: var(--color-canvas); border-color: var(--color-rust); }
+.badge-vermilion { background: var(--color-rust); color: var(--color-canvas); border-color: var(--color-rust); }
 .badge-dot {
   width: 6px; height: 6px; border-radius: 999px;
   background: currentColor;
   display: inline-block;
 }
 
-/* Placeholder-seat avatar — for advocate cards where names haven't been assigned */
+/* Placeholder-seat avatar — for advisor cards with no assigned identity yet */
 .seat-avatar {
   display: inline-grid;
   place-items: center;
-  border-radius: 4px;
-  background: repeating-linear-gradient(
-    45deg,
-    var(--color-paper-2),
-    var(--color-paper-2) 3px,
-    var(--color-cream) 3px,
-    var(--color-cream) 6px
-  );
-  border: 1px dashed var(--color-hairline-2);
-  color: var(--color-vermilion);
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--color-canvas-2) 0%, var(--color-canvas-3) 100%);
+  border: 1px solid var(--color-hairline);
+  color: var(--color-ink);
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+  letter-spacing: -0.01em;
   flex-shrink: 0;
 }
 .seat-avatar-ink {
-  background: repeating-linear-gradient(
-    45deg,
-    var(--color-ink-2),
-    var(--color-ink-2) 3px,
-    var(--color-ink) 3px,
-    var(--color-ink) 6px
-  );
+  background: linear-gradient(135deg, var(--color-ink-2), var(--color-ink-3));
   border-color: var(--color-hairline-dark-2);
+  color: var(--color-canvas);
 }
 
+/* Cards — quiet, product-first */
 .card {
   background: var(--color-cream);
   border: 1px solid var(--color-hairline);
-  transition: border-color 220ms ease, box-shadow 220ms ease;
+  border-radius: 10px;
+  transition: border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
   position: relative;
 }
 .card:hover {
-  border-color: var(--color-vermilion-2);
-  box-shadow: 0 6px 24px -18px rgba(22, 25, 43, 0.35);
+  border-color: var(--color-ink);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px -20px rgba(22, 17, 13, 0.35);
 }
 .card-ink {
   background: var(--color-ink-2);
   border-color: var(--color-hairline-dark);
 }
-.card-ink:hover { border-color: var(--color-vermilion); }
+.card-ink:hover { border-color: var(--color-rust); }
+.card-flat { background: var(--color-canvas-2); border-radius: 10px; border: 1px solid var(--color-hairline); }
 
-/* Card corner ornament — subtle stamp-paper corner tick */
-.card-stamp::before {
-  content: "";
-  position: absolute;
-  top: -1px; right: -1px;
-  width: 22px; height: 22px;
-  background:
-    linear-gradient(225deg, var(--color-vermilion) 0 6px, transparent 6px);
-  pointer-events: none;
-}
+/* legacy corner ornament — now a no-op so old pages don't break */
+.card-stamp::before { display: none; }
 
+/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -309,40 +290,45 @@ body {
   gap: 8px;
   height: 44px;
   padding: 0 20px;
-  font-size: 13.5px;
+  font-size: 14px;
   font-weight: 500;
-  border-radius: 3px;
-  transition: background 160ms ease, color 160ms ease, border-color 160ms ease, opacity 160ms ease;
+  border-radius: 999px;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease, transform 160ms ease;
   font-family: var(--font-sans);
   white-space: nowrap;
 }
-.btn-primary { background: var(--color-ink); color: var(--color-paper); border: 1px solid var(--color-ink); }
-.btn-primary:hover { background: var(--color-vermilion-3); border-color: var(--color-vermilion-3); }
-.btn-vermilion { background: var(--color-vermilion); color: var(--color-paper); border: 1px solid var(--color-vermilion); }
-.btn-vermilion:hover { background: var(--color-vermilion-2); border-color: var(--color-vermilion-2); }
-.btn-ochre { background: var(--color-vermilion); color: var(--color-paper); border: 1px solid var(--color-vermilion); }
-.btn-ochre:hover { background: var(--color-vermilion-2); border-color: var(--color-vermilion-2); }
-.btn-outline { background: transparent; color: var(--color-ink); border: 1px solid var(--color-ink); }
-.btn-outline:hover { background: var(--color-ink); color: var(--color-paper); }
-.btn-outline-paper { background: transparent; color: var(--color-paper); border: 1px solid var(--color-hairline-dark-2); }
-.btn-outline-paper:hover { background: var(--color-vermilion); border-color: var(--color-vermilion); color: var(--color-paper); }
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--color-ink); color: var(--color-canvas); border: 1px solid var(--color-ink); }
+.btn-primary:hover { background: var(--color-rust-3); border-color: var(--color-rust-3); }
+.btn-rust { background: var(--color-rust); color: var(--color-canvas); border: 1px solid var(--color-rust); }
+.btn-rust:hover { background: var(--color-rust-2); border-color: var(--color-rust-2); }
+.btn-vermilion { background: var(--color-rust); color: var(--color-canvas); border: 1px solid var(--color-rust); }
+.btn-vermilion:hover { background: var(--color-rust-2); border-color: var(--color-rust-2); }
+.btn-ochre { background: var(--color-rust); color: var(--color-canvas); border: 1px solid var(--color-rust); }
+.btn-ochre:hover { background: var(--color-rust-2); border-color: var(--color-rust-2); }
+.btn-outline { background: transparent; color: var(--color-ink); border: 1px solid var(--color-hairline-2); }
+.btn-outline:hover { border-color: var(--color-ink); background: var(--color-canvas-2); }
+.btn-outline-paper { background: transparent; color: var(--color-canvas); border: 1px solid var(--color-hairline-dark-2); }
+.btn-outline-paper:hover { background: var(--color-ink-3); border-color: var(--color-canvas-muted); }
 .btn-sm { height: 36px; padding: 0 14px; font-size: 12.5px; }
 
 .stat-num {
   font-family: var(--font-display);
-  font-weight: 500;
-  font-variation-settings: "opsz" 144, "SOFT" 20;
-  letter-spacing: -0.03em;
-  line-height: 0.92;
+  font-weight: 380;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+  letter-spacing: -0.035em;
+  line-height: 0.94;
   color: var(--color-ink);
 }
 
-/* Redacted signature — for sample notice mock where advocate isn't assigned */
+/* ============ Retiring the decorative dossier motifs. These are now
+   quiet or no-ops so old pages that reference them still render cleanly. ============ */
+
 .redact {
   display: inline-block;
   background: var(--color-ink);
   color: transparent;
-  border-radius: 2px;
+  border-radius: 3px;
   padding: 0 6px;
   user-select: none;
 }
@@ -356,123 +342,88 @@ body {
   display: inline-block;
   width: 100%;
 }
-
-/* Court-file case-ref */
 .caseref {
   font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.06em;
-  color: var(--color-vermilion-2);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--color-rust-2);
   text-transform: uppercase;
 }
-
-/* Section date-stamp (small, top-right of a section) */
 .date-stamp {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 4px 10px;
-  border: 1px dashed var(--color-vermilion);
-  color: var(--color-vermilion-2);
+  border: 1px solid var(--color-hairline);
+  background: var(--color-cream);
+  color: var(--color-ink-muted);
   font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  transform: rotate(-1.5deg);
-  transform-origin: center;
+  border-radius: 4px;
 }
 
-/* Grain overlay for dark hero */
-.grain::after {
-  content: "";
-  position: absolute; inset: 0;
-  pointer-events: none;
-  opacity: 0.4;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.32 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+/* Retired: paper-texture, grain, ledger-lines, thread-draw, seal-spin — kept as no-ops */
+.paper-texture { background-image: none; }
+.grain::after { display: none; }
+.ledger-lines { background-image: none; }
+.thread-draw { animation: none; }
+.seal-spin { animation: none; }
+
+.stamped {
+  background: linear-gradient(to bottom, transparent 62%, var(--color-rust-soft) 62%);
+  padding: 0 3px;
+  border-radius: 2px;
 }
 
-/* Fine amber paper texture */
-.paper-texture {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.12 0 0 0 0 0.06 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
+/* ============ MOTION ============ */
 
-/* Ledger horizontal ruling */
-.ledger-lines {
-  background-image: linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent calc(1.75rem - 1px),
-    var(--color-hairline) calc(1.75rem - 1px),
-    var(--color-hairline) 1.75rem
-  );
-  background-size: 100% 1.75rem;
-}
-
-/* ONE choreographed load — hero rise sequence */
 @media (prefers-reduced-motion: no-preference) {
   .rise {
     opacity: 0;
-    transform: translateY(14px);
-    animation: rise 900ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+    transform: translateY(12px);
+    animation: rise 780ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
   }
   @keyframes rise {
     to { opacity: 1; transform: translateY(0); }
   }
-
-  /* Binding-thread draw — engaged on hero rise for continuity */
-  .thread-draw {
-    transform-origin: top center;
-    animation: threadDraw 1600ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  }
-  @keyframes threadDraw {
-    from { transform: scaleY(0); opacity: 0; }
-    to { transform: scaleY(1); opacity: 0.85; }
-  }
 }
 
-/* Seal rotation */
-@keyframes seal-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-.seal-spin { animation: seal-spin 42s linear infinite; }
-@media (prefers-reduced-motion: reduce) { .seal-spin { animation: none; } }
-
-/* Scroll-reveal */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(14px);
+  transform: translateY(12px);
   transition:
-    opacity 720ms cubic-bezier(0.2, 0.7, 0.2, 1),
-    transform 720ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    opacity 640ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 640ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 [data-reveal][data-inview="true"] { opacity: 1; transform: translateY(0); }
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] { opacity: 1; transform: none; transition: none; }
   .rise { opacity: 1 !important; transform: none !important; animation: none !important; }
-  .thread-draw { transform: none !important; opacity: 0.5 !important; animation: none !important; }
 }
 
-/* Marquee */
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
-.marquee-track { animation: marquee 48s linear infinite; }
+.marquee-track { animation: marquee 52s linear infinite; }
 @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
 
 /* Focus */
 :focus-visible {
-  outline: 2px solid var(--color-vermilion);
+  outline: 2px solid var(--color-rust);
   outline-offset: 3px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 a { text-underline-offset: 4px; }
 
-/* Retire the italic-highlight ornament: any inline usage should use .stamped instead */
-.stamped {
-  border-bottom: 2px solid var(--color-vermilion);
-  padding-bottom: 1px;
+/* ============ SUBTLE BACKDROP ============ */
+
+.canvas-grid {
+  background-image:
+    radial-gradient(circle at 1px 1px, var(--color-hairline) 1px, transparent 0);
+  background-size: 32px 32px;
+  background-position: 0 0;
 }

@@ -3,22 +3,20 @@ import Base from "../layouts/Base.astro";
 
 const APP_URL = "https://rental-recourse.vercel.app";
 
-// Placeholder advocate seats — populated as advocates are onboarded and verified.
-// We do NOT display advocate names on the public directory. Names, Bar roll
-// numbers, and chambers addresses appear only on the stamped PDF you receive.
+// Placeholder seats — identities revealed on assignment.
 const seats = [
-  { code: "KA-01", city: "Bengaluru", state: "Karnataka", batch: "Batch 03", years: "10+ yrs", specs: ["Rentals", "Consumer", "Contracts"], langs: "EN · KN · HI", turn: "36 h", status: "verified" },
-  { code: "DL-04", city: "Delhi NCR", state: "Delhi", batch: "Batch 03", years: "15+ yrs", specs: ["Property", "Commercial leases", "RERA"], langs: "EN · HI", turn: "24 h", status: "verified" },
-  { code: "MH-07", city: "Mumbai", state: "Maharashtra", batch: "Batch 04", years: "8+ yrs", specs: ["Rentals", "Society matters"], langs: "EN · HI · MR", turn: "40 h", status: "onboarding" },
-  { code: "MH-09", city: "Pune", state: "Maharashtra", batch: "Batch 03", years: "12+ yrs", specs: ["Deposits", "Eviction", "Rentals"], langs: "EN · MR · HI", turn: "30 h", status: "verified" },
-  { code: "TN-02", city: "Chennai", state: "Tamil Nadu", batch: "Batch 04", years: "9+ yrs", specs: ["Rentals", "Contracts"], langs: "EN · TA", turn: "36 h", status: "verified" },
-  { code: "TS-05", city: "Hyderabad", state: "Telangana", batch: "Batch 04", years: "7+ yrs", specs: ["Rentals", "Consumer"], langs: "EN · TE · HI", turn: "48 h", status: "onboarding" },
-  { code: "KL-03", city: "Kochi", state: "Kerala", batch: "Batch 04", years: "6+ yrs", specs: ["Rentals", "Deposits"], langs: "EN · ML", turn: "40 h", status: "onboarding" },
-  { code: "WB-02", city: "Kolkata", state: "West Bengal", batch: "Batch 04", years: "11+ yrs", specs: ["Tenancy", "Small causes"], langs: "EN · BN · HI", turn: "42 h", status: "onboarding" },
-  { code: "UP-06", city: "Noida", state: "Uttar Pradesh", batch: "Batch 04", years: "8+ yrs", specs: ["Rentals", "RERA"], langs: "EN · HI", turn: "36 h", status: "onboarding" },
-  { code: "GJ-04", city: "Ahmedabad", state: "Gujarat", batch: "Batch 04", years: "10+ yrs", specs: ["Rentals", "Commercial leases"], langs: "EN · GU · HI", turn: "36 h", status: "onboarding" },
-  { code: "RJ-01", city: "Jaipur", state: "Rajasthan", batch: "Batch 04", years: "9+ yrs", specs: ["Rentals", "Consumer"], langs: "EN · HI", turn: "42 h", status: "onboarding" },
-  { code: "PB-02", city: "Chandigarh", state: "Punjab", batch: "Batch 04", years: "12+ yrs", specs: ["Tenancy", "Deposits"], langs: "EN · HI · PA", turn: "40 h", status: "onboarding" },
+  { code: "KA·01", city: "Bengaluru", state: "Karnataka", years: "10+ yrs", specs: ["Rentals", "Consumer", "Contracts"], langs: "EN · KN · HI", turn: "36 h", status: "verified", kind: "Advocate" },
+  { code: "DL·04", city: "Delhi NCR", state: "Delhi", years: "15+ yrs", specs: ["Property", "Commercial leases", "RERA"], langs: "EN · HI", turn: "24 h", status: "verified", kind: "Advocate" },
+  { code: "MH·07", city: "Mumbai", state: "Maharashtra", years: "8+ yrs", specs: ["Rentals", "Society matters"], langs: "EN · HI · MR", turn: "40 h", status: "onboarding", kind: "Advocate" },
+  { code: "MH·09", city: "Pune", state: "Maharashtra", years: "12+ yrs", specs: ["Deposits", "Eviction"], langs: "EN · MR · HI", turn: "30 h", status: "verified", kind: "Advocate" },
+  { code: "TN·02", city: "Chennai", state: "Tamil Nadu", years: "9+ yrs", specs: ["Rentals", "Contracts"], langs: "EN · TA", turn: "36 h", status: "verified", kind: "Advocate" },
+  { code: "TS·05", city: "Hyderabad", state: "Telangana", years: "7+ yrs", specs: ["Rentals", "Consumer"], langs: "EN · TE · HI", turn: "48 h", status: "onboarding", kind: "Advocate" },
+  { code: "KL·03", city: "Kochi", state: "Kerala", years: "6+ yrs", specs: ["Rentals", "Deposits"], langs: "EN · ML", turn: "40 h", status: "onboarding", kind: "Advocate" },
+  { code: "WB·02", city: "Kolkata", state: "West Bengal", years: "11+ yrs", specs: ["Tenancy", "Small causes"], langs: "EN · BN · HI", turn: "42 h", status: "onboarding", kind: "Advocate" },
+  { code: "UP·06", city: "Noida", state: "Uttar Pradesh", years: "8+ yrs", specs: ["Rentals", "RERA"], langs: "EN · HI", turn: "36 h", status: "onboarding", kind: "Advocate" },
+  { code: "GJ·04", city: "Ahmedabad", state: "Gujarat", years: "10+ yrs", specs: ["Rentals", "Commercial leases"], langs: "EN · GU · HI", turn: "36 h", status: "onboarding", kind: "Advocate" },
+  { code: "RJ·01", city: "Jaipur", state: "Rajasthan", years: "9+ yrs", specs: ["Rentals", "Consumer"], langs: "EN · HI", turn: "42 h", status: "onboarding", kind: "Advocate" },
+  { code: "PB·02", city: "Chandigarh", state: "Punjab", years: "12+ yrs", specs: ["Tenancy", "Deposits"], langs: "EN · HI · PA", turn: "40 h", status: "onboarding", kind: "Advocate" },
 ];
 
 const specialities = ["Rentals", "Deposits", "Eviction", "Contracts", "Consumer", "RERA", "Society matters", "Commercial leases", "Small causes"];
@@ -28,47 +26,54 @@ const turnList = ["Any turnaround", "≤ 24 h", "≤ 36 h", "≤ 48 h"];
 const verificationSteps = [
   { n: "01", l: "Bar Council enrollment", d: "State roll number and enrollment certificate on file. Cross-checked against the State Bar Council register." },
   { n: "02", l: "Government ID + address", d: "PAN, Aadhaar, and chambers address. Independent proof of practice." },
-  { n: "03", l: "Sample notice review", d: "Panel counsel reviews two anonymised notices the advocate has issued in the last twelve months." },
+  { n: "03", l: "Sample notice review", d: "Panel counsel reviews two anonymised notices the advisor has issued in the last twelve months." },
   { n: "04", l: "Onboarding call", d: "Thirty-minute call covering our house style, redlining protocol, and payout mechanics." },
 ];
 ---
 
-<Base title="Find an advocate — Recourse" description="Bar Council–enrolled advocates who handle tenant matters across India. Assignment on order, name and roll number on the stamped PDF." headerVariant="paper">
+<Base title="Legal advisors — Recourse" description="Onboarding legal advisors — advocates, consultants, and specialists — who help Indian tenants with the task at hand." headerVariant="paper">
   <!-- ============ HERO ============ -->
-  <section class="relative border-b border-[color:var(--color-hairline)] overflow-hidden">
-    <div class="absolute inset-0 paper-texture opacity-40 pointer-events-none"></div>
-    <div class="max-w-[1240px] mx-auto px-5 md:px-10 pt-14 md:pt-20 pb-14 md:pb-16 relative">
-      <div class="rise flex flex-wrap items-center gap-x-6 gap-y-2 text-[11px] font-mono tracking-[0.14em] uppercase text-[color:var(--color-ink-muted)]">
-        <span class="caseref">Directory</span>
-        <span aria-hidden="true">·</span>
-        <span>Panel roster — batch 03 &amp; 04</span>
-        <span aria-hidden="true">·</span>
-        <span>Names on assignment only</span>
+  <section class="relative border-b border-[color:var(--color-hairline)]">
+    <div class="max-w-[1240px] mx-auto px-5 md:px-10 pt-16 md:pt-24 pb-14 md:pb-20">
+      <div class="rise flex items-center gap-2.5" style="animation-delay:.05s">
+        <span class="inline-flex items-center gap-2 h-7 px-3 rounded-full bg-[color:var(--color-rust-tint)] border border-[color:var(--color-rust-soft)] text-[color:var(--color-rust-3)] text-[11.5px] font-medium tracking-wide">
+          <span class="size-1.5 rounded-full bg-[color:var(--color-rust)] animate-pulse"></span>
+          Batches 03 &amp; 04 · onboarding across 12 states
+        </span>
       </div>
 
       <div class="grid lg:grid-cols-12 gap-10 items-end mt-8">
         <div class="lg:col-span-8">
-          <h1 class="rise font-display text-[42px] sm:text-[54px] md:text-[68px] leading-[0.98] tracking-[-0.02em]" style="animation-delay:.15s">
-            Advocates on <br />
-            <span class="font-display-italic text-[color:var(--color-vermilion-2)]">the tenant's side.</span>
+          <h1 class="rise font-display text-[44px] sm:text-[58px] md:text-[76px] leading-[0.96] tracking-[-0.028em]" style="animation-delay:.15s">
+            The legal advisors <br />
+            <span class="font-display-italic text-[color:var(--color-rust-2)]">on the tenant's side.</span>
           </h1>
-          <p class="rise mt-7 max-w-[58ch] text-[16.5px] md:text-[18px] leading-[1.55] text-[color:var(--color-ink-muted)]" style="animation-delay:.28s">
-            Every advocate is Bar Council–enrolled and identity-verified. We do not publish
-            names or roll numbers on this page — they appear on the stamped PDF you receive.
-            The card below shows what a seat looks like: state, batch, specialities,
-            languages, turnaround.
+          <p class="rise mt-8 max-w-[58ch] text-[17px] md:text-[18.5px] leading-[1.55] text-[color:var(--color-ink-muted)]" style="animation-delay:.28s">
+            Recourse is onboarding legal advisors — advocates, consultants, and specialists — who
+            help tenants handle the task at hand. Every seat is Bar Council–enrolled or
+            credentialed for its scope, and identity-verified. Names are private on this page
+            and appear only on the document you receive.
           </p>
         </div>
         <div class="lg:col-span-4 rise" style="animation-delay:.4s">
-          <div class="border border-[color:var(--color-hairline-2)] bg-[color:var(--color-cream)] p-5">
-            <div class="flex items-center justify-between mb-3">
-              <span class="stamp-hdr"><span>Panel</span><span class="stamp-hdr__sep">/</span><span>counts</span></span>
-              <span class="date-stamp">Sep · 26</span>
+          <div class="rounded-2xl border border-[color:var(--color-hairline)] bg-[color:var(--color-cream)] overflow-hidden">
+            <div class="px-6 py-4 border-b border-[color:var(--color-hairline)] flex items-center justify-between">
+              <span class="label">Panel · counts</span>
+              <span class="label label-rust">Sep · 26</span>
             </div>
-            <dl class="grid grid-cols-3 gap-2">
-              <div class="text-center border-r border-[color:var(--color-hairline)] pr-2"><dt class="mono-label">Panel</dt><dd class="stat-num text-[24px] mt-1">42</dd></div>
-              <div class="text-center border-r border-[color:var(--color-hairline)] pr-2"><dt class="mono-label">Verified</dt><dd class="stat-num text-[24px] mt-1">14</dd></div>
-              <div class="text-center"><dt class="mono-label">States</dt><dd class="stat-num text-[24px] mt-1">12</dd></div>
+            <dl class="grid grid-cols-3 divide-x divide-[color:var(--color-hairline)]">
+              <div class="px-4 py-4 text-center">
+                <dt class="label text-[10.5px]">Panel</dt>
+                <dd class="stat-num text-[28px] mt-1.5">42</dd>
+              </div>
+              <div class="px-4 py-4 text-center">
+                <dt class="label text-[10.5px]">Verified</dt>
+                <dd class="stat-num text-[28px] mt-1.5">14</dd>
+              </div>
+              <div class="px-4 py-4 text-center">
+                <dt class="label text-[10.5px]">States</dt>
+                <dd class="stat-num text-[28px] mt-1.5">12</dd>
+              </div>
             </dl>
           </div>
         </div>
@@ -77,65 +82,59 @@ const verificationSteps = [
   </section>
 
   <!-- ============ FILTER STRIP ============ -->
-  <section class="border-b border-[color:var(--color-hairline)] bg-[color:var(--color-paper-2)]/50">
-    <div class="max-w-[1240px] mx-auto px-5 md:px-10 py-5">
-      <form class="grid md:grid-cols-4 gap-3 text-[13px]" onsubmit="event.preventDefault();" aria-label="Filter roster (preview)">
+  <section class="border-b border-[color:var(--color-hairline)] bg-[color:var(--color-canvas-2)]/60 sticky top-16 md:top-[68px] z-30 backdrop-blur-md">
+    <div class="max-w-[1240px] mx-auto px-5 md:px-10 py-4">
+      <form class="grid md:grid-cols-[1fr_1fr_1fr_auto] gap-3 items-end" onsubmit="event.preventDefault();" aria-label="Filter roster (preview)">
         <label class="flex flex-col gap-1.5">
-          <span class="mono-label">State</span>
-          <select class="h-10 px-3 border border-[color:var(--color-hairline-2)] bg-[color:var(--color-paper)] font-mono text-[12.5px] focus:outline-none focus:border-[color:var(--color-vermilion)]">
+          <span class="label">State</span>
+          <select class="h-10 px-3 rounded-lg border border-[color:var(--color-hairline-2)] bg-[color:var(--color-canvas)] text-[13.5px] focus:outline-none focus:border-[color:var(--color-ink)]">
             {stateList.map((s) => <option>{s}</option>)}
           </select>
         </label>
         <label class="flex flex-col gap-1.5">
-          <span class="mono-label">Speciality</span>
-          <select class="h-10 px-3 border border-[color:var(--color-hairline-2)] bg-[color:var(--color-paper)] font-mono text-[12.5px] focus:outline-none focus:border-[color:var(--color-vermilion)]">
+          <span class="label">Speciality</span>
+          <select class="h-10 px-3 rounded-lg border border-[color:var(--color-hairline-2)] bg-[color:var(--color-canvas)] text-[13.5px] focus:outline-none focus:border-[color:var(--color-ink)]">
             <option>Any</option>
             {specialities.map((s) => <option>{s}</option>)}
           </select>
         </label>
         <label class="flex flex-col gap-1.5">
-          <span class="mono-label">Turnaround</span>
-          <select class="h-10 px-3 border border-[color:var(--color-hairline-2)] bg-[color:var(--color-paper)] font-mono text-[12.5px] focus:outline-none focus:border-[color:var(--color-vermilion)]">
+          <span class="label">Turnaround</span>
+          <select class="h-10 px-3 rounded-lg border border-[color:var(--color-hairline-2)] bg-[color:var(--color-canvas)] text-[13.5px] focus:outline-none focus:border-[color:var(--color-ink)]">
             {turnList.map((s) => <option>{s}</option>)}
           </select>
         </label>
-        <div class="flex items-end">
-          <button type="submit" class="btn btn-primary btn-sm w-full">Filter roster (preview)</button>
-        </div>
+        <button type="submit" class="btn btn-primary btn-sm h-10">Filter</button>
       </form>
-      <p class="mt-3 text-[11.5px] font-mono tracking-wide text-[color:var(--color-ink-faint)]">
-        Filtering is illustrative on this page — actual assignment happens once you order a stamp
-        or book a consultation. State + speciality determine who receives your file.
-      </p>
     </div>
   </section>
 
-  <!-- ============ ROSTER (seat placeholders — NO names) ============ -->
+  <!-- ============ ROSTER ============ -->
   <section class="max-w-[1240px] mx-auto px-5 md:px-10 py-16 md:py-20">
     <div class="flex flex-wrap items-end justify-between gap-6 mb-10" data-reveal>
       <div>
-        <span class="stamp-hdr"><span>Roster</span><span class="stamp-hdr__sep">/</span><span>Twelve seats · redacted</span></span>
-        <h2 class="mt-6 font-display text-[32px] md:text-[42px] leading-[1.04] tracking-tight max-w-[24ch]">
-          Twelve seats today. <span class="font-display-italic text-[color:var(--color-vermilion-2)]">Names on assignment.</span>
+        <span class="label label-rust">Roster</span>
+        <h2 class="mt-4 font-display text-[36px] md:text-[46px] leading-[1.04] tracking-[-0.025em] max-w-[26ch]">
+          Twelve seats today. <span class="font-display-italic text-[color:var(--color-rust-2)]">Names on assignment.</span>
         </h2>
       </div>
-      <p class="mono-label max-w-[38ch] text-[color:var(--color-ink-muted)]">
-        Each seat represents a verified Bar Council–enrolled advocate. The stamped PDF you
-        receive carries their full name, roll number, and chambers address.
+      <p class="text-[14px] text-[color:var(--color-ink-muted)] max-w-[38ch] leading-relaxed">
+        Every seat represents a Bar Council–enrolled or credentialed advisor. Their identity
+        appears on the document you receive — never on this page.
       </p>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" data-reveal>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4" data-reveal>
       {seats.map((s) => (
         <article class="card p-6 flex flex-col gap-5">
           <header class="flex items-start gap-4">
-            <div class="seat-avatar size-14 text-[15px]">{s.code.split("-")[0]}</div>
+            <div class="seat-avatar size-12 text-[15px]">{s.code.split("·")[0]}</div>
             <div class="flex-1 min-w-0">
-              <div class="caseref">Seat {s.code}</div>
-              <h3 class="font-display text-[20px] tracking-tight leading-tight mt-1">
-                Advocate <span class="text-[color:var(--color-ink-muted)]">· {s.state}</span>
+              <div class="text-[11px] text-[color:var(--color-rust-2)] font-medium tracking-wider">SEAT {s.code}</div>
+              <h3 class="font-display text-[20px] tracking-[-0.02em] leading-tight mt-1">
+                {s.kind}
               </h3>
-              <p class="text-[12px] font-mono tracking-wide text-[color:var(--color-ink-muted)] mt-0.5">{s.city} · {s.batch} · {s.years}</p>
+              <p class="text-[12px] text-[color:var(--color-ink-muted)] mt-0.5">{s.city} · {s.years}</p>
             </div>
             {s.status === "verified" ? (
               <span class="badge badge-verified"><span class="badge-dot"></span>Verified</span>
@@ -148,58 +147,57 @@ const verificationSteps = [
             {s.specs.map((sp) => <span class="chip">{sp}</span>)}
           </div>
 
-          <dl class="grid grid-cols-2 gap-3 text-[12.5px]">
-            <div class="border border-[color:var(--color-hairline)] px-3 py-2 bg-[color:var(--color-paper)]">
-              <dt class="mono-label">Turnaround</dt>
-              <dd class="font-mono mt-1 text-[color:var(--color-ink)]">{s.turn}</dd>
+          <dl class="grid grid-cols-2 gap-2.5 text-[12.5px]">
+            <div class="rounded-lg border border-[color:var(--color-hairline)] px-3 py-2 bg-[color:var(--color-canvas)]">
+              <dt class="label text-[10px]">Turn</dt>
+              <dd class="mt-1 text-[color:var(--color-ink)] font-medium">{s.turn}</dd>
             </div>
-            <div class="border border-[color:var(--color-hairline)] px-3 py-2 bg-[color:var(--color-paper)]">
-              <dt class="mono-label">Languages</dt>
-              <dd class="font-mono mt-1 text-[color:var(--color-ink)]">{s.langs}</dd>
+            <div class="rounded-lg border border-[color:var(--color-hairline)] px-3 py-2 bg-[color:var(--color-canvas)]">
+              <dt class="label text-[10px]">Languages</dt>
+              <dd class="mt-1 text-[color:var(--color-ink)] font-medium">{s.langs}</dd>
             </div>
           </dl>
 
-          <footer class="mt-auto pt-4 border-t border-dashed border-[color:var(--color-hairline-2)] flex items-center justify-between text-[12.5px] font-mono tracking-wide">
-            <span class="text-[color:var(--color-ink-muted)]">Name on stamped PDF</span>
-            <span class="text-[color:var(--color-vermilion-2)]">Assigned on order →</span>
+          <footer class="mt-auto pt-4 border-t border-[color:var(--color-hairline)] flex items-center justify-between text-[12px]">
+            <span class="text-[color:var(--color-ink-muted)]">Identity on file</span>
+            <span class="text-[color:var(--color-rust-2)] font-medium">Assigned on order →</span>
           </footer>
         </article>
       ))}
     </div>
 
-    <p class="mt-8 text-[11.5px] font-mono tracking-wide text-[color:var(--color-ink-faint)] max-w-[70ch]">
-      This page shows a snapshot of the panel. As advocates complete verification (batches 03 and 04),
-      seats convert from <em>Onboarding</em> to <em>Verified</em>. We assign an advocate to your order
-      based on your state, matter type, and turnaround preference — no self-selection at MVP.
+    <p class="mt-8 text-[12.5px] text-[color:var(--color-ink-faint)] max-w-[70ch] leading-relaxed">
+      As advisors clear verification (batches 03 &amp; 04), seats convert from
+      <span class="text-[color:var(--color-ink-muted)]">Onboarding</span> to
+      <span class="text-[color:var(--color-ink-muted)]">Verified</span>. Assignment is based on
+      your state, matter type, and turnaround preference — no self-selection at MVP.
     </p>
   </section>
 
   <!-- ============ HIRE FLOW ============ -->
-  <section class="border-y border-[color:var(--color-hairline)] bg-[color:var(--color-paper-2)]/40">
+  <section class="border-y border-[color:var(--color-hairline)] bg-[color:var(--color-canvas-2)]/60">
     <div class="max-w-[1240px] mx-auto px-5 md:px-10 py-20 md:py-24" data-reveal>
-      <div class="flex flex-wrap items-end justify-between gap-6 mb-10">
-        <div>
-          <span class="stamp-hdr"><span>How to engage</span><span class="stamp-hdr__sep">/</span><span>Two live paths</span></span>
-          <h2 class="mt-6 font-display text-[32px] md:text-[42px] leading-[1.04] tracking-tight max-w-[24ch]">
-            Two ways to put an advocate on <span class="font-display-italic text-[color:var(--color-vermilion-2)]">the record.</span>
-          </h2>
-        </div>
+      <div class="mb-12">
+        <span class="label label-rust">How to engage</span>
+        <h2 class="mt-4 font-display text-[36px] md:text-[46px] leading-[1.02] tracking-[-0.025em] max-w-[26ch]">
+          Two ways to put a legal advisor <span class="font-display-italic text-[color:var(--color-rust-2)]">on the record.</span>
+        </h2>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-5">
-        <article class="card card-stamp p-8 flex flex-col gap-6">
+      <div class="grid md:grid-cols-2 gap-4">
+        <article class="card p-8 flex flex-col gap-6">
           <div class="flex items-start justify-between gap-4">
-            <div>
-              <span class="caseref">§ Path 1 · Live</span>
-              <h3 class="mt-2 font-display text-[26px] tracking-tight leading-tight">Stamp a notice</h3>
+            <div class="flex items-center gap-3">
+              <span class="stat-num text-[40px] text-[color:var(--color-hairline-2)]">01</span>
+              <h3 class="font-display text-[26px] tracking-[-0.02em] leading-tight">Stamp a notice</h3>
             </div>
             <span class="badge badge-verified"><span class="badge-dot"></span>Live</span>
           </div>
-          <ol class="text-[14.5px] leading-relaxed text-[color:var(--color-ink-muted)] space-y-2.5">
-            <li class="flex gap-3"><span class="caseref shrink-0">01</span><span>Draft your notice on the app — free, ~30 s.</span></li>
-            <li class="flex gap-3"><span class="caseref shrink-0">02</span><span>Pay ₹499. We route to a verified advocate covering your state and matter.</span></li>
-            <li class="flex gap-3"><span class="caseref shrink-0">03</span><span>Advocate reviews, redlines, and re-issues on their letterhead. Their name and roll number appear on the PDF.</span></li>
-            <li class="flex gap-3"><span class="caseref shrink-0">04</span><span>You receive the sealed PDF within forty-eight hours. Serve by RPAD or email.</span></li>
+          <ol class="text-[14.5px] leading-[1.6] text-[color:var(--color-ink-muted)] space-y-3">
+            <li class="flex gap-3"><span class="text-[color:var(--color-rust-2)] font-mono text-[13px] shrink-0">§</span><span>Draft your notice on the app — free, about thirty seconds.</span></li>
+            <li class="flex gap-3"><span class="text-[color:var(--color-rust-2)] font-mono text-[13px] shrink-0">§</span><span>Pay ₹499. We route to a verified advocate covering your state.</span></li>
+            <li class="flex gap-3"><span class="text-[color:var(--color-rust-2)] font-mono text-[13px] shrink-0">§</span><span>Advocate reads, redlines, and re-issues on their letterhead.</span></li>
+            <li class="flex gap-3"><span class="text-[color:var(--color-rust-2)] font-mono text-[13px] shrink-0">§</span><span>Sealed PDF in your inbox within forty-eight hours.</span></li>
           </ol>
           <a href={`${APP_URL}/intake`} class="btn btn-primary mt-auto">
             Draft, then stamp
@@ -209,21 +207,21 @@ const verificationSteps = [
 
         <article class="card p-8 flex flex-col gap-6">
           <div class="flex items-start justify-between gap-4">
-            <div>
-              <span class="caseref">§ Path 2 · Queued</span>
-              <h3 class="mt-2 font-display text-[26px] tracking-tight leading-tight">Consult an advocate</h3>
+            <div class="flex items-center gap-3">
+              <span class="stat-num text-[40px] text-[color:var(--color-hairline-2)]">02</span>
+              <h3 class="font-display text-[26px] tracking-[-0.02em] leading-tight">Consult an advisor</h3>
             </div>
-            <span class="badge badge-onboarding"><span class="badge-dot"></span>Queued</span>
+            <span class="badge badge-onboarding"><span class="badge-dot"></span>Q4</span>
           </div>
-          <p class="text-[14.5px] leading-relaxed text-[color:var(--color-ink-muted)]">
-            A 30-minute call with a verified advocate covering your state and matter. Assignment
-            based on availability. Recording optional. Fee ₹1,499, refundable if we cannot assign
+          <p class="text-[14.5px] leading-[1.6] text-[color:var(--color-ink-muted)]">
+            Thirty minutes with a verified advisor covering your state and matter. Assignment
+            based on availability. Recording optional. Fee ₹1,499, refunded if we can't assign
             within seven days.
           </p>
-          <ul class="text-[13.5px] text-[color:var(--color-ink-muted)] space-y-2">
-            <li class="flex items-baseline gap-2.5"><span class="text-[color:var(--color-vermilion-2)]">▸</span> Pre-brief written by our panel counsel</li>
-            <li class="flex items-baseline gap-2.5"><span class="text-[color:var(--color-vermilion-2)]">▸</span> Post-call summary with next steps in writing</li>
-            <li class="flex items-baseline gap-2.5"><span class="text-[color:var(--color-vermilion-2)]">▸</span> Escalation to filing quote if you want to continue</li>
+          <ul class="text-[13.5px] text-[color:var(--color-ink-muted)] space-y-2.5">
+            <li class="flex items-baseline gap-2.5"><span class="text-[color:var(--color-rust-2)]">▸</span> Pre-brief written by our panel counsel</li>
+            <li class="flex items-baseline gap-2.5"><span class="text-[color:var(--color-rust-2)]">▸</span> Written summary and next steps after the call</li>
+            <li class="flex items-baseline gap-2.5"><span class="text-[color:var(--color-rust-2)]">▸</span> Escalation to filing quote if you continue</li>
           </ul>
           <a href="#waitlist" class="btn btn-outline btn-sm mt-auto">Join the waitlist</a>
         </article>
@@ -235,22 +233,22 @@ const verificationSteps = [
   <section class="max-w-[1240px] mx-auto px-5 md:px-10 py-20 md:py-24" data-reveal>
     <div class="grid lg:grid-cols-12 gap-12 items-start">
       <div class="lg:col-span-5">
-        <span class="stamp-hdr"><span>Verification</span><span class="stamp-hdr__sep">/</span><span>Four gates</span></span>
-        <h2 class="mt-6 font-display text-[32px] md:text-[42px] leading-[1.04] tracking-tight">
-          Every seat clears <span class="font-display-italic text-[color:var(--color-vermilion-2)]">four gates.</span>
+        <span class="label label-rust">Verification</span>
+        <h2 class="mt-4 font-display text-[36px] md:text-[46px] leading-[1.02] tracking-[-0.025em]">
+          Every seat clears <span class="font-display-italic text-[color:var(--color-rust-2)]">four gates.</span>
         </h2>
-        <p class="mt-5 text-[15.5px] leading-relaxed text-[color:var(--color-ink-muted)] max-w-[46ch]">
-          We publish nothing about an advocate on this page. But by the time an advocate touches your
-          file, they have passed four checks — and you receive documentary evidence of the fourth on
+        <p class="mt-6 text-[15.5px] leading-[1.55] text-[color:var(--color-ink-muted)] max-w-[46ch]">
+          We publish nothing about an advisor on this page. But by the time an advisor touches your
+          file they have passed four checks — and you receive documentary evidence of the fourth on
           the stamped PDF.
         </p>
       </div>
       <ol class="lg:col-span-7 grid sm:grid-cols-2 gap-4">
         {verificationSteps.map((v) => (
-          <li class="border border-[color:var(--color-hairline)] bg-[color:var(--color-cream)] p-5">
-            <div class="caseref">Gate · {v.n}</div>
-            <h3 class="mt-2 font-display text-[20px] tracking-tight leading-tight">{v.l}</h3>
-            <p class="mt-2 text-[13.5px] leading-relaxed text-[color:var(--color-ink-muted)]">{v.d}</p>
+          <li class="card p-6">
+            <span class="stat-num text-[36px] text-[color:var(--color-rust-soft)]">{v.n}</span>
+            <h3 class="mt-3 font-display text-[20px] tracking-[-0.02em] leading-tight">{v.l}</h3>
+            <p class="mt-2 text-[13.5px] leading-[1.55] text-[color:var(--color-ink-muted)]">{v.d}</p>
           </li>
         ))}
       </ol>
@@ -258,37 +256,36 @@ const verificationSteps = [
   </section>
 
   <!-- ============ WAITLIST — INK ============ -->
-  <section id="waitlist" class="border-y border-[color:var(--color-hairline-dark)] bg-[color:var(--color-ink)] text-[color:var(--color-paper)] relative overflow-hidden">
-    <div class="absolute inset-0 grain pointer-events-none"></div>
-    <div class="max-w-[1240px] mx-auto px-5 md:px-10 py-20 md:py-24 relative" data-reveal>
+  <section id="waitlist" class="border-y border-[color:var(--color-hairline-dark)] bg-[color:var(--color-ink)] text-[color:var(--color-canvas)]">
+    <div class="max-w-[1240px] mx-auto px-5 md:px-10 py-20 md:py-24" data-reveal>
       <div class="grid lg:grid-cols-12 gap-12 items-start">
         <div class="lg:col-span-5">
-          <span class="stamp-hdr stamp-hdr-paper"><span>Waitlist</span><span class="stamp-hdr__sep">/</span><span>Tenants</span></span>
-          <h2 class="mt-6 font-display text-[36px] md:text-[44px] leading-[1.04] tracking-tight text-[color:var(--color-paper)]">
-            Skip the queue when <span class="font-display-italic text-[color:var(--color-vermilion-soft)]">consultation opens.</span>
+          <span class="label label-canvas">Tenants</span>
+          <h2 class="mt-4 font-display text-[38px] md:text-[46px] leading-[1.04] tracking-[-0.025em] text-[color:var(--color-canvas)]">
+            Skip the queue when <span class="font-display-italic text-[color:var(--color-rust-soft)]">consultation opens.</span>
           </h2>
-          <p class="mt-5 text-[15.5px] leading-relaxed text-[color:var(--color-paper-muted)] max-w-[46ch]">
-            Tell us your state and your matter. We will invite you first when the paid consultation
-            and filing services go live in your city.
+          <p class="mt-5 text-[15.5px] leading-[1.55] text-[color:var(--color-canvas-muted)] max-w-[46ch]">
+            Tell us your state and matter. We invite you first when paid consultation and filing
+            services go live in your city.
           </p>
         </div>
 
-        <form class="lg:col-span-7 grid sm:grid-cols-2 gap-4 text-[13.5px]" action="mailto:hello@myrecourse.in" method="post" enctype="text/plain">
+        <form class="lg:col-span-7 grid sm:grid-cols-2 gap-4 text-[14px]" action="mailto:hello@myrecourse.in" method="post" enctype="text/plain">
           <label class="flex flex-col gap-1.5 sm:col-span-1">
-            <span class="mono-label eyebrow-paper">Full name</span>
-            <input required type="text" name="name" class="h-11 px-3 bg-transparent border border-[color:var(--color-hairline-dark-2)] text-[color:var(--color-paper)] font-mono focus:outline-none focus:border-[color:var(--color-vermilion)]" />
+            <span class="label label-canvas">Full name</span>
+            <input required type="text" name="name" class="h-11 px-3 rounded-lg bg-transparent border border-[color:var(--color-hairline-dark-2)] text-[color:var(--color-canvas)] focus:outline-none focus:border-[color:var(--color-rust)]" />
           </label>
           <label class="flex flex-col gap-1.5 sm:col-span-1">
-            <span class="mono-label eyebrow-paper">Email</span>
-            <input required type="email" name="email" class="h-11 px-3 bg-transparent border border-[color:var(--color-hairline-dark-2)] text-[color:var(--color-paper)] font-mono focus:outline-none focus:border-[color:var(--color-vermilion)]" />
+            <span class="label label-canvas">Email</span>
+            <input required type="email" name="email" class="h-11 px-3 rounded-lg bg-transparent border border-[color:var(--color-hairline-dark-2)] text-[color:var(--color-canvas)] focus:outline-none focus:border-[color:var(--color-rust)]" />
           </label>
           <label class="flex flex-col gap-1.5 sm:col-span-1">
-            <span class="mono-label eyebrow-paper">City / state</span>
-            <input required type="text" name="city" placeholder="e.g. Pune, Maharashtra" class="h-11 px-3 bg-transparent border border-[color:var(--color-hairline-dark-2)] text-[color:var(--color-paper)] font-mono focus:outline-none focus:border-[color:var(--color-vermilion)]" />
+            <span class="label label-canvas">City / state</span>
+            <input required type="text" name="city" placeholder="Pune, Maharashtra" class="h-11 px-3 rounded-lg bg-transparent border border-[color:var(--color-hairline-dark-2)] text-[color:var(--color-canvas)] focus:outline-none focus:border-[color:var(--color-rust)]" />
           </label>
           <label class="flex flex-col gap-1.5 sm:col-span-1">
-            <span class="mono-label eyebrow-paper">Matter</span>
-            <select name="matter" class="h-11 px-3 bg-transparent border border-[color:var(--color-hairline-dark-2)] text-[color:var(--color-paper)] font-mono focus:outline-none focus:border-[color:var(--color-vermilion)]">
+            <span class="label label-canvas">Matter</span>
+            <select name="matter" class="h-11 px-3 rounded-lg bg-transparent border border-[color:var(--color-hairline-dark-2)] text-[color:var(--color-canvas)] focus:outline-none focus:border-[color:var(--color-rust)]">
               <option class="bg-[color:var(--color-ink)]">Deposit not refunded</option>
               <option class="bg-[color:var(--color-ink)]">Illegal eviction</option>
               <option class="bg-[color:var(--color-ink)]">Rent hike</option>
@@ -297,14 +294,14 @@ const verificationSteps = [
             </select>
           </label>
           <label class="flex flex-col gap-1.5 sm:col-span-2">
-            <span class="mono-label eyebrow-paper">Anything we should know? (optional)</span>
-            <textarea name="note" rows="3" class="px-3 py-2 bg-transparent border border-[color:var(--color-hairline-dark-2)] text-[color:var(--color-paper)] font-mono focus:outline-none focus:border-[color:var(--color-vermilion)]"></textarea>
+            <span class="label label-canvas">Anything we should know? (optional)</span>
+            <textarea name="note" rows="3" class="px-3 py-2 rounded-lg bg-transparent border border-[color:var(--color-hairline-dark-2)] text-[color:var(--color-canvas)] focus:outline-none focus:border-[color:var(--color-rust)]"></textarea>
           </label>
           <div class="sm:col-span-2 flex items-center justify-between gap-4">
-            <p class="text-[11.5px] font-mono tracking-wide text-[color:var(--color-paper-muted)]">
-              We reply within two working days. Never shared, never spammed.
+            <p class="text-[11.5px] text-[color:var(--color-canvas-muted)]">
+              Reply within two working days. Never shared.
             </p>
-            <button type="submit" class="btn btn-vermilion">
+            <button type="submit" class="btn btn-rust">
               Join the waitlist
               <span aria-hidden="true">→</span>
             </button>
@@ -314,56 +311,56 @@ const verificationSteps = [
     </div>
   </section>
 
-  <!-- ============ ADVOCATE APPLICATION ============ -->
+  <!-- ============ ADVISOR APPLICATION ============ -->
   <section id="apply" class="max-w-[1240px] mx-auto px-5 md:px-10 py-20 md:py-24" data-reveal>
     <div class="grid lg:grid-cols-12 gap-12 items-start">
       <div class="lg:col-span-5">
-        <span class="stamp-hdr"><span>Panel</span><span class="stamp-hdr__sep">/</span><span>Application</span></span>
-        <h2 class="mt-6 font-display text-[32px] md:text-[42px] leading-[1.04] tracking-tight">
-          Apply to sit on <span class="font-display-italic text-[color:var(--color-vermilion-2)]">the panel.</span>
+        <span class="label label-rust">Panel · application</span>
+        <h2 class="mt-4 font-display text-[36px] md:text-[46px] leading-[1.02] tracking-[-0.025em]">
+          Apply to sit on <span class="font-display-italic text-[color:var(--color-rust-2)]">the panel.</span>
         </h2>
-        <p class="mt-5 text-[15.5px] leading-relaxed text-[color:var(--color-ink-muted)] max-w-[46ch]">
-          Bar Council–enrolled advocates in India can apply. We onboard in monthly batches and
-          currently prioritise coverage in tier-1 and tier-2 metros. Take five minutes.
+        <p class="mt-6 text-[15.5px] leading-[1.55] text-[color:var(--color-ink-muted)] max-w-[46ch]">
+          Bar Council–enrolled advocates and credentialed consultants can apply. We onboard in
+          monthly batches and prioritise tier-1 and tier-2 metros. Five minutes to fill out.
         </p>
-        <ul class="mt-6 text-[13.5px] text-[color:var(--color-ink-muted)] space-y-2">
-          <li class="flex items-baseline gap-2.5"><span class="text-[color:var(--color-vermilion-2)]">▸</span> ₹350 per stamp, weekly payout</li>
-          <li class="flex items-baseline gap-2.5"><span class="text-[color:var(--color-vermilion-2)]">▸</span> No exclusivity. No lock-in.</li>
-          <li class="flex items-baseline gap-2.5"><span class="text-[color:var(--color-vermilion-2)]">▸</span> Escalation to consultation &amp; filings from your own clients</li>
+        <ul class="mt-6 text-[13.5px] text-[color:var(--color-ink-muted)] space-y-2.5">
+          <li class="flex items-baseline gap-2.5"><span class="text-[color:var(--color-rust-2)]">▸</span> ₹350 per stamp, weekly payout</li>
+          <li class="flex items-baseline gap-2.5"><span class="text-[color:var(--color-rust-2)]">▸</span> No exclusivity. No lock-in.</li>
+          <li class="flex items-baseline gap-2.5"><span class="text-[color:var(--color-rust-2)]">▸</span> Escalation to consultation &amp; filings from your own leads</li>
         </ul>
       </div>
 
-      <form class="lg:col-span-7 border border-[color:var(--color-hairline-2)] bg-[color:var(--color-cream)] p-6 md:p-8 grid sm:grid-cols-2 gap-4 text-[13.5px]" action="mailto:panel@myrecourse.in" method="post" enctype="text/plain">
+      <form class="lg:col-span-7 card p-6 md:p-8 grid sm:grid-cols-2 gap-4 text-[14px]" action="mailto:panel@myrecourse.in" method="post" enctype="text/plain">
         <label class="flex flex-col gap-1.5 sm:col-span-1">
-          <span class="mono-label">Full name (as on Bar roll)</span>
-          <input required type="text" name="adv-name" class="h-11 px-3 bg-[color:var(--color-paper)] border border-[color:var(--color-hairline-2)] font-mono focus:outline-none focus:border-[color:var(--color-vermilion)]" />
+          <span class="label">Full name (as on Bar roll)</span>
+          <input required type="text" name="adv-name" class="h-11 px-3 rounded-lg bg-[color:var(--color-canvas)] border border-[color:var(--color-hairline-2)] focus:outline-none focus:border-[color:var(--color-ink)]" />
         </label>
         <label class="flex flex-col gap-1.5 sm:col-span-1">
-          <span class="mono-label">State Bar Council</span>
-          <input required type="text" name="adv-bar" placeholder="e.g. Bar Council of Karnataka" class="h-11 px-3 bg-[color:var(--color-paper)] border border-[color:var(--color-hairline-2)] font-mono focus:outline-none focus:border-[color:var(--color-vermilion)]" />
+          <span class="label">State Bar Council</span>
+          <input required type="text" name="adv-bar" placeholder="e.g. Bar Council of Karnataka" class="h-11 px-3 rounded-lg bg-[color:var(--color-canvas)] border border-[color:var(--color-hairline-2)] focus:outline-none focus:border-[color:var(--color-ink)]" />
         </label>
         <label class="flex flex-col gap-1.5 sm:col-span-1">
-          <span class="mono-label">Roll number / enrollment</span>
-          <input required type="text" name="adv-roll" placeholder="e.g. KA / 2014 / 12345" class="h-11 px-3 bg-[color:var(--color-paper)] border border-[color:var(--color-hairline-2)] font-mono focus:outline-none focus:border-[color:var(--color-vermilion)]" />
+          <span class="label">Roll number / enrollment</span>
+          <input required type="text" name="adv-roll" placeholder="KA / 2014 / 12345" class="h-11 px-3 rounded-lg bg-[color:var(--color-canvas)] border border-[color:var(--color-hairline-2)] focus:outline-none focus:border-[color:var(--color-ink)]" />
         </label>
         <label class="flex flex-col gap-1.5 sm:col-span-1">
-          <span class="mono-label">Chambers city</span>
-          <input required type="text" name="adv-city" class="h-11 px-3 bg-[color:var(--color-paper)] border border-[color:var(--color-hairline-2)] font-mono focus:outline-none focus:border-[color:var(--color-vermilion)]" />
+          <span class="label">Chambers city</span>
+          <input required type="text" name="adv-city" class="h-11 px-3 rounded-lg bg-[color:var(--color-canvas)] border border-[color:var(--color-hairline-2)] focus:outline-none focus:border-[color:var(--color-ink)]" />
         </label>
         <label class="flex flex-col gap-1.5 sm:col-span-1">
-          <span class="mono-label">Email</span>
-          <input required type="email" name="adv-email" class="h-11 px-3 bg-[color:var(--color-paper)] border border-[color:var(--color-hairline-2)] font-mono focus:outline-none focus:border-[color:var(--color-vermilion)]" />
+          <span class="label">Email</span>
+          <input required type="email" name="adv-email" class="h-11 px-3 rounded-lg bg-[color:var(--color-canvas)] border border-[color:var(--color-hairline-2)] focus:outline-none focus:border-[color:var(--color-ink)]" />
         </label>
         <label class="flex flex-col gap-1.5 sm:col-span-1">
-          <span class="mono-label">Years in practice</span>
-          <input required type="number" min="1" name="adv-years" class="h-11 px-3 bg-[color:var(--color-paper)] border border-[color:var(--color-hairline-2)] font-mono focus:outline-none focus:border-[color:var(--color-vermilion)]" />
+          <span class="label">Years in practice</span>
+          <input required type="number" min="1" name="adv-years" class="h-11 px-3 rounded-lg bg-[color:var(--color-canvas)] border border-[color:var(--color-hairline-2)] focus:outline-none focus:border-[color:var(--color-ink)]" />
         </label>
 
         <fieldset class="sm:col-span-2 mt-1">
-          <legend class="mono-label mb-2">Specialities (pick any)</legend>
+          <legend class="label mb-2">Specialities (pick any)</legend>
           <div class="flex flex-wrap gap-1.5">
             {specialities.map((sp, i) => (
-              <label class="chip cursor-pointer has-[:checked]:bg-[color:var(--color-vermilion-tint)] has-[:checked]:border-[color:var(--color-vermilion)] has-[:checked]:text-[color:var(--color-vermilion-3)]">
+              <label class="chip cursor-pointer has-[:checked]:bg-[color:var(--color-rust-tint)] has-[:checked]:border-[color:var(--color-rust)] has-[:checked]:text-[color:var(--color-rust-3)]">
                 <input type="checkbox" name={`spec-${i}`} value={sp} class="sr-only" />
                 {sp}
               </label>
@@ -372,15 +369,15 @@ const verificationSteps = [
         </fieldset>
 
         <label class="flex flex-col gap-1.5 sm:col-span-2">
-          <span class="mono-label">One recent notice you drafted (link, or paste text — anonymised)</span>
-          <textarea name="adv-sample" rows="4" class="px-3 py-2 bg-[color:var(--color-paper)] border border-[color:var(--color-hairline-2)] font-mono focus:outline-none focus:border-[color:var(--color-vermilion)]"></textarea>
+          <span class="label">One recent notice you drafted (link, or paste — anonymised)</span>
+          <textarea name="adv-sample" rows="4" class="px-3 py-2 rounded-lg bg-[color:var(--color-canvas)] border border-[color:var(--color-hairline-2)] focus:outline-none focus:border-[color:var(--color-ink)]"></textarea>
         </label>
 
         <div class="sm:col-span-2 flex items-center justify-between gap-4 pt-2">
-          <p class="text-[11.5px] font-mono tracking-wide text-[color:var(--color-ink-faint)]">
-            We reply within three working days. All materials confidential.
+          <p class="text-[11.5px] text-[color:var(--color-ink-faint)]">
+            Reply within three working days. All materials confidential.
           </p>
-          <button type="submit" class="btn btn-vermilion">
+          <button type="submit" class="btn btn-rust">
             Submit application
             <span aria-hidden="true">→</span>
           </button>

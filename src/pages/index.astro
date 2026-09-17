@@ -5,51 +5,51 @@ const APP_URL = "https://rental-recourse.vercel.app";
 
 const ledger = [
   { n: "10", l: "state Rent Acts covered" },
-  { n: "48h", l: "stamp turnaround, target" },
-  { n: "₹499", l: "advocate stamp, all-in" },
-  { n: "100%", l: "Bar Council–enrolled" },
+  { n: "48h", l: "stamp turnaround, max" },
+  { n: "₹499", l: "advocate-stamped notice" },
+  { n: "42", l: "legal advisors onboarding" },
 ];
 
 const services = [
   {
-    ref: "§ A / 01",
-    title: "Draft the notice",
+    tag: "01",
+    kind: "Live",
+    title: "Draft your legal notice",
     price: "Free",
-    turn: "~30 s",
-    body: "Six intake screens. The agent pulls verbatim statute text from your state Rent Act and drafts a demand notice. PDF export. No signup.",
-    cta: { label: "Start drafting", href: `${APP_URL}/intake` },
+    turn: "~30 seconds",
+    body: "Six intake screens. Our agent pulls verbatim statute text from your state Rent Act and drafts a demand notice. PDF export. No signup.",
+    cta: { label: "Draft the notice", href: `${APP_URL}/intake` },
     live: true,
-    tone: "paper",
   },
   {
-    ref: "§ A / 02",
+    tag: "02",
+    kind: "Live",
     title: "Stamp on advocate letterhead",
     price: "₹499",
-    turn: "48 h",
-    body: "A Bar Council–enrolled advocate reads the draft, redlines it, and signs a sealed version onto their letterhead with their state roll number.",
+    turn: "48 hours",
+    body: "A Bar Council–enrolled advocate from our panel reads your draft, redlines it, and signs the sealed version on their letterhead with their state roll number.",
     cta: { label: "How the stamp works", href: "/notice/#stamp" },
     live: true,
-    tone: "paper",
   },
   {
-    ref: "§ B / 03",
-    title: "Consult an advocate",
+    tag: "03",
+    kind: "Q4",
+    title: "Consult a legal advisor",
     price: "₹1,499",
-    turn: "30-min slot",
-    body: "Book a 30-minute call with a vetted advocate covering your state and matter. Optional recording. Assignment based on availability.",
+    turn: "30-minute slot",
+    body: "Thirty minutes with a legal advisor covering your state and matter. Written summary and next-step brief after every call. Recording optional.",
     cta: { label: "Join the waitlist", href: "/advisors/#waitlist" },
     live: false,
-    tone: "ink",
   },
   {
-    ref: "§ B / 04",
-    title: "File a complaint",
+    tag: "04",
+    kind: "Q4",
+    title: "File a case",
     price: "From ₹4,999",
     turn: "5-day intake",
-    body: "Consumer forum, rent controller, small-causes court. Advocate scopes the matter, quotes court fees separately, and drives the filing.",
+    body: "Consumer forum, rent controller, small-causes court. Your legal advisor scopes the matter, quotes court fees separately, and drives the filing.",
     cta: { label: "Join the waitlist", href: "/advisors/#waitlist" },
     live: false,
-    tone: "ink",
   },
 ];
 
@@ -59,7 +59,7 @@ const categories = [
   { l: "Rent hike without notice", n: "Contract + Act", href: "/notice/" },
   { l: "Repairs & habitability", n: "State-varying", href: "/notice/" },
   { l: "Utilities cut off", n: "Illegal in most states", href: "/notice/" },
-  { l: "Broker / society disputes", n: "Advocate matter", href: "/advisors/" },
+  { l: "Broker / society disputes", n: "Advisor matter", href: "/advisors/" },
 ];
 
 const states = [
@@ -68,94 +68,97 @@ const states = [
   "Haryana", "Punjab", "Andhra Pradesh", "Madhya Pradesh", "Assam",
 ];
 
-// Placeholder advocate seats — real advocates populated as they onboard.
-// No fake names. Ever.
+// Placeholder advisor seats — populated as advisors complete onboarding.
+// We do not publish advisor names or credentials on this page.
 const seats = [
-  { code: "AK-01", city: "Bengaluru", state: "Karnataka", batch: "Batch 03", specs: ["Rentals", "Consumer"], turn: "36 h", status: "verified" },
-  { code: "DL-04", city: "Delhi NCR", state: "Delhi", batch: "Batch 03", specs: ["Property", "RERA"], turn: "24 h", status: "verified" },
-  { code: "MH-07", city: "Mumbai", state: "Maharashtra", batch: "Batch 04", specs: ["Rentals", "Society"], turn: "40 h", status: "onboarding" },
-  { code: "MH-09", city: "Pune", state: "Maharashtra", batch: "Batch 03", specs: ["Deposits", "Eviction"], turn: "30 h", status: "verified" },
-  { code: "TN-02", city: "Chennai", state: "Tamil Nadu", batch: "Batch 04", specs: ["Rentals", "Contracts"], turn: "36 h", status: "verified" },
-  { code: "TS-05", city: "Hyderabad", state: "Telangana", batch: "Batch 04", specs: ["Rentals", "Consumer"], turn: "48 h", status: "onboarding" },
+  { code: "KA·01", city: "Bengaluru", state: "Karnataka", years: "10+ yrs", specs: ["Rentals", "Consumer"], turn: "36 h", status: "verified" },
+  { code: "DL·04", city: "Delhi NCR", state: "Delhi", years: "15+ yrs", specs: ["Property", "RERA"], turn: "24 h", status: "verified" },
+  { code: "MH·07", city: "Mumbai", state: "Maharashtra", years: "8+ yrs", specs: ["Rentals", "Society"], turn: "40 h", status: "onboarding" },
+  { code: "MH·09", city: "Pune", state: "Maharashtra", years: "12+ yrs", specs: ["Deposits", "Eviction"], turn: "30 h", status: "verified" },
+  { code: "TN·02", city: "Chennai", state: "Tamil Nadu", years: "9+ yrs", specs: ["Rentals", "Contracts"], turn: "36 h", status: "verified" },
+  { code: "TS·05", city: "Hyderabad", state: "Telangana", years: "7+ yrs", specs: ["Rentals", "Consumer"], turn: "48 h", status: "onboarding" },
 ];
-
-const stampedRef = "RCR / 2026 / A / 0001";
 ---
 
-<Base title="Recourse — legal advocates for Indian tenants" description="A marketplace of Bar Council–enrolled advocates for Indian tenants. Draft a legal notice free. Stamp it on advocate letterhead for ₹499." headerVariant="paper">
+<Base title="Recourse — legal advisors for Indian tenants" description="A marketplace of legal advisors for Indian tenants. Draft a legal notice free. Stamp it on advocate letterhead for ₹499. Consult, file, retain." headerVariant="paper">
   <!-- =========================================================
-       HERO — cover page of a court file
-  ============================================================ -->
-  <section class="relative border-b border-[color:var(--color-hairline)] overflow-hidden">
-    <div class="absolute inset-0 paper-texture opacity-40 pointer-events-none"></div>
+       HERO
+  ========================================================== -->
+  <section class="relative border-b border-[color:var(--color-hairline)]">
+    <div class="max-w-[1240px] mx-auto px-5 md:px-10 pt-16 md:pt-24 pb-20 md:pb-28">
 
-    <div class="max-w-[1240px] mx-auto px-5 md:px-10 pt-14 md:pt-20 pb-16 md:pb-24 relative">
-      <!-- Filing header strip -->
-      <div class="rise flex flex-wrap items-center gap-x-6 gap-y-2 text-[11px] font-mono tracking-[0.14em] uppercase text-[color:var(--color-ink-muted)]" style="animation-delay:.05s">
-        <span class="caseref">In re: Tenant / v. Landlord</span>
-        <span aria-hidden="true">·</span>
-        <span>File no. <span class="text-[color:var(--color-ink)]">{stampedRef}</span></span>
-        <span aria-hidden="true">·</span>
-        <span>Jurisdiction: India</span>
+      <div class="rise flex items-center gap-2.5" style="animation-delay:.05s">
+        <span class="inline-flex items-center gap-2 h-7 px-3 rounded-full bg-[color:var(--color-rust-tint)] border border-[color:var(--color-rust-soft)] text-[color:var(--color-rust-3)] text-[11.5px] font-medium tracking-wide">
+          <span class="size-1.5 rounded-full bg-[color:var(--color-rust)] animate-pulse"></span>
+          Onboarding legal advisors across 12 states
+        </span>
       </div>
 
-      <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 mt-10 lg:mt-14 items-start">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 mt-8 items-start">
         <div class="lg:col-span-8">
-          <h1 class="rise font-display text-[42px] sm:text-[54px] md:text-[68px] lg:text-[80px] leading-[0.98] tracking-[-0.02em]" style="animation-delay:.15s">
-            The legal work
-            <br />
-            <span class="font-display-italic text-[color:var(--color-vermilion-2)]">tenants keep postponing.</span>
+          <h1 class="rise font-display text-[44px] sm:text-[58px] md:text-[76px] lg:text-[90px] leading-[0.95] tracking-[-0.028em]" style="animation-delay:.15s">
+            Legal help for Indian tenants,
+            <span class="font-display-italic text-[color:var(--color-rust-2)]">without the theatre.</span>
           </h1>
 
-          <p class="rise mt-8 max-w-[54ch] text-[17px] md:text-[18.5px] leading-[1.55] text-[color:var(--color-ink-muted)]" style="animation-delay:.28s">
-            Recourse is a marketplace of Bar Council–enrolled advocates for Indian tenants.
-            Draft your legal notice in thirty seconds. Have it read, redlined, and stamped by a
-            verified advocate for <span class="stamped">₹499</span>. Then keep the advocate for consultation,
-            filings, or a retainer if the matter grows teeth.
+          <p class="rise mt-8 max-w-[58ch] text-[17px] md:text-[19px] leading-[1.5] text-[color:var(--color-ink-muted)]" style="animation-delay:.28s">
+            Recourse is a marketplace of legal advisors — advocates, consultants, and specialists — who
+            help tenants handle the task at hand. Draft a legal notice in thirty seconds. Have it
+            stamped on advocate letterhead for <span class="stamped">₹499</span>. Then keep your advisor for
+            consultations, filings, or a retainer if the matter grows teeth.
           </p>
 
-          <div class="rise mt-9 flex flex-wrap items-center gap-3" style="animation-delay:.4s">
+          <div class="rise mt-10 flex flex-wrap items-center gap-3" style="animation-delay:.4s">
             <a href={`${APP_URL}/intake`} class="btn btn-primary">
               Draft the notice — free
               <span aria-hidden="true">→</span>
             </a>
             <a href="/advisors/" class="btn btn-outline">
-              Browse advocates
+              Meet the advisors
             </a>
-            <span class="caseref ml-1 hidden sm:inline">No signup · PDF in ~30 s</span>
+          </div>
+
+          <div class="rise mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-[12.5px] text-[color:var(--color-ink-muted)]" style="animation-delay:.52s">
+            <span class="flex items-center gap-2"><span class="size-1 rounded-full bg-[color:var(--color-sage)]"></span>Bar Council–enrolled panel</span>
+            <span class="flex items-center gap-2"><span class="size-1 rounded-full bg-[color:var(--color-sage)]"></span>Fixed price, fixed turnaround</span>
+            <span class="flex items-center gap-2"><span class="size-1 rounded-full bg-[color:var(--color-sage)]"></span>Refunded if we can't assign</span>
           </div>
         </div>
 
-        <!-- Ledger: 4 statistics on ruled paper -->
-        <aside class="lg:col-span-4 rise" style="animation-delay:.52s">
-          <div class="flex items-center justify-between mb-4">
-            <span class="stamp-hdr"><span>Docket</span><span class="stamp-hdr__sep">/</span><span>at a glance</span></span>
-            <span class="date-stamp hidden md:inline-flex">Sep · 2026</span>
+        <!-- Numbers panel -->
+        <aside class="lg:col-span-4 rise" style="animation-delay:.6s">
+          <div class="rounded-2xl border border-[color:var(--color-hairline)] bg-[color:var(--color-cream)] overflow-hidden">
+            <div class="px-6 py-4 border-b border-[color:var(--color-hairline)] flex items-center justify-between">
+              <span class="label">Panel · at a glance</span>
+              <span class="label label-rust">Sep · 26</span>
+            </div>
+            <dl class="divide-y divide-[color:var(--color-hairline)]">
+              {ledger.map((s) => (
+                <div class="flex items-baseline justify-between px-6 py-4">
+                  <dt class="text-[13px] text-[color:var(--color-ink-muted)] max-w-[16ch]">{s.l}</dt>
+                  <dd class="stat-num text-[34px]">{s.n}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
-          <dl class="border border-[color:var(--color-hairline-2)] bg-[color:var(--color-cream)] divide-y divide-[color:var(--color-hairline)]">
-            {ledger.map((s) => (
-              <div class="flex items-baseline justify-between px-5 py-4">
-                <dt class="mono-label">{s.l}</dt>
-                <dd class="stat-num text-[32px] md:text-[36px]">{s.n}</dd>
-              </div>
-            ))}
-          </dl>
-          <p class="mt-3 text-[11.5px] font-mono tracking-wide text-[color:var(--color-ink-faint)]">
-            All counts prospective. Advocate names redacted until public roster launches.
+          <p class="mt-3 px-1 text-[11.5px] text-[color:var(--color-ink-faint)] leading-relaxed">
+            Advisor identities are private until assigned to your matter — full name, Bar Council
+            roll number, and chambers appear on the stamped PDF.
           </p>
         </aside>
       </div>
     </div>
 
-    <!-- State-Acts marquee -->
-    <div class="border-t border-[color:var(--color-hairline)] bg-[color:var(--color-paper-2)]/50 py-3.5 overflow-hidden">
-      <div class="flex items-center gap-3 max-w-[1240px] mx-auto px-5 md:px-10">
-        <span class="caseref shrink-0">Statutes referenced</span>
+    <!-- State-Acts scroller -->
+    <div class="border-t border-[color:var(--color-hairline)] bg-[color:var(--color-canvas-2)] py-4 overflow-hidden">
+      <div class="flex items-center gap-4 max-w-[1240px] mx-auto px-5 md:px-10">
+        <span class="label shrink-0">Statutes covered</span>
+        <span class="hidden sm:block h-4 w-px bg-[color:var(--color-hairline-2)]"></span>
         <div class="flex-1 overflow-hidden">
-          <div class="marquee-track flex gap-8 whitespace-nowrap text-[12.5px] text-[color:var(--color-ink-muted)]">
+          <div class="marquee-track flex gap-10 whitespace-nowrap text-[13px] text-[color:var(--color-ink-muted)]">
             {[...states, ...states].map((s) => (
-              <span class="flex items-center gap-2 font-mono tracking-wide">
-                <span class="size-1 rounded-full bg-[color:var(--color-vermilion)] inline-block"></span>
+              <span class="flex items-center gap-2">
+                <span class="size-1 rounded-full bg-[color:var(--color-rust)] inline-block"></span>
                 {s} Rent Act
               </span>
             ))}
@@ -166,29 +169,29 @@ const stampedRef = "RCR / 2026 / A / 0001";
   </section>
 
   <!-- =========================================================
-       WHAT TENANTS BRING US
-  ============================================================ -->
+       CATEGORIES
+  ========================================================== -->
   <section class="max-w-[1240px] mx-auto px-5 md:px-10 py-20 md:py-28" data-reveal>
     <div class="flex flex-wrap items-end justify-between gap-6 mb-12">
       <div class="max-w-[52ch]">
-        <span class="stamp-hdr mb-6"><span>Exhibit A</span><span class="stamp-hdr__sep">/</span><span>Matters we handle</span></span>
-        <h2 class="font-display text-[36px] md:text-[46px] leading-[1.02] tracking-tight mt-6">
-          Six patterns that <span class="font-display-italic text-[color:var(--color-vermilion-2)]">turn up every week.</span>
+        <span class="label label-rust">Matters we handle</span>
+        <h2 class="font-display text-[38px] md:text-[52px] leading-[1.02] tracking-[-0.025em] mt-4">
+          The six problems that <span class="font-display-italic text-[color:var(--color-rust-2)]">turn up every week.</span>
         </h2>
       </div>
-      <a href="/notice/" class="text-[13.5px] font-mono tracking-wide text-[color:var(--color-vermilion-2)] hover:text-[color:var(--color-vermilion-3)] underline underline-offset-4 decoration-dotted">
+      <a href="/notice/" class="text-[13.5px] text-[color:var(--color-rust-2)] hover:text-[color:var(--color-rust-3)] font-medium">
         See the full statute grid →
       </a>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[color:var(--color-hairline)] border border-[color:var(--color-hairline)]">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {categories.map((c, i) => (
-        <a href={c.href} class="group bg-[color:var(--color-cream)] hover:bg-[color:var(--color-paper-2)] transition-colors p-7 flex flex-col gap-5 relative">
-          <span class="caseref">§ {String(i + 1).padStart(2, "0")}</span>
-          <h3 class="font-display text-[24px] leading-tight tracking-tight">{c.l}</h3>
-          <div class="mt-auto flex items-center justify-between">
-            <span class="mono-label">{c.n}</span>
-            <span class="text-[color:var(--color-vermilion-2)] group-hover:translate-x-1 transition-transform" aria-hidden="true">→</span>
+        <a href={c.href} class="group card p-7 flex flex-col gap-6">
+          <span class="label">§ {String(i + 1).padStart(2, "0")}</span>
+          <h3 class="font-display text-[26px] leading-[1.1] tracking-[-0.02em]">{c.l}</h3>
+          <div class="mt-auto flex items-center justify-between pt-4 border-t border-[color:var(--color-hairline)]">
+            <span class="text-[12.5px] text-[color:var(--color-ink-muted)]">{c.n}</span>
+            <span class="text-[color:var(--color-rust-2)] group-hover:translate-x-1 transition-transform" aria-hidden="true">→</span>
           </div>
         </a>
       ))}
@@ -196,51 +199,52 @@ const stampedRef = "RCR / 2026 / A / 0001";
   </section>
 
   <!-- =========================================================
-       SERVICES SHELF
-  ============================================================ -->
-  <section class="border-y border-[color:var(--color-hairline)] bg-[color:var(--color-paper-2)]/40">
+       SERVICES
+  ========================================================== -->
+  <section class="border-y border-[color:var(--color-hairline)] bg-[color:var(--color-canvas-2)]/60">
     <div class="max-w-[1240px] mx-auto px-5 md:px-10 py-20 md:py-28" data-reveal>
       <div class="flex flex-wrap items-end justify-between gap-6 mb-12">
         <div class="max-w-[52ch]">
-          <span class="stamp-hdr mb-6"><span>Exhibit B</span><span class="stamp-hdr__sep">/</span><span>Services</span></span>
-          <h2 class="font-display text-[36px] md:text-[46px] leading-[1.02] tracking-tight mt-6">
-            One shelf. Live services and <span class="font-display-italic text-[color:var(--color-vermilion-2)]">queued ones.</span>
+          <span class="label label-rust">Services</span>
+          <h2 class="font-display text-[38px] md:text-[52px] leading-[1.02] tracking-[-0.025em] mt-4">
+            Two live today. Two <span class="font-display-italic text-[color:var(--color-rust-2)]">coming next quarter.</span>
           </h2>
         </div>
-        <p class="mono-label max-w-[36ch] text-[color:var(--color-ink-muted)]">
-          Two tiles are live today. Two are queued — join the waitlist to be first when they open.
+        <p class="text-[14.5px] text-[color:var(--color-ink-muted)] max-w-[38ch]">
+          Draft and stamp are live. Consultation and filings unlock as the panel grows — join the
+          waitlist and we'll invite you first when they open in your city.
         </p>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-5 lg:gap-6">
+      <div class="grid md:grid-cols-2 gap-4">
         {services.map((s) => (
-          <article class:list={["card p-7 md:p-8 flex flex-col gap-6", s.live && "card-stamp"]}>
+          <article class="card p-8 flex flex-col gap-6">
             <div class="flex items-start justify-between gap-4">
-              <div>
-                <span class="caseref">{s.ref}</span>
-                <h3 class="font-display text-[26px] md:text-[30px] leading-tight tracking-tight mt-2">{s.title}</h3>
+              <div class="flex items-center gap-3">
+                <span class="stat-num text-[42px] text-[color:var(--color-hairline-2)]">{s.tag}</span>
+                <h3 class="font-display text-[26px] md:text-[30px] leading-[1.05] tracking-[-0.022em]">{s.title}</h3>
               </div>
               {s.live ? (
                 <span class="badge badge-verified"><span class="badge-dot"></span>Live</span>
               ) : (
-                <span class="badge badge-onboarding"><span class="badge-dot"></span>Queued</span>
+                <span class="badge badge-onboarding"><span class="badge-dot"></span>{s.kind}</span>
               )}
             </div>
 
             <div class="grid grid-cols-2 gap-3">
-              <div class="border border-[color:var(--color-hairline)] p-3 bg-[color:var(--color-paper)]">
-                <div class="mono-label">Price</div>
-                <div class="stat-num text-[24px] mt-1.5">{s.price}</div>
+              <div class="rounded-lg border border-[color:var(--color-hairline)] p-4 bg-[color:var(--color-canvas)]">
+                <div class="label">Price</div>
+                <div class="stat-num text-[26px] mt-2">{s.price}</div>
               </div>
-              <div class="border border-[color:var(--color-hairline)] p-3 bg-[color:var(--color-paper)]">
-                <div class="mono-label">Turnaround</div>
-                <div class="stat-num text-[24px] mt-1.5">{s.turn}</div>
+              <div class="rounded-lg border border-[color:var(--color-hairline)] p-4 bg-[color:var(--color-canvas)]">
+                <div class="label">Turnaround</div>
+                <div class="stat-num text-[26px] mt-2">{s.turn}</div>
               </div>
             </div>
 
-            <p class="text-[14.5px] leading-relaxed text-[color:var(--color-ink-muted)]">{s.body}</p>
+            <p class="text-[14.5px] leading-[1.55] text-[color:var(--color-ink-muted)]">{s.body}</p>
 
-            <div class="mt-auto pt-2 border-t border-[color:var(--color-hairline)]">
+            <div class="mt-auto pt-2">
               <a href={s.cta.href} class:list={["btn btn-sm", s.live ? "btn-primary" : "btn-outline"]}>
                 {s.cta.label}
                 <span aria-hidden="true">→</span>
@@ -253,19 +257,19 @@ const stampedRef = "RCR / 2026 / A / 0001";
   </section>
 
   <!-- =========================================================
-       ADVOCATE DIRECTORY — placeholder seats (NO fake names)
-  ============================================================ -->
+       LEGAL ADVISOR ROSTER — no names, seat placeholders
+  ========================================================== -->
   <section class="max-w-[1240px] mx-auto px-5 md:px-10 py-20 md:py-28" data-reveal>
-    <div class="flex flex-wrap items-end justify-between gap-6 mb-10">
-      <div class="max-w-[54ch]">
-        <span class="stamp-hdr mb-6"><span>Exhibit C</span><span class="stamp-hdr__sep">/</span><span>Advocate roster</span></span>
-        <h2 class="font-display text-[36px] md:text-[46px] leading-[1.02] tracking-tight mt-6">
-          The roster launches with <span class="font-display-italic text-[color:var(--color-vermilion-2)]">names redacted.</span>
+    <div class="flex flex-wrap items-end justify-between gap-8 mb-10">
+      <div class="max-w-[56ch]">
+        <span class="label label-rust">The panel</span>
+        <h2 class="font-display text-[38px] md:text-[52px] leading-[1.02] tracking-[-0.025em] mt-4">
+          Onboarding legal advisors who help with <span class="font-display-italic text-[color:var(--color-rust-2)]">the task at hand.</span>
         </h2>
-        <p class="mt-6 text-[16px] leading-relaxed text-[color:var(--color-ink-muted)] max-w-[54ch]">
-          Every advocate on Recourse is Bar Council–enrolled and identity-verified. We publish
-          each advocate's name and roll number on the stamped PDF you receive — not on this page.
-          You will not be assigned to anyone who has not passed our verification.
+        <p class="mt-6 text-[16px] leading-[1.55] text-[color:var(--color-ink-muted)] max-w-[56ch]">
+          Advocates, consultants, and specialists — every advisor on Recourse is Bar Council–enrolled
+          or credentialed for their scope of work, and identity-verified. We don't publish names on
+          this page. Once assigned, your advisor's full identity appears on the document you receive.
         </p>
       </div>
       <a href="/advisors/" class="btn btn-outline btn-sm">
@@ -274,19 +278,19 @@ const stampedRef = "RCR / 2026 / A / 0001";
       </a>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {seats.map((seat) => (
         <article class="card p-6 flex flex-col gap-5">
           <div class="flex items-start gap-4">
-            <div class="seat-avatar size-14 text-[15px]">
-              {seat.code.split("-")[0]}
+            <div class="seat-avatar size-12 text-[15px]">
+              {seat.code.split("·")[0]}
             </div>
             <div class="flex-1 min-w-0">
-              <div class="caseref">Seat {seat.code}</div>
-              <div class="font-display text-[20px] leading-tight tracking-tight mt-1">
-                Advocate <span class="text-[color:var(--color-ink-muted)]">·</span> <span class="text-[color:var(--color-ink-muted)]">{seat.state}</span>
+              <div class="text-[11px] text-[color:var(--color-rust-2)] font-medium tracking-wider">SEAT {seat.code}</div>
+              <div class="font-display text-[20px] leading-tight tracking-[-0.02em] mt-1">
+                Legal advisor
               </div>
-              <div class="text-[12.5px] text-[color:var(--color-ink-muted)] mt-0.5">{seat.city} · {seat.batch}</div>
+              <div class="text-[12.5px] text-[color:var(--color-ink-muted)] mt-0.5">{seat.city} · {seat.years}</div>
             </div>
             {seat.status === "verified" ? (
               <span class="badge badge-verified"><span class="badge-dot"></span>Verified</span>
@@ -299,124 +303,118 @@ const stampedRef = "RCR / 2026 / A / 0001";
             {seat.specs.map((sp) => <span class="chip">{sp}</span>)}
           </div>
 
-          <div class="mt-auto pt-4 border-t border-dashed border-[color:var(--color-hairline-2)] flex items-center justify-between text-[12.5px] font-mono tracking-wide text-[color:var(--color-ink-muted)]">
-            <span>Stamp turn · <span class="text-[color:var(--color-ink)]">{seat.turn}</span></span>
-            <span class="text-[color:var(--color-vermilion-2)]">Name on stamped PDF</span>
+          <div class="mt-auto pt-4 border-t border-[color:var(--color-hairline)] flex items-center justify-between text-[12px] text-[color:var(--color-ink-muted)]">
+            <span>Stamp turn · <span class="text-[color:var(--color-ink)] font-medium">{seat.turn}</span></span>
+            <span class="text-[color:var(--color-rust-2)]">Identity on file →</span>
           </div>
         </article>
       ))}
     </div>
 
-    <p class="mt-8 text-[12.5px] font-mono tracking-wide text-[color:var(--color-ink-faint)] max-w-[68ch]">
-      Placeholder seats. Real advocates are assigned on order. Full name, Bar Council roll number,
-      and chambers address appear on the stamped PDF you receive.
+    <p class="mt-8 text-[12.5px] text-[color:var(--color-ink-faint)] max-w-[68ch]">
+      Placeholder seats. Real advisors are assigned to your matter on order. Full name, Bar Council
+      roll number (for stamps), and chambers address appear on the document you receive.
     </p>
   </section>
 
   <!-- =========================================================
-       INK SECTION — sample notice mock (redacted signature)
-  ============================================================ -->
-  <section class="border-y border-[color:var(--color-hairline-dark)] bg-[color:var(--color-ink)] text-[color:var(--color-paper)] relative overflow-hidden">
-    <div class="absolute inset-0 grain pointer-events-none"></div>
+       SAMPLE NOTICE — INK section
+  ========================================================== -->
+  <section class="border-y border-[color:var(--color-hairline-dark)] bg-[color:var(--color-ink)] text-[color:var(--color-canvas)] relative overflow-hidden">
     <div class="max-w-[1240px] mx-auto px-5 md:px-10 py-20 md:py-28 relative" data-reveal>
-      <div class="grid lg:grid-cols-12 gap-12 items-start">
+      <div class="grid lg:grid-cols-12 gap-14 items-start">
         <div class="lg:col-span-5">
-          <span class="stamp-hdr stamp-hdr-paper mb-6"><span>Exhibit D</span><span class="stamp-hdr__sep">/</span><span>What arrives</span></span>
-          <h2 class="mt-6 font-display text-[36px] md:text-[46px] leading-[1.04] tracking-tight text-[color:var(--color-paper)]">
-            A PDF you can serve — <span class="font-display-italic text-[color:var(--color-vermilion-soft)]">not a template.</span>
+          <span class="label label-canvas">The stamp</span>
+          <h2 class="mt-4 font-display text-[38px] md:text-[52px] leading-[1.02] tracking-[-0.025em] text-[color:var(--color-canvas)]">
+            A PDF you can serve — <span class="font-display-italic text-[color:var(--color-rust-soft)]">not a template.</span>
           </h2>
-          <p class="mt-6 text-[16px] leading-relaxed text-[color:var(--color-paper-muted)] max-w-[46ch]">
-            On advocate letterhead. Verbatim statute citations. Signed with a Bar Council roll
-            number. Delivered as a locked PDF within forty-eight hours of order.
+          <p class="mt-6 text-[16px] leading-[1.55] text-[color:var(--color-canvas-muted)] max-w-[46ch]">
+            Every stamped notice arrives on the assigned advocate's actual letterhead, with their
+            Bar Council roll number cited on the page, physically signed, and stamped with their
+            chambers seal. Delivered within forty-eight hours.
           </p>
 
-          <ul class="mt-8 space-y-3 text-[14.5px] text-[color:var(--color-paper-muted)]">
-            <li class="flex items-start gap-3">
-              <span class="mt-1 caseref text-[color:var(--color-vermilion-soft)] shrink-0">01</span>
-              <span>Advocate reads your draft and marks up anything that would hurt you in court.</span>
+          <ul class="mt-8 space-y-4 text-[14.5px] text-[color:var(--color-canvas-muted)]">
+            <li class="flex items-start gap-4">
+              <span class="stat-num text-[24px] text-[color:var(--color-rust-soft)] shrink-0 leading-none pt-0.5">01</span>
+              <span>Advisor reads your draft and marks up anything that would hurt you in court.</span>
             </li>
-            <li class="flex items-start gap-3">
-              <span class="mt-1 caseref text-[color:var(--color-vermilion-soft)] shrink-0">02</span>
-              <span>They re-issue it on their letterhead with their state Bar Council roll number.</span>
+            <li class="flex items-start gap-4">
+              <span class="stat-num text-[24px] text-[color:var(--color-rust-soft)] shrink-0 leading-none pt-0.5">02</span>
+              <span>Notice is re-issued on the advocate's letterhead with their state roll number.</span>
             </li>
-            <li class="flex items-start gap-3">
-              <span class="mt-1 caseref text-[color:var(--color-vermilion-soft)] shrink-0">03</span>
-              <span>You receive a stamp-sealed PDF plus a plain-text copy for records.</span>
+            <li class="flex items-start gap-4">
+              <span class="stat-num text-[24px] text-[color:var(--color-rust-soft)] shrink-0 leading-none pt-0.5">03</span>
+              <span>You receive a stamp-sealed PDF plus a plain-text copy for your records.</span>
             </li>
           </ul>
 
-          <div class="mt-9 flex flex-wrap items-center gap-3">
-            <a href="/notice/" class="btn btn-vermilion">Read the notice page</a>
+          <div class="mt-10 flex flex-wrap items-center gap-3">
+            <a href="/notice/" class="btn btn-rust">Read the notice page</a>
             <a href={`${APP_URL}/intake`} class="btn btn-outline-paper btn-sm">Start a draft</a>
           </div>
         </div>
 
-        <!-- Sample stamped notice — signature redacted -->
+        <!-- Sample stamped notice preview -->
         <div class="lg:col-span-7">
-          <div class="relative">
-            <div class="absolute -top-3 right-6 z-10">
-              <span class="date-stamp bg-[color:var(--color-ink)]">Filed · 17.09.2026</span>
+          <div class="rounded-2xl bg-[color:var(--color-canvas)] text-[color:var(--color-ink)] p-8 md:p-10 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)] border border-[color:var(--color-hairline-2)] relative">
+            <!-- letterhead -->
+            <div class="flex items-start justify-between pb-5 border-b border-[color:var(--color-hairline)]">
+              <div>
+                <div class="label label-rust">Advocate letterhead</div>
+                <div class="font-display text-[24px] tracking-[-0.02em] mt-2 leading-none">
+                  <span class="redact px-10 py-1">████████</span>
+                </div>
+                <div class="text-[11.5px] text-[color:var(--color-ink-muted)] mt-2">
+                  Advocate · Bar Council of <span class="redact px-3">████</span> · Roll <span class="redact px-3">████</span>/<span class="redact px-3">████</span>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="label">Ref</div>
+                <div class="font-mono text-[11.5px] mt-1 text-[color:var(--color-ink-muted)]">RCR·26·A·0142</div>
+              </div>
             </div>
-            <div class="bg-[color:var(--color-paper)] text-[color:var(--color-ink)] p-8 md:p-10 shadow-[0_20px_60px_-25px_rgba(0,0,0,0.6)] border border-[color:var(--color-hairline-2)] relative">
-              <!-- letterhead -->
-              <div class="flex items-start justify-between pb-4 border-b border-[color:var(--color-hairline-2)]">
-                <div>
-                  <div class="caseref">Advocate letterhead</div>
-                  <div class="font-display text-[22px] tracking-tight mt-1">
-                    <span class="redact px-8">████████</span> &nbsp;<span class="text-[13px] font-sans font-normal text-[color:var(--color-ink-muted)] tracking-normal">Advocate on record</span>
-                  </div>
-                  <div class="text-[11px] font-mono tracking-wide text-[color:var(--color-ink-muted)] mt-1">
-                    Bar Council of <span class="redact px-4">██████</span> · Roll <span class="redact px-3">████</span> / <span class="redact px-3">████</span>
-                  </div>
-                </div>
-                <div class="text-right">
-                  <div class="caseref">Ref</div>
-                  <div class="font-mono text-[11.5px] mt-1">{stampedRef}</div>
-                </div>
-              </div>
 
-              <!-- body -->
-              <div class="pt-5 space-y-3 text-[13.5px] leading-[1.7] ledger-lines">
-                <p class="font-mono text-[11px] tracking-wider uppercase text-[color:var(--color-ink-muted)]">17th September, 2026</p>
-                <p>To,</p>
-                <p><b>Sri / Smt.</b> <span class="text-[color:var(--color-ink-muted)]">[Landlord name]</span></p>
-                <p class="text-[color:var(--color-ink-muted)]">[Registered address on rent agreement]</p>
-                <p class="mt-4"><b>Sub:</b> <u>Legal notice for wrongful withholding of security deposit under Section 6 of the Karnataka Rent Act, 2001, read with Section 73 of the Indian Contract Act, 1872.</u></p>
-                <p class="mt-4">Sir / Madam,</p>
-                <p>Under instructions from and on behalf of my client, <span class="text-[color:var(--color-ink-muted)]">[Tenant name]</span>, I do hereby serve upon you this legal notice, as follows —</p>
-                <p><b>1.</b> That my client entered into a tenancy agreement with you on <span class="text-[color:var(--color-ink-muted)]">[date]</span>, in respect of the premises situated at <span class="text-[color:var(--color-ink-muted)]">[premises]</span>, on payment of a monthly rent of Rs. <span class="text-[color:var(--color-ink-muted)]">[amount]</span> and a security deposit of Rs. <span class="text-[color:var(--color-ink-muted)]">[amount]</span> …</p>
-              </div>
+            <!-- body -->
+            <div class="pt-6 space-y-3 text-[13.5px] leading-[1.75]">
+              <p class="text-[11px] uppercase tracking-widest text-[color:var(--color-ink-muted)]">17 · September · 2026</p>
+              <p>To,</p>
+              <p><span class="font-medium">Sri / Smt.</span> <span class="text-[color:var(--color-ink-muted)]">[Landlord name]</span></p>
+              <p class="text-[color:var(--color-ink-muted)]">[Registered address on rent agreement]</p>
+              <p class="mt-4"><span class="font-medium">Sub:</span> <u>Legal notice for wrongful withholding of security deposit under Section 6 of the Karnataka Rent Act, 2001, read with Section 73 of the Indian Contract Act, 1872.</u></p>
+              <p class="mt-4">Sir / Madam,</p>
+              <p>Under instructions from and on behalf of my client, <span class="text-[color:var(--color-ink-muted)]">[Tenant name]</span>, I do hereby serve upon you this legal notice, as follows —</p>
+              <p><span class="font-medium">1.</span> That my client entered into a tenancy agreement with you on <span class="text-[color:var(--color-ink-muted)]">[date]</span>, in respect of the premises situated at <span class="text-[color:var(--color-ink-muted)]">[premises]</span>, on payment of a monthly rent of Rs. <span class="text-[color:var(--color-ink-muted)]">[amount]</span> and a security deposit of Rs. <span class="text-[color:var(--color-ink-muted)]">[amount]</span> …</p>
+            </div>
 
-              <!-- signature block — REDACTED -->
-              <div class="mt-8 pt-5 border-t border-[color:var(--color-hairline-2)] flex items-end justify-between gap-6">
-                <div>
-                  <p class="mono-label">Yours faithfully,</p>
-                  <div class="mt-6 mb-2 h-8 flex items-end">
-                    <span class="redact-slim w-40"></span>
-                  </div>
-                  <p class="font-display text-[19px] italic tracking-tight text-[color:var(--color-vermilion-2)]">
-                    <span class="redact px-16">██████████</span>
-                  </p>
-                  <p class="mono-label mt-1">Advocate · Bar Council of <span class="redact px-3">████</span> · Roll <span class="redact px-3">██</span>/<span class="redact px-3">████</span></p>
+            <!-- signature block — REDACTED -->
+            <div class="mt-8 pt-5 border-t border-[color:var(--color-hairline)] flex items-end justify-between gap-6">
+              <div>
+                <p class="text-[12px] text-[color:var(--color-ink-muted)]">Yours faithfully,</p>
+                <div class="mt-6 mb-2 h-8 flex items-end">
+                  <span class="redact-slim w-40"></span>
                 </div>
-                <!-- Stamp seal -->
-                <div class="relative shrink-0">
-                  <div class="size-20 md:size-24 rounded-full border-2 border-[color:var(--color-vermilion)] flex items-center justify-center relative">
-                    <div class="absolute inset-1 rounded-full border border-[color:var(--color-vermilion)] border-dashed seal-spin"></div>
-                    <div class="text-center leading-tight">
-                      <div class="font-display text-[10px] font-mono tracking-[0.14em] uppercase text-[color:var(--color-vermilion)]">Sealed</div>
-                      <div class="font-display text-[22px] text-[color:var(--color-vermilion)] mt-0.5">R</div>
-                      <div class="font-mono text-[8px] tracking-widest text-[color:var(--color-vermilion)]">17·09·26</div>
-                    </div>
+                <p class="font-display italic text-[19px] tracking-[-0.02em] text-[color:var(--color-rust-2)]">
+                  <span class="redact px-16">██████████</span>
+                </p>
+                <p class="text-[11px] text-[color:var(--color-ink-muted)] mt-1">Advocate · Roll <span class="redact px-3">██</span>/<span class="redact px-3">████</span></p>
+              </div>
+              <!-- Chambers seal -->
+              <div class="relative shrink-0">
+                <div class="size-24 rounded-full border-2 border-[color:var(--color-rust)] flex items-center justify-center relative">
+                  <div class="text-center leading-tight">
+                    <div class="text-[9px] tracking-[0.2em] uppercase text-[color:var(--color-rust)]">Sealed</div>
+                    <div class="font-display text-[26px] text-[color:var(--color-rust)] mt-0.5">R</div>
+                    <div class="font-mono text-[8px] tracking-widest text-[color:var(--color-rust)]">17·09·26</div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <p class="mt-4 text-[11.5px] font-mono tracking-wide text-[color:var(--color-paper-muted)]">
-            Illustrative preview. Real notice includes advocate's full name, roll number, chambers
-            address, and physical signature — printed on the assigned advocate's actual letterhead.
+          <p class="mt-4 text-[11.5px] text-[color:var(--color-canvas-muted)]">
+            Illustrative preview. Redacted where the assigned advocate's actual name, roll number,
+            and signature appear on your PDF.
           </p>
         </div>
       </div>
@@ -424,47 +422,47 @@ const stampedRef = "RCR / 2026 / A / 0001";
   </section>
 
   <!-- =========================================================
-       FOR ADVOCATES
-  ============================================================ -->
+       FOR ADVISORS
+  ========================================================== -->
   <section class="max-w-[1240px] mx-auto px-5 md:px-10 py-20 md:py-28" data-reveal>
     <div class="grid lg:grid-cols-12 gap-12 items-start">
       <div class="lg:col-span-5">
-        <span class="stamp-hdr mb-6"><span>Exhibit E</span><span class="stamp-hdr__sep">/</span><span>For advocates</span></span>
-        <h2 class="mt-6 font-display text-[36px] md:text-[46px] leading-[1.02] tracking-tight">
+        <span class="label label-rust">For legal advisors</span>
+        <h2 class="mt-4 font-display text-[38px] md:text-[52px] leading-[1.02] tracking-[-0.025em]">
           Tenants find you. <br />
-          You keep the client, <span class="font-display-italic text-[color:var(--color-vermilion-2)]">not the paperwork.</span>
+          You keep the client, <span class="font-display-italic text-[color:var(--color-rust-2)]">not the paperwork.</span>
         </h2>
-        <p class="mt-6 text-[16px] leading-relaxed text-[color:var(--color-ink-muted)] max-w-[46ch]">
-          You receive drafted notices scoped to your state, review them, sign, and get paid on
-          delivery. Consultation and filing traffic escalates from the same pipeline.
+        <p class="mt-6 text-[16px] leading-[1.55] text-[color:var(--color-ink-muted)] max-w-[46ch]">
+          You receive drafts scoped to your state, review them, sign, and get paid on delivery.
+          Consultation and filing traffic escalates through the same pipeline from your own leads.
         </p>
-        <a href="/advisors/#apply" class="btn btn-vermilion mt-8">
+        <a href="/advisors/#apply" class="btn btn-rust mt-10">
           Apply to join the panel
           <span aria-hidden="true">→</span>
         </a>
       </div>
 
       <div class="lg:col-span-7 grid sm:grid-cols-3 gap-3">
-        <div class="border border-[color:var(--color-hairline)] p-5 bg-[color:var(--color-cream)]">
-          <div class="caseref">Per stamp</div>
-          <div class="stat-num text-[36px] mt-2">₹350</div>
-          <p class="mt-2 text-[12.5px] font-mono tracking-wide text-[color:var(--color-ink-muted)]">70% of ₹499. Paid on delivery.</p>
+        <div class="rounded-xl border border-[color:var(--color-hairline)] p-6 bg-[color:var(--color-cream)]">
+          <div class="label">Per stamp</div>
+          <div class="stat-num text-[40px] mt-3">₹350</div>
+          <p class="mt-2 text-[12.5px] text-[color:var(--color-ink-muted)] leading-relaxed">70% of ₹499. Paid on delivery.</p>
         </div>
-        <div class="border border-[color:var(--color-hairline)] p-5 bg-[color:var(--color-cream)]">
-          <div class="caseref">Effort</div>
-          <div class="stat-num text-[36px] mt-2">T + 2</div>
-          <p class="mt-2 text-[12.5px] font-mono tracking-wide text-[color:var(--color-ink-muted)]">Two working days. No client calls unless you want them.</p>
+        <div class="rounded-xl border border-[color:var(--color-hairline)] p-6 bg-[color:var(--color-cream)]">
+          <div class="label">Effort</div>
+          <div class="stat-num text-[40px] mt-3">T + 2</div>
+          <p class="mt-2 text-[12.5px] text-[color:var(--color-ink-muted)] leading-relaxed">Two working days. No client calls unless you want them.</p>
         </div>
-        <div class="border border-[color:var(--color-hairline)] p-5 bg-[color:var(--color-cream)]">
-          <div class="caseref">Upside</div>
-          <div class="stat-num text-[36px] mt-2">60%</div>
-          <p class="mt-2 text-[12.5px] font-mono tracking-wide text-[color:var(--color-ink-muted)]">Cut you keep on any consultation you accept from the same lead.</p>
+        <div class="rounded-xl border border-[color:var(--color-hairline)] p-6 bg-[color:var(--color-cream)]">
+          <div class="label">Upside</div>
+          <div class="stat-num text-[40px] mt-3">60%</div>
+          <p class="mt-2 text-[12.5px] text-[color:var(--color-ink-muted)] leading-relaxed">Your cut on any consultation the same lead books.</p>
         </div>
-        <div class="sm:col-span-3 border border-dashed border-[color:var(--color-hairline-2)] p-5 bg-[color:var(--color-paper)]">
-          <div class="grid sm:grid-cols-3 gap-4 text-[13px]">
-            <div><span class="mono-label">Onboarding</span><p class="mt-1.5">Bar Council roll, sample notice, one video call with our panel counsel.</p></div>
-            <div><span class="mono-label">Payouts</span><p class="mt-1.5">Weekly, direct bank transfer. TDS at source. Statement in every mail.</p></div>
-            <div><span class="mono-label">Exit</span><p class="mt-1.5">Leave the panel any time. No exclusivity. No lock-in.</p></div>
+        <div class="sm:col-span-3 rounded-xl border border-dashed border-[color:var(--color-hairline-2)] p-6 bg-[color:var(--color-canvas)]">
+          <div class="grid sm:grid-cols-3 gap-5 text-[13.5px]">
+            <div><span class="label">Onboarding</span><p class="mt-2 text-[color:var(--color-ink-muted)] leading-relaxed">Roll number, sample notice, one call with our panel counsel.</p></div>
+            <div><span class="label">Payouts</span><p class="mt-2 text-[color:var(--color-ink-muted)] leading-relaxed">Weekly, direct bank transfer. TDS at source. Statement each week.</p></div>
+            <div><span class="label">Exit</span><p class="mt-2 text-[color:var(--color-ink-muted)] leading-relaxed">Leave the panel any time. No exclusivity. No lock-in.</p></div>
           </div>
         </div>
       </div>
@@ -472,15 +470,15 @@ const stampedRef = "RCR / 2026 / A / 0001";
   </section>
 
   <!-- =========================================================
-       CLOSING CTA — court-stamp
-  ============================================================ -->
-  <section class="border-t border-[color:var(--color-hairline)] bg-[color:var(--color-paper-2)]/50">
+       CLOSING CTA
+  ========================================================== -->
+  <section class="border-t border-[color:var(--color-hairline)] bg-[color:var(--color-canvas-2)]/60">
     <div class="max-w-[1240px] mx-auto px-5 md:px-10 py-20 md:py-24" data-reveal>
       <div class="grid lg:grid-cols-12 gap-10 items-center">
         <div class="lg:col-span-8">
-          <span class="caseref">Endorsement</span>
-          <h2 class="mt-3 font-display text-[38px] md:text-[52px] leading-[1.02] tracking-tight max-w-[22ch]">
-            One PDF stands between the deposit you're owed and <span class="font-display-italic text-[color:var(--color-vermilion-2)]">another month of waiting.</span>
+          <span class="label label-rust">Take the first step</span>
+          <h2 class="mt-4 font-display text-[40px] md:text-[58px] leading-[1.02] tracking-[-0.025em] max-w-[22ch]">
+            One PDF stands between you and <span class="font-display-italic text-[color:var(--color-rust-2)]">another month of waiting.</span>
           </h2>
         </div>
         <div class="lg:col-span-4 flex lg:justify-end">
