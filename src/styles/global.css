@@ -1,43 +1,56 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #0e0e10;
-  --color-ink-2: #17171a;
-  --color-ink-3: #1f1f23;
-  --color-ink-muted: #45454c;
-  --color-ink-faint: #77767a;
+  /* Ink — prussian navy, not pure black. Fountain-pen on legal paper. */
+  --color-ink: #16192b;
+  --color-ink-2: #1f2338;
+  --color-ink-3: #2b3049;
+  --color-ink-muted: #4a4f6a;
+  --color-ink-faint: #7e829a;
 
-  --color-paper: #f4f2ec;
-  --color-paper-2: #ebe8de;
-  --color-paper-3: #e2ddce;
-  --color-cream: #faf8f2;
-  --color-paper-muted: #b0a992;
+  /* Paper — Indian stamp-paper amber. Warmer than cream. */
+  --color-paper: #f0e6cf;
+  --color-paper-2: #e6dbbf;
+  --color-paper-3: #dbcfa9;
+  --color-cream: #f6efd8;
+  --color-paper-muted: #a89f80;
 
-  --color-ochre: #c58a2a;
-  --color-ochre-2: #a06d18;
-  --color-ochre-3: #7a5311;
-  --color-ochre-soft: #f0d9a6;
-  --color-moss: #4e6a3e;
-  --color-moss-soft: #cfd8bf;
-  --color-crimson: #a02b1d;
+  /* Vermilion — Indian court stamp red / legal ribbon. Sole accent. */
+  --color-vermilion: #b23a2b;
+  --color-vermilion-2: #8f2c21;
+  --color-vermilion-3: #6b2118;
+  --color-vermilion-soft: #e8c9c1;
+  --color-vermilion-tint: #f5dcd5;
 
-  --color-hairline: #d6cfbc;
-  --color-hairline-2: #c4bba1;
-  --color-hairline-dark: #2a2a2e;
-  --color-hairline-dark-2: #3a3a3f;
+  /* Aged verdigris — verified badges only. Not decorative. */
+  --color-jade: #3f5d47;
+  --color-jade-soft: #cad6c8;
 
-  --font-serif:
-    "IBM Plex Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --color-hairline: #cec1a1;
+  --color-hairline-2: #b8aa84;
+  --color-hairline-dark: #2a2e44;
+  --color-hairline-dark-2: #3a3f5a;
+
+  /* Backwards-compat aliases — old --color-ochre* references now point to vermilion */
+  --color-ochre: var(--color-vermilion);
+  --color-ochre-2: var(--color-vermilion-2);
+  --color-ochre-3: var(--color-vermilion-3);
+  --color-ochre-soft: var(--color-vermilion-soft);
+  --color-moss: var(--color-jade);
+  --color-moss-soft: var(--color-jade-soft);
+
   --font-display:
-    "IBM Plex Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    "Fraunces", "Newsreader", ui-serif, Georgia, Cambria, Times, serif;
+  --font-serif:
+    "Fraunces", "Newsreader", ui-serif, Georgia, Cambria, Times, serif;
   --font-editorial:
-    "Instrument Serif", "IBM Plex Serif", ui-serif, Georgia, serif;
+    "Fraunces", ui-serif, Georgia, serif;
   --font-sans:
     "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono:
-    "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
-    Consolas, "Liberation Mono", "Courier New", monospace;
+    "Space Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo,
+    Consolas, monospace;
 }
 
 html {
@@ -49,79 +62,139 @@ body {
   background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans);
-  font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  position: relative;
+  min-height: 100dvh;
+}
+
+/* Binding thread — vermilion vertical rule that runs down the page,
+   like the red string tying an Indian court case-file. Fixed, atmospheric. */
+@media (min-width: 900px) {
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 34px;
+    width: 1px;
+    background: var(--color-vermilion);
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 1;
+  }
+  body::after {
+    content: "";
+    position: fixed;
+    top: 50%;
+    left: 30px;
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    background: var(--color-vermilion);
+    opacity: 0.85;
+    pointer-events: none;
+    z-index: 1;
+    box-shadow: 0 0 0 2px var(--color-paper);
+  }
 }
 
 ::selection {
-  background: var(--color-ochre);
+  background: var(--color-vermilion);
   color: var(--color-paper);
 }
 
+/* Type utilities — Fraunces display with proper variable-font settings */
 .font-display {
   font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: -0.015em;
+  font-weight: 420;
+  font-variation-settings:
+    "opsz" 144,
+    "SOFT" 30,
+    "WONK" 0;
+  letter-spacing: -0.018em;
 }
-
-.font-editorial {
-  font-family: var(--font-editorial);
-  font-weight: 400;
+.font-display-italic {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 420;
+  font-variation-settings:
+    "opsz" 144,
+    "SOFT" 60,
+    "WONK" 1;
   letter-spacing: -0.01em;
 }
-
+.font-editorial {
+  font-family: var(--font-editorial);
+  font-weight: 460;
+  font-variation-settings: "opsz" 144, "SOFT" 40;
+  letter-spacing: -0.015em;
+}
 .font-mono {
   font-family: var(--font-mono);
 }
 
+/* Legacy eyebrow — kept for compat, but retire in new code in favor of .section-stamp */
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 11px;
   line-height: 1;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-ink-faint);
 }
-
-.eyebrow-paper {
-  color: var(--color-paper-muted);
-}
-
-.eyebrow-ochre {
-  color: var(--color-ochre-2);
-}
+.eyebrow-paper { color: var(--color-paper-muted); }
+.eyebrow-ochre { color: var(--color-vermilion); }
 
 .mono-label {
   font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-ink-faint);
 }
 
-/* Marketplace primitives */
-.hairline {
-  height: 1px;
-  background: var(--color-hairline);
+/* SECTION STAMP — replaces eyebrow. Court-typewriter header with vermilion rules. */
+.stamp-hdr {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  border-top: 1.5px solid var(--color-vermilion);
+  border-bottom: 1.5px solid var(--color-vermilion);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-vermilion-2);
+  background: transparent;
 }
-.hairline-dark {
-  height: 1px;
-  background: var(--color-hairline-dark);
+.stamp-hdr .stamp-hdr__sep {
+  color: var(--color-hairline-2);
+  font-weight: 400;
+}
+.stamp-hdr-paper {
+  color: var(--color-vermilion-soft);
+  border-color: var(--color-vermilion);
 }
 
+/* Fine hairlines */
+.hairline { height: 1px; background: var(--color-hairline); }
+.hairline-dark { height: 1px; background: var(--color-hairline-dark); }
+
+/* Marketplace primitives */
 .chip {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   height: 26px;
-  padding: 0 10px;
-  border: 1px solid var(--color-hairline);
+  padding: 0 11px;
+  border: 1px solid var(--color-hairline-2);
   background: var(--color-cream);
   color: var(--color-ink);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 10.5px;
   letter-spacing: 0.04em;
   border-radius: 999px;
   white-space: nowrap;
@@ -131,15 +204,11 @@ body {
   border-color: var(--color-hairline-dark-2);
   color: var(--color-paper-muted);
 }
-.chip-solid {
-  background: var(--color-ink);
-  color: var(--color-paper);
-  border-color: var(--color-ink);
-}
-.chip-ochre {
-  background: var(--color-ochre-soft);
-  border-color: var(--color-ochre);
-  color: var(--color-ochre-3);
+.chip-solid { background: var(--color-ink); color: var(--color-paper); border-color: var(--color-ink); }
+.chip-vermilion {
+  background: var(--color-vermilion-tint);
+  border-color: var(--color-vermilion);
+  color: var(--color-vermilion-3);
 }
 
 .badge {
@@ -147,80 +216,90 @@ body {
   align-items: center;
   gap: 6px;
   height: 22px;
-  padding: 0 8px;
+  padding: 0 9px;
   font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.1em;
+  font-size: 10px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
-  border-radius: 3px;
+  border-radius: 2px;
   border: 1px solid transparent;
 }
 .badge-verified {
-  background: var(--color-moss-soft);
-  color: var(--color-moss);
-  border-color: var(--color-moss);
+  background: var(--color-jade-soft);
+  color: var(--color-jade);
+  border-color: var(--color-jade);
 }
 .badge-onboarding {
-  background: var(--color-ochre-soft);
-  color: var(--color-ochre-3);
-  border-color: var(--color-ochre-2);
+  background: var(--color-vermilion-tint);
+  color: var(--color-vermilion-2);
+  border-color: var(--color-vermilion);
 }
-.badge-ink {
-  background: var(--color-ink);
+.badge-ink { background: var(--color-ink); color: var(--color-paper); border-color: var(--color-ink); }
+.badge-vermilion {
+  background: var(--color-vermilion);
   color: var(--color-paper);
-  border-color: var(--color-ink);
+  border-color: var(--color-vermilion);
 }
 .badge-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
+  width: 6px; height: 6px; border-radius: 999px;
   background: currentColor;
   display: inline-block;
 }
 
-.avatar {
+/* Placeholder-seat avatar — for advocate cards where names haven't been assigned */
+.seat-avatar {
   display: inline-grid;
   place-items: center;
-  border-radius: 999px;
+  border-radius: 4px;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--color-paper-2),
+    var(--color-paper-2) 3px,
+    var(--color-cream) 3px,
+    var(--color-cream) 6px
+  );
+  border: 1px dashed var(--color-hairline-2);
+  color: var(--color-vermilion);
   font-family: var(--font-display);
   font-weight: 500;
-  letter-spacing: -0.01em;
   flex-shrink: 0;
 }
-.avatar-ochre {
-  background: var(--color-ochre-soft);
-  color: var(--color-ochre-3);
-  border: 1px solid var(--color-ochre-2);
-}
-.avatar-ink {
-  background: var(--color-ink);
-  color: var(--color-ochre);
-  border: 1px solid var(--color-ink);
-}
-.avatar-paper {
-  background: var(--color-cream);
-  color: var(--color-ink);
-  border: 1px solid var(--color-hairline);
+.seat-avatar-ink {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--color-ink-2),
+    var(--color-ink-2) 3px,
+    var(--color-ink) 3px,
+    var(--color-ink) 6px
+  );
+  border-color: var(--color-hairline-dark-2);
 }
 
 .card {
   background: var(--color-cream);
   border: 1px solid var(--color-hairline);
-  transition:
-    border-color 200ms ease,
-    box-shadow 200ms ease,
-    transform 200ms ease;
+  transition: border-color 220ms ease, box-shadow 220ms ease;
+  position: relative;
 }
 .card:hover {
-  border-color: var(--color-ochre-2);
-  box-shadow: 0 8px 24px -18px rgba(14, 14, 16, 0.35);
+  border-color: var(--color-vermilion-2);
+  box-shadow: 0 6px 24px -18px rgba(22, 25, 43, 0.35);
 }
 .card-ink {
   background: var(--color-ink-2);
   border-color: var(--color-hairline-dark);
 }
-.card-ink:hover {
-  border-color: var(--color-ochre);
+.card-ink:hover { border-color: var(--color-vermilion); }
+
+/* Card corner ornament — subtle stamp-paper corner tick */
+.card-stamp::before {
+  content: "";
+  position: absolute;
+  top: -1px; right: -1px;
+  width: 22px; height: 22px;
+  background:
+    linear-gradient(225deg, var(--color-vermilion) 0 6px, transparent 6px);
+  pointer-events: none;
 }
 
 .btn {
@@ -228,103 +307,127 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  height: 42px;
-  padding: 0 18px;
+  height: 44px;
+  padding: 0 20px;
   font-size: 13.5px;
   font-weight: 500;
-  border-radius: 4px;
-  transition:
-    background 160ms ease,
-    color 160ms ease,
-    border-color 160ms ease,
-    opacity 160ms ease;
+  border-radius: 3px;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease, opacity 160ms ease;
+  font-family: var(--font-sans);
+  white-space: nowrap;
 }
-.btn-primary {
-  background: var(--color-ink);
-  color: var(--color-paper);
-  border: 1px solid var(--color-ink);
-}
-.btn-primary:hover { opacity: 0.92; }
-.btn-ochre {
-  background: var(--color-ochre);
-  color: var(--color-ink);
-  border: 1px solid var(--color-ochre);
-}
-.btn-ochre:hover { background: var(--color-ochre-2); border-color: var(--color-ochre-2); color: var(--color-paper); }
-.btn-outline {
-  background: transparent;
-  color: var(--color-ink);
-  border: 1px solid var(--color-ink);
-}
+.btn-primary { background: var(--color-ink); color: var(--color-paper); border: 1px solid var(--color-ink); }
+.btn-primary:hover { background: var(--color-vermilion-3); border-color: var(--color-vermilion-3); }
+.btn-vermilion { background: var(--color-vermilion); color: var(--color-paper); border: 1px solid var(--color-vermilion); }
+.btn-vermilion:hover { background: var(--color-vermilion-2); border-color: var(--color-vermilion-2); }
+.btn-ochre { background: var(--color-vermilion); color: var(--color-paper); border: 1px solid var(--color-vermilion); }
+.btn-ochre:hover { background: var(--color-vermilion-2); border-color: var(--color-vermilion-2); }
+.btn-outline { background: transparent; color: var(--color-ink); border: 1px solid var(--color-ink); }
 .btn-outline:hover { background: var(--color-ink); color: var(--color-paper); }
-.btn-outline-paper {
-  background: transparent;
-  color: var(--color-paper);
-  border: 1px solid var(--color-hairline-dark-2);
-}
-.btn-outline-paper:hover { background: var(--color-ink-2); border-color: var(--color-ochre); color: var(--color-ochre); }
-.btn-sm { height: 34px; padding: 0 12px; font-size: 12.5px; }
+.btn-outline-paper { background: transparent; color: var(--color-paper); border: 1px solid var(--color-hairline-dark-2); }
+.btn-outline-paper:hover { background: var(--color-vermilion); border-color: var(--color-vermilion); color: var(--color-paper); }
+.btn-sm { height: 36px; padding: 0 14px; font-size: 12.5px; }
 
 .stat-num {
   font-family: var(--font-display);
   font-weight: 500;
+  font-variation-settings: "opsz" 144, "SOFT" 20;
   letter-spacing: -0.03em;
-  line-height: 0.95;
+  line-height: 0.92;
+  color: var(--color-ink);
 }
 
-.rule-serif {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  color: var(--color-hairline-2);
+/* Redacted signature — for sample notice mock where advocate isn't assigned */
+.redact {
+  display: inline-block;
+  background: var(--color-ink);
+  color: transparent;
+  border-radius: 2px;
+  padding: 0 6px;
+  user-select: none;
 }
-.rule-serif::before,
-.rule-serif::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: currentColor;
+.redact-slim {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-ink) 0 8px,
+    transparent 8px 12px
+  );
+  height: 2px;
+  display: inline-block;
+  width: 100%;
+}
+
+/* Court-file case-ref */
+.caseref {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--color-vermilion-2);
+  text-transform: uppercase;
+}
+
+/* Section date-stamp (small, top-right of a section) */
+.date-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  border: 1px dashed var(--color-vermilion);
+  color: var(--color-vermilion-2);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transform: rotate(-1.5deg);
+  transform-origin: center;
 }
 
 /* Grain overlay for dark hero */
 .grain::after {
   content: "";
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   pointer-events: none;
-  opacity: 0.45;
+  opacity: 0.4;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.32 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
+/* Fine amber paper texture */
 .paper-texture {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.09 0 0 0 0 0.07 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.12 0 0 0 0 0.06 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Ledger grid — subtle horizontal legal-paper lines */
+/* Ledger horizontal ruling */
 .ledger-lines {
   background-image: linear-gradient(
     to bottom,
     transparent 0,
-    transparent calc(1.5rem - 1px),
-    var(--color-hairline) calc(1.5rem - 1px),
-    var(--color-hairline) 1.5rem
+    transparent calc(1.75rem - 1px),
+    var(--color-hairline) calc(1.75rem - 1px),
+    var(--color-hairline) 1.75rem
   );
-  background-size: 100% 1.5rem;
+  background-size: 100% 1.75rem;
 }
 
-/* Reveal-on-load: staggered rise */
+/* ONE choreographed load — hero rise sequence */
 @media (prefers-reduced-motion: no-preference) {
   .rise {
     opacity: 0;
-    transform: translateY(12px);
-    animation: rise 800ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+    transform: translateY(14px);
+    animation: rise 900ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
   }
   @keyframes rise {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Binding-thread draw — engaged on hero rise for continuity */
+  .thread-draw {
+    transform-origin: top center;
+    animation: threadDraw 1600ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+  @keyframes threadDraw {
+    from { transform: scaleY(0); opacity: 0; }
+    to { transform: scaleY(1); opacity: 0.85; }
   }
 }
 
@@ -333,46 +436,43 @@ body {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-.seal-spin {
-  animation: seal-spin 36s linear infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-  .seal-spin { animation: none; }
-}
+.seal-spin { animation: seal-spin 42s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .seal-spin { animation: none; } }
 
-/* Scroll-triggered fade in (JS toggles [data-inview]) */
+/* Scroll-reveal */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(16px);
+  transform: translateY(14px);
   transition:
-    opacity 700ms cubic-bezier(0.2, 0.7, 0.2, 1),
-    transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    opacity 720ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 720ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
-[data-reveal][data-inview="true"] {
-  opacity: 1;
-  transform: translateY(0);
-}
+[data-reveal][data-inview="true"] { opacity: 1; transform: translateY(0); }
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .rise { opacity: 1 !important; transform: none !important; animation: none !important; }
+  .thread-draw { transform: none !important; opacity: 0.5 !important; animation: none !important; }
 }
 
-/* Marquee for advocate strip */
+/* Marquee */
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
-.marquee-track {
-  animation: marquee 40s linear infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track { animation: none; }
-}
+.marquee-track { animation: marquee 48s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
 
 /* Focus */
 :focus-visible {
-  outline: 2px solid var(--color-ochre);
+  outline: 2px solid var(--color-vermilion);
   outline-offset: 3px;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 a { text-underline-offset: 4px; }
+
+/* Retire the italic-highlight ornament: any inline usage should use .stamped instead */
+.stamped {
+  border-bottom: 2px solid var(--color-vermilion);
+  padding-bottom: 1px;
+}
