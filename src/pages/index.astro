@@ -7,7 +7,7 @@ const ledger = [
   { n: "10", l: "state Rent Acts covered" },
   { n: "48h", l: "stamp turnaround, max" },
   { n: "₹499", l: "advocate-stamped notice" },
-  { n: "42", l: "legal advisors onboarding" },
+  { n: "10+", l: "avg advisor experience" },
 ];
 
 const services = [
@@ -68,15 +68,14 @@ const states = [
   "Haryana", "Punjab", "Andhra Pradesh", "Madhya Pradesh", "Assam",
 ];
 
-// Placeholder advisor seats — populated as advisors complete onboarding.
-// We do not publish advisor names or credentials on this page.
+// Placeholder advisor seats. Names & Bar Council details are private until assigned.
 const seats = [
   { code: "KA·01", city: "Bengaluru", state: "Karnataka", years: "10+ yrs", specs: ["Rentals", "Consumer"], turn: "36 h", status: "verified" },
   { code: "DL·04", city: "Delhi NCR", state: "Delhi", years: "15+ yrs", specs: ["Property", "RERA"], turn: "24 h", status: "verified" },
-  { code: "MH·07", city: "Mumbai", state: "Maharashtra", years: "8+ yrs", specs: ["Rentals", "Society"], turn: "40 h", status: "onboarding" },
+  { code: "MH·07", city: "Mumbai", state: "Maharashtra", years: "8+ yrs", specs: ["Rentals", "Society"], turn: "40 h", status: "verified" },
   { code: "MH·09", city: "Pune", state: "Maharashtra", years: "12+ yrs", specs: ["Deposits", "Eviction"], turn: "30 h", status: "verified" },
   { code: "TN·02", city: "Chennai", state: "Tamil Nadu", years: "9+ yrs", specs: ["Rentals", "Contracts"], turn: "36 h", status: "verified" },
-  { code: "TS·05", city: "Hyderabad", state: "Telangana", years: "7+ yrs", specs: ["Rentals", "Consumer"], turn: "48 h", status: "onboarding" },
+  { code: "TS·05", city: "Hyderabad", state: "Telangana", years: "7+ yrs", specs: ["Rentals", "Consumer"], turn: "48 h", status: "verified" },
 ];
 ---
 
@@ -90,7 +89,7 @@ const seats = [
       <div class="rise flex items-center gap-2.5" style="animation-delay:.05s">
         <span class="inline-flex items-center gap-2 h-7 px-3 rounded-full bg-[color:var(--color-rust-tint)] border border-[color:var(--color-rust-soft)] text-[color:var(--color-rust-3)] text-[11.5px] font-medium tracking-wide">
           <span class="size-1.5 rounded-full bg-[color:var(--color-rust)] animate-pulse"></span>
-          Onboarding legal advisors across 12 states
+          Legal consultants & advocates on your side
         </span>
       </div>
 
@@ -102,10 +101,10 @@ const seats = [
           </h1>
 
           <p class="rise mt-8 max-w-[58ch] text-[17px] md:text-[19px] leading-[1.5] text-[color:var(--color-ink-muted)]" style="animation-delay:.28s">
-            Recourse is a marketplace of legal advisors — advocates, consultants, and specialists — who
-            help tenants handle the task at hand. Draft a legal notice in thirty seconds. Have it
-            stamped on advocate letterhead for <span class="stamped">₹499</span>. Then keep your advisor for
-            consultations, filings, or a retainer if the matter grows teeth.
+            Recourse pairs you with legal consultants and advocates who help you through the
+            process. Draft a legal notice in thirty seconds. Have it stamped on advocate letterhead
+            for <span class="stamped">₹499</span>. Then keep your advisor for consultations, filings,
+            or a retainer if the matter grows teeth.
           </p>
 
           <div class="rise mt-10 flex flex-wrap items-center gap-3" style="animation-delay:.4s">
@@ -211,8 +210,8 @@ const seats = [
           </h2>
         </div>
         <p class="text-[14.5px] text-[color:var(--color-ink-muted)] max-w-[38ch]">
-          Draft and stamp are live. Consultation and filings unlock as the panel grows — join the
-          waitlist and we'll invite you first when they open in your city.
+          Draft and stamp are live. Consultation and filings roll out through the same advisors —
+          join the waitlist and we'll invite you first when they open in your city.
         </p>
       </div>
 
@@ -264,12 +263,12 @@ const seats = [
       <div class="max-w-[56ch]">
         <span class="label label-rust">The panel</span>
         <h2 class="font-display text-[38px] md:text-[52px] leading-[1.02] tracking-[-0.025em] mt-4">
-          Onboarding legal advisors who help with <span class="font-display-italic text-[color:var(--color-rust-2)]">the task at hand.</span>
+          Legal consultants and advocates who help you <span class="font-display-italic text-[color:var(--color-rust-2)]">with the task at hand.</span>
         </h2>
         <p class="mt-6 text-[16px] leading-[1.55] text-[color:var(--color-ink-muted)] max-w-[56ch]">
-          Advocates, consultants, and specialists — every advisor on Recourse is Bar Council–enrolled
-          or credentialed for their scope of work, and identity-verified. We don't publish names on
-          this page. Once assigned, your advisor's full identity appears on the document you receive.
+          Every advisor on Recourse is Bar Council–enrolled or credentialed for their scope of work,
+          and identity-verified. We don't publish names on this page — once assigned, your advisor's
+          full identity appears on the document you receive.
         </p>
       </div>
       <a href="/advisors/" class="btn btn-outline btn-sm">
@@ -292,11 +291,7 @@ const seats = [
               </div>
               <div class="text-[12.5px] text-[color:var(--color-ink-muted)] mt-0.5">{seat.city} · {seat.years}</div>
             </div>
-            {seat.status === "verified" ? (
-              <span class="badge badge-verified"><span class="badge-dot"></span>Verified</span>
-            ) : (
-              <span class="badge badge-onboarding"><span class="badge-dot"></span>Onboarding</span>
-            )}
+            <span class="badge badge-verified"><span class="badge-dot"></span>Verified</span>
           </div>
 
           <div class="flex flex-wrap gap-1.5">
@@ -312,8 +307,8 @@ const seats = [
     </div>
 
     <p class="mt-8 text-[12.5px] text-[color:var(--color-ink-faint)] max-w-[68ch]">
-      Placeholder seats. Real advisors are assigned to your matter on order. Full name, Bar Council
-      roll number (for stamps), and chambers address appear on the document you receive.
+      Advisors are assigned to your matter on order. Full name, Bar Council roll number (for stamps),
+      and chambers address appear on the document you receive.
     </p>
   </section>
 
@@ -460,7 +455,7 @@ const seats = [
         </div>
         <div class="sm:col-span-3 rounded-xl border border-dashed border-[color:var(--color-hairline-2)] p-6 bg-[color:var(--color-canvas)]">
           <div class="grid sm:grid-cols-3 gap-5 text-[13.5px]">
-            <div><span class="label">Onboarding</span><p class="mt-2 text-[color:var(--color-ink-muted)] leading-relaxed">Roll number, sample notice, one call with our panel counsel.</p></div>
+            <div><span class="label">Joining</span><p class="mt-2 text-[color:var(--color-ink-muted)] leading-relaxed">Roll number, sample notice, one call with our panel counsel.</p></div>
             <div><span class="label">Payouts</span><p class="mt-2 text-[color:var(--color-ink-muted)] leading-relaxed">Weekly, direct bank transfer. TDS at source. Statement each week.</p></div>
             <div><span class="label">Exit</span><p class="mt-2 text-[color:var(--color-ink-muted)] leading-relaxed">Leave the panel any time. No exclusivity. No lock-in.</p></div>
           </div>

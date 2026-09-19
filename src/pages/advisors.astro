@@ -7,16 +7,16 @@ const APP_URL = "https://rental-recourse.vercel.app";
 const seats = [
   { code: "KA·01", city: "Bengaluru", state: "Karnataka", years: "10+ yrs", specs: ["Rentals", "Consumer", "Contracts"], langs: "EN · KN · HI", turn: "36 h", status: "verified", kind: "Advocate" },
   { code: "DL·04", city: "Delhi NCR", state: "Delhi", years: "15+ yrs", specs: ["Property", "Commercial leases", "RERA"], langs: "EN · HI", turn: "24 h", status: "verified", kind: "Advocate" },
-  { code: "MH·07", city: "Mumbai", state: "Maharashtra", years: "8+ yrs", specs: ["Rentals", "Society matters"], langs: "EN · HI · MR", turn: "40 h", status: "onboarding", kind: "Advocate" },
+  { code: "MH·07", city: "Mumbai", state: "Maharashtra", years: "8+ yrs", specs: ["Rentals", "Society matters"], langs: "EN · HI · MR", turn: "40 h", status: "verified", kind: "Advocate" },
   { code: "MH·09", city: "Pune", state: "Maharashtra", years: "12+ yrs", specs: ["Deposits", "Eviction"], langs: "EN · MR · HI", turn: "30 h", status: "verified", kind: "Advocate" },
   { code: "TN·02", city: "Chennai", state: "Tamil Nadu", years: "9+ yrs", specs: ["Rentals", "Contracts"], langs: "EN · TA", turn: "36 h", status: "verified", kind: "Advocate" },
-  { code: "TS·05", city: "Hyderabad", state: "Telangana", years: "7+ yrs", specs: ["Rentals", "Consumer"], langs: "EN · TE · HI", turn: "48 h", status: "onboarding", kind: "Advocate" },
-  { code: "KL·03", city: "Kochi", state: "Kerala", years: "6+ yrs", specs: ["Rentals", "Deposits"], langs: "EN · ML", turn: "40 h", status: "onboarding", kind: "Advocate" },
-  { code: "WB·02", city: "Kolkata", state: "West Bengal", years: "11+ yrs", specs: ["Tenancy", "Small causes"], langs: "EN · BN · HI", turn: "42 h", status: "onboarding", kind: "Advocate" },
-  { code: "UP·06", city: "Noida", state: "Uttar Pradesh", years: "8+ yrs", specs: ["Rentals", "RERA"], langs: "EN · HI", turn: "36 h", status: "onboarding", kind: "Advocate" },
-  { code: "GJ·04", city: "Ahmedabad", state: "Gujarat", years: "10+ yrs", specs: ["Rentals", "Commercial leases"], langs: "EN · GU · HI", turn: "36 h", status: "onboarding", kind: "Advocate" },
-  { code: "RJ·01", city: "Jaipur", state: "Rajasthan", years: "9+ yrs", specs: ["Rentals", "Consumer"], langs: "EN · HI", turn: "42 h", status: "onboarding", kind: "Advocate" },
-  { code: "PB·02", city: "Chandigarh", state: "Punjab", years: "12+ yrs", specs: ["Tenancy", "Deposits"], langs: "EN · HI · PA", turn: "40 h", status: "onboarding", kind: "Advocate" },
+  { code: "TS·05", city: "Hyderabad", state: "Telangana", years: "7+ yrs", specs: ["Rentals", "Consumer"], langs: "EN · TE · HI", turn: "48 h", status: "verified", kind: "Advocate" },
+  { code: "KL·03", city: "Kochi", state: "Kerala", years: "6+ yrs", specs: ["Rentals", "Deposits"], langs: "EN · ML", turn: "40 h", status: "verified", kind: "Advocate" },
+  { code: "WB·02", city: "Kolkata", state: "West Bengal", years: "11+ yrs", specs: ["Tenancy", "Small causes"], langs: "EN · BN · HI", turn: "42 h", status: "verified", kind: "Advocate" },
+  { code: "UP·06", city: "Noida", state: "Uttar Pradesh", years: "8+ yrs", specs: ["Rentals", "RERA"], langs: "EN · HI", turn: "36 h", status: "verified", kind: "Advocate" },
+  { code: "GJ·04", city: "Ahmedabad", state: "Gujarat", years: "10+ yrs", specs: ["Rentals", "Commercial leases"], langs: "EN · GU · HI", turn: "36 h", status: "verified", kind: "Advocate" },
+  { code: "RJ·01", city: "Jaipur", state: "Rajasthan", years: "9+ yrs", specs: ["Rentals", "Consumer"], langs: "EN · HI", turn: "42 h", status: "verified", kind: "Advocate" },
+  { code: "PB·02", city: "Chandigarh", state: "Punjab", years: "12+ yrs", specs: ["Tenancy", "Deposits"], langs: "EN · HI · PA", turn: "40 h", status: "verified", kind: "Advocate" },
 ];
 
 const specialities = ["Rentals", "Deposits", "Eviction", "Contracts", "Consumer", "RERA", "Society matters", "Commercial leases", "Small causes"];
@@ -27,18 +27,18 @@ const verificationSteps = [
   { n: "01", l: "Bar Council enrollment", d: "State roll number and enrollment certificate on file. Cross-checked against the State Bar Council register." },
   { n: "02", l: "Government ID + address", d: "PAN, Aadhaar, and chambers address. Independent proof of practice." },
   { n: "03", l: "Sample notice review", d: "Panel counsel reviews two anonymised notices the advisor has issued in the last twelve months." },
-  { n: "04", l: "Onboarding call", d: "Thirty-minute call covering our house style, redlining protocol, and payout mechanics." },
+  { n: "04", l: "Intro call", d: "Thirty-minute call covering our house style, redlining protocol, and payout mechanics." },
 ];
 ---
 
-<Base title="Legal advisors — Recourse" description="Onboarding legal advisors — advocates, consultants, and specialists — who help Indian tenants with the task at hand." headerVariant="paper">
+<Base title="Legal advisors — Recourse" description="Legal consultants and advocates who help Indian tenants with the task at hand." headerVariant="paper">
   <!-- ============ HERO ============ -->
   <section class="relative border-b border-[color:var(--color-hairline)]">
     <div class="max-w-[1240px] mx-auto px-5 md:px-10 pt-16 md:pt-24 pb-14 md:pb-20">
       <div class="rise flex items-center gap-2.5" style="animation-delay:.05s">
         <span class="inline-flex items-center gap-2 h-7 px-3 rounded-full bg-[color:var(--color-rust-tint)] border border-[color:var(--color-rust-soft)] text-[color:var(--color-rust-3)] text-[11.5px] font-medium tracking-wide">
           <span class="size-1.5 rounded-full bg-[color:var(--color-rust)] animate-pulse"></span>
-          Batches 03 &amp; 04 · onboarding across 12 states
+          Legal consultants &amp; advocates across 12 states
         </span>
       </div>
 
@@ -49,10 +49,9 @@ const verificationSteps = [
             <span class="font-display-italic text-[color:var(--color-rust-2)]">on the tenant's side.</span>
           </h1>
           <p class="rise mt-8 max-w-[58ch] text-[17px] md:text-[18.5px] leading-[1.55] text-[color:var(--color-ink-muted)]" style="animation-delay:.28s">
-            Recourse is onboarding legal advisors — advocates, consultants, and specialists — who
-            help tenants handle the task at hand. Every seat is Bar Council–enrolled or
-            credentialed for its scope, and identity-verified. Names are private on this page
-            and appear only on the document you receive.
+            Legal consultants and advocates who help tenants handle the task at hand. Every seat is
+            Bar Council–enrolled or credentialed for its scope, and identity-verified. Names are
+            private on this page and appear only on the document you receive.
           </p>
         </div>
         <div class="lg:col-span-4 rise" style="animation-delay:.4s">
@@ -63,16 +62,16 @@ const verificationSteps = [
             </div>
             <dl class="grid grid-cols-3 divide-x divide-[color:var(--color-hairline)]">
               <div class="px-4 py-4 text-center">
-                <dt class="label text-[10.5px]">Panel</dt>
-                <dd class="stat-num text-[28px] mt-1.5">42</dd>
-              </div>
-              <div class="px-4 py-4 text-center">
-                <dt class="label text-[10.5px]">Verified</dt>
-                <dd class="stat-num text-[28px] mt-1.5">14</dd>
-              </div>
-              <div class="px-4 py-4 text-center">
                 <dt class="label text-[10.5px]">States</dt>
                 <dd class="stat-num text-[28px] mt-1.5">12</dd>
+              </div>
+              <div class="px-4 py-4 text-center">
+                <dt class="label text-[10.5px]">Turn · max</dt>
+                <dd class="stat-num text-[28px] mt-1.5">48h</dd>
+              </div>
+              <div class="px-4 py-4 text-center">
+                <dt class="label text-[10.5px]">Languages</dt>
+                <dd class="stat-num text-[28px] mt-1.5">8</dd>
               </div>
             </dl>
           </div>
@@ -136,11 +135,7 @@ const verificationSteps = [
               </h3>
               <p class="text-[12px] text-[color:var(--color-ink-muted)] mt-0.5">{s.city} · {s.years}</p>
             </div>
-            {s.status === "verified" ? (
-              <span class="badge badge-verified"><span class="badge-dot"></span>Verified</span>
-            ) : (
-              <span class="badge badge-onboarding"><span class="badge-dot"></span>Onboarding</span>
-            )}
+            <span class="badge badge-verified"><span class="badge-dot"></span>Verified</span>
           </header>
 
           <div class="flex flex-wrap gap-1.5">
@@ -167,10 +162,8 @@ const verificationSteps = [
     </div>
 
     <p class="mt-8 text-[12.5px] text-[color:var(--color-ink-faint)] max-w-[70ch] leading-relaxed">
-      As advisors clear verification (batches 03 &amp; 04), seats convert from
-      <span class="text-[color:var(--color-ink-muted)]">Onboarding</span> to
-      <span class="text-[color:var(--color-ink-muted)]">Verified</span>. Assignment is based on
-      your state, matter type, and turnaround preference — no self-selection at MVP.
+      Assignment is based on your state, matter type, and turnaround preference — no self-selection
+      at MVP. Full advisor identity appears on the document you receive.
     </p>
   </section>
 
@@ -320,8 +313,8 @@ const verificationSteps = [
           Apply to sit on <span class="font-display-italic text-[color:var(--color-rust-2)]">the panel.</span>
         </h2>
         <p class="mt-6 text-[15.5px] leading-[1.55] text-[color:var(--color-ink-muted)] max-w-[46ch]">
-          Bar Council–enrolled advocates and credentialed consultants can apply. We onboard in
-          monthly batches and prioritise tier-1 and tier-2 metros. Five minutes to fill out.
+          Bar Council–enrolled advocates and credentialed consultants can apply. We review
+          applications monthly and prioritise tier-1 and tier-2 metros. Five minutes to fill out.
         </p>
         <ul class="mt-6 text-[13.5px] text-[color:var(--color-ink-muted)] space-y-2.5">
           <li class="flex items-baseline gap-2.5"><span class="text-[color:var(--color-rust-2)]">▸</span> ₹350 per stamp, weekly payout</li>
